@@ -18,6 +18,7 @@ categories:
 Gitlens
 ```
 
+<!--more-->
 ### git 生成秘钥
 #### `一个账号`
 ``` bash
@@ -148,5 +149,19 @@ git checkout -b [branch-name] origin/[origin-brnach-name]
 git checkout -b [branch-name] [commit-id]
 ```
 
+#### `git tag`
+``` bash
+# 基于某个commit创建tag
+git tag -a [tagname] [commit-id] -m [comments]
+
+# 查看tag
+git tag --list
+
+# push tag
+git push origin --tag [tagname] [commit-id]
+
+# 删除tag
+git tag -d [tagname]
+```
 
 
