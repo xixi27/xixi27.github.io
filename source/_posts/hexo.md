@@ -74,3 +74,7 @@ hexo clean            # 清除缓存和已生成的静态文件
 hexo help             # 帮助
 ```
 
+### Hexo 常见问题
+#### bash: hexo: command not found
+将blog目录下的`\node_modules\.bin` 配置到path环境变量中， 然后重新打开git bash.
+

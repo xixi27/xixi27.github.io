@@ -1,5 +1,5 @@
 ---
-title: linux 的常用命令
+title: Linux 的常用命令
 date: 2020-12-26 21:43:26
 tags:
 - Linux
