@@ -1,10 +1,11 @@
 ---
 title: Windows 下 Hexo + Github Pages 搭建 blog
-date: 2020-12-26 23:10:49
 tags:
-- Hexo
+  - Hexo
 categories:
-- Hexo
+  - Hexo
+abbrlink: 922ca1c7
+date: 2020-12-26 23:10:49
 ---
 
 ### 安装Hexo

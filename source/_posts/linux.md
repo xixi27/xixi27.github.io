@@ -1,10 +1,11 @@
 ---
 title: Linux 的常用命令
-date: 2020-12-26 21:43:26
 tags:
-- Linux
+  - Linux
 categories:
-- Linux
+  - Linux
+abbrlink: c62376e6
+date: 2020-12-26 21:43:26
 ---
 
 ### `scp`

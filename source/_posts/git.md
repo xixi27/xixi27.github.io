@@ -1,10 +1,11 @@
 ---
 title: Git 的配置及使用
-date: 2020-12-24 21:21:37
 tags:
-- Git
+  - Git
 categories:
-- Git
+  - Git
+abbrlink: d4bb8afb
+date: 2020-12-24 21:21:37
 ---
 
 ### vscode 配置 git

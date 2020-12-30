@@ -1,12 +1,13 @@
 ---
 title: vscode 下搭建spring boot环境
-date: 2020-12-29 09:52:20
 tags:
-- vscode
-- spring-boot
+  - vscode
+  - spring-boot
 categories:
-- [vscode]
-- [spring-boot]
+  - - vscode
+  - - spring-boot
+abbrlink: 27946bdc
+date: 2020-12-29 09:52:20
 ---
 
 ### 安装扩展插件
