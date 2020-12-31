@@ -25,7 +25,14 @@ categories:
 
 ### Deploy
 创建成功之后，填写deploy参数
-![deploy-parameter](deploy-parameter.PNG)
+![build-setting](build-setting.PNG)
 
 `部署成功之后，就可以查看网站了，以后只需要提交代码到github就行了，不需要手动部署了`
-`自定义域名以后有机会再更新！`
+
+### Netlify CMS
+Netlify CMS 可以帮助我们在线编辑blog
+
+#### 安装 Netlify CMS
+``` bash
+npm i hexo-netlify-cms --save
+```

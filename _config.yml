@@ -128,3 +128,6 @@ symbols_count_time:
   # 站点总阅读时间统计
   total_time: false
   exclude_codeblock: false
+
+netlify_cms:
+  config_file: netlify.yaml
