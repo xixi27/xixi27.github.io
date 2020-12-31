@@ -165,4 +165,16 @@ git push origin --tag [tagname] [commit-id]
 git tag -d [tagname]
 ```
 
+### `git fetch`
+``` bash
+# 拉取远程代码， 更新本地仓库
+git fetch --all
+```
+
+### `git rebase`
+``` bash
+# 和你要合并的分支进行rebase 操作
+git rebase origin/[branch-name]
+```
+
 
