@@ -125,15 +125,9 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: tags-index.md
-        label: tags
-        file: source\tags\index.md
-        editor:
-          preview: true
-        fields: *ref_0
-      - name: js-cursor-activate-power-mode.min.js
+      - name: js-cursor-fireworks.js
         label: ''
-        file: source\js\cursor\activate-power-mode.min.js
+        file: source\js\cursor\fireworks.js
         editor:
           preview: true
         fields: *ref_0
@@ -143,21 +137,27 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: js-cursor-fireworks.js
+      - name: js-cursor-activate-power-mode.min.js
         label: ''
-        file: source\js\cursor\fireworks.js
+        file: source\js\cursor\activate-power-mode.min.js
         editor:
           preview: true
         fields: *ref_0
-      - name: js-cursor-love.min.js
-        label: ''
-        file: source\js\cursor\love.min.js
+      - name: tags-index.md
+        label: tags
+        file: source\tags\index.md
         editor:
           preview: true
         fields: *ref_0
       - name: js-cursor-text.js
         label: ''
         file: source\js\cursor\text.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-love.min.js
+        label: ''
+        file: source\js\cursor\love.min.js
         editor:
           preview: true
         fields: *ref_0
