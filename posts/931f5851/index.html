@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xixi27.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="最受欢迎的教程之一是如何制作登录系统。我们将通过构建它来开始本教程。请注意，这只是创建登录系统的一种方法。还有许多其他可行的选择。这只是为了向您展示一种创建具有登录&#x2F;注销功能的应用程序的方法。 本教程旨在向用户展示一种设计应用程序以包含“已登录”和“已注销”视图的方式。本教程不会尝试实现安全的数据连接，会话管理，真实身份验证等。它仅用于教育目的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 ExtJs 创建 一个 Login App">
+<meta property="og:url" content="https://xixi27.xyz/posts/931f5851/index.html">
+<meta property="og:site_name" content="xixi27">
+<meta property="og:description" content="最受欢迎的教程之一是如何制作登录系统。我们将通过构建它来开始本教程。请注意，这只是创建登录系统的一种方法。还有许多其他可行的选择。这只是为了向您展示一种创建具有登录&#x2F;注销功能的应用程序的方法。 本教程旨在向用户展示一种设计应用程序以包含“已登录”和“已注销”视图的方式。本教程不会尝试实现安全的数据连接，会话管理，真实身份验证等。它仅用于教育目的。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xixi27.xyz/posts/931f5851/extjs-structure.PNG">
+<meta property="og:image" content="https://xixi27.xyz/posts/931f5851/login-structure.PNG">
+<meta property="article:published_time" content="2021-01-05T05:59:58.000Z">
+<meta property="article:modified_time" content="2021-01-29T07:40:11.346Z">
+<meta property="article:author" content="xixi27">
+<meta property="article:tag" content="ExtJs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xixi27.xyz/posts/931f5851/extjs-structure.PNG">
+
+<link rel="canonical" href="https://xixi27.xyz/posts/931f5851/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用 ExtJs 创建 一个 Login App | xixi27</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xixi27</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">香菜、葱、辣椒都要</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>电影</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>阅读</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/931f5851/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="xixi27">
+      <meta itemprop="description" content="记录生活的点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xixi27">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 ExtJs 创建 一个 Login App
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-05 13:59:58" itemprop="dateCreated datePublished" datetime="2021-01-05T13:59:58+08:00">2021-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-29 15:40:11" itemprop="dateModified" datetime="2021-01-29T15:40:11+08:00">2021-01-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/ExtJs/" itemprop="url" rel="index"><span itemprop="name">ExtJs</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/931f5851/" class="post-meta-item leancloud_visitors" data-flag-title="使用 ExtJs 创建 一个 Login App" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/931f5851/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/931f5851/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最受欢迎的教程之一是如何制作登录系统。我们将通过构建它来开始本教程。请注意，这只是创建登录系统的一种方法。还有许多其他可行的选择。这只是为了向您展示一种创建具有登录/注销功能的应用程序的方法。</p>
+<p>本教程旨在向用户展示一种设计应用程序以包含“已登录”和“已注销”视图的方式。本教程不会尝试实现安全的数据连接，会话管理，真实身份验证等。它仅用于教育目的。</p>
+<a id="more"></a>
+
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>当我们的第一个demo项目创建好之后， 我们可以看到以下项目结构<br><img src="extjs-structure.PNG" alt="项目的目录结构"></p>
+<ul>
+<li><p>app.js:程式流程开始的主要档案，应该使用＆lt; script＆gt; 标签。 应用程序调用应用程序的控制器的其余功能。</p>
+</li>
+<li><p>Controller.js:它是ExtJs MVC架构的控制器文件。 这包含应用程序的所有控制，事件侦听器的最大功能的代码。 它具有为该应用程序中使用的所有其他文件定义的路径，例如store，view，model，require，mixins。</p>
+</li>
+<li><p>View.js:它包含应用程序的界面部分，显示给用户。 ExtJs使用各种UI丰富的视图，可以根据需要在这里扩展和自定义。</p>
+</li>
+<li><p>Store.js:它包含本地缓存的数据，它将在模型对象的帮助下在视图上呈现。 存储使用代理获取数据，代理具有为服务定义的路径以获取后端数据。</p>
+</li>
+<li><p>Model.js:它包含绑定要查看的商店数据的对象。 它有后端数据对象到视图dataIndex的映射。 在store的帮助下获取数据。</p>
+</li>
+<li><p>Utils.js:它不包括在MVC架构中，但是最好的做法是使代码清晰，不太复杂，更加可读。 我们可以在这个文件中编写方法，并在控制器或视图渲染器中调用它们。 这对代码可重用性目的也很有帮助。</p>
+</li>
+</ul>
+<h2 id="创建登录视图组件-Create-the-Login-View-Components"><a href="#创建登录视图组件-Create-the-Login-View-Components" class="headerlink" title="创建登录视图组件 - Create the Login View Components"></a>创建登录视图组件 - Create the Login View Components</h2><ul>
+<li>在 <code>app\view</code> 目录下创建一个 <code>login</code> 文件夹</li>
+<li>在 <code>app\view\login</code> 目录下创建两个文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">- Login.js</span><br><span class="line">- LoginController.js</span><br></pre></td></tr></table></figure>
+目录结构如下：<br><img src="login-structure.PNG" alt="login 目录结构"></li>
+</ul>
+<h2 id="禁用掉-mainView-Disable-mainView"><a href="#禁用掉-mainView-Disable-mainView" class="headerlink" title="禁用掉 mainView - Disable mainView"></a>禁用掉 mainView - Disable mainView</h2><p>应用程序的mainView配置是使用Viewport插件自动加载和实例化<code>TutorialApp.view.main.Main</code>的一种非常方便的方法。<br>但是，在选择初始视图之前，我们需要对Ext.application的启动方法进行一些评估。例如，如果用户尚未登录，我们不想创建主视图</p>
+<p>在本练习中，让我们从<code>&#123;appRoot&#125; /app.js</code>中的应用程序配置中删除 <code>mainView</code> 配置。</p>
+<div class="note info">
+            <p>由于我们已经删除了mainView，因此刷新您的应用程序将导致空白页，因为没有实例化任何类。</p>
+          </div>
+
+<h2 id="创建一个登录窗口-Create-the-Login-Window"><a href="#创建一个登录窗口-Create-the-Login-Window" class="headerlink" title="创建一个登录窗口 - Create the Login Window"></a>创建一个登录窗口 - Create the Login Window</h2><p>接下来，让我们创建一个登录视图。为此，我们将打开空白的<code>&#123;appRoot&#125; /app/view/login/Login.js</code>文件，然后开始定义“登录窗口”。</p>
+<p>首先，让我们定义我们的Class并扩展基础Window类。看起来像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们已经将Login类定义为Ext.window.Window的扩展，可以使用<code>xtype: login</code>实例化该扩展。让我们开始为我们的class提供一些独特的属性。我们将从向窗口本身添加一些其他配置开始。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span></span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Ext.form.Panel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    bodyPadding: <span class="number">10</span>,</span><br><span class="line">    title: <span class="string">&#x27;Login Window&#x27;</span>,</span><br><span class="line">    closable: <span class="literal">false</span>,</span><br><span class="line">    autoShow: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>让我们看一下这些配置的含义。</p>
+<ul>
+<li><p>requires<br>require块可确保在实例化“登录”窗口之前，我们包括了可能依赖的所有类。我们需要包含LoginController.js，因为我们将在下一行将其指定为我们的控制器。我们还需要包括Ext.form.Panel，因为我们的视图包含一个Form面板。</p>
+</li>
+<li><p>controller<br>控制器配置指定一个<code>ViewController</code>，然后将其附加到“登录”窗口的实例。该控制器提供了一个包含与“登录”窗口或其子组件有关的所有逻辑的位置。在这里，我们指定要登录的控制器，这将是我们控制器的别名</p>
+</li>
+<li><p>bodyPadding<br>bodyPadding配置纯粹是美观的。此配置在窗口主体内容的外部周围应用<code>10px</code>的填充。</p>
+</li>
+<li><p>title<br>传递给标题配置的字符串会导致创建标头，并将字符串值添加为其标题。</p>
+</li>
+<li><p>closable<br>Closable确定是否可以关闭窗口。 Windows默认情况下具有可关闭的按钮。但是，由于这是一个登录窗口，因此我们不希望用户关闭它。如果他们关闭它，将留下空白页。</p>
+</li>
+<li><p>autoShow<br>Windows默认是隐藏的。将autoShow设置为true将在创建窗口后显示它。当我们希望窗口可见时，可以选择以编程方式调用窗口的show方法</p>
+</li>
+</ul>
+<p>现在我们已经讨论了Window的配置，让我们给它一些子组件。由于这将是一个登录表单，因此我们将创建一个Form面板作为Window的子代。然后，我们将添加两个文本字段，一个显示字段和一个提交按钮。</p>
+<p>该文件的最终代码应如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Ext.form.Panel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    bodyPadding: <span class="number">10</span>,</span><br><span class="line">    title: <span class="string">&#x27;Login Window&#x27;</span>,</span><br><span class="line">    closable: <span class="literal">false</span>,</span><br><span class="line">    autoShow: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    items: &#123;</span><br><span class="line">        xtype: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        reference: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        items: [&#123;</span><br><span class="line">            xtype: <span class="string">&#x27;textfield&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;username&#x27;</span>,</span><br><span class="line">            fieldLabel: <span class="string">&#x27;Username&#x27;</span>,</span><br><span class="line">            allowBlank: <span class="literal">false</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            xtype: <span class="string">&#x27;textfield&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">            inputType: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">            fieldLabel: <span class="string">&#x27;Password&#x27;</span>,</span><br><span class="line">            allowBlank: <span class="literal">false</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            xtype: <span class="string">&#x27;displayfield&#x27;</span>,</span><br><span class="line">            hideEmptyLabel: <span class="literal">false</span>,</span><br><span class="line">            value: <span class="string">&#x27;Enter any non-blank password&#x27;</span></span><br><span class="line">        &#125;],</span><br><span class="line">        buttons: [&#123;</span><br><span class="line">            text: <span class="string">&#x27;Login&#x27;</span>,</span><br><span class="line">            formBind: <span class="literal">true</span>,</span><br><span class="line">            listeners: &#123;</span><br><span class="line">                click: <span class="string">&#x27;onLoginClick&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Window items<br>我们添加到“登录”窗口的第一个配置是<code>items</code>。在“表单”面板和“登录”窗口本身之类的容器中，<code>items</code>可能包含一个组件或一个组件配置对象。<br><code>items</code>配置还可以是组件或组件配置对象的数组。这些组件将使用容器的布局<code>layout</code>显示在容器的主体中。</p>
+</li>
+<li><p>xtype<br>每个Component类都有自己的xtype。您可以将xtype视为轻松创建Component实例的快捷方式。在这种情况下，我们为登录窗口配置了一个xtype为<code>form</code>的子项（<code>form</code>是<code>Ext.form.Panel</code>类的<code>xtype</code>）。<br>表单面板是特殊类型的面板，其中包括使用输入字段的便捷配置选项。</p>
+</li>
+<li><p>Form Items<br>接下来，您将看到另一个<code>items</code>数组的熟悉面孔。在这里，我们通过使用<code>items</code>数组更深一层地嵌套其他项目。我们将更多组件放置在父组件（即“表单”面板）中。在这种情况下，我们的嵌套组件是组成登录表单的表单字段。我们可以快速浏览这些组件数组，因为它们很容易说明。</p>
+<p>  第一项的xtype为[[ext：Ext.form.field.Text textfield]]，名称为“ username”，字段标签为“ username”，而allowBlank为“ false”。这可以归结为具有名称值和字段标签的文本字段。该字段不能留为空白并通过验证（请参见下面的“ formBind”）。 </p>
+<p>  除了设置为“密码”的类型外，下一个字段几乎相同。为了安全起见，这会将您的输入变成*。</p>
+<p>  此items数组的最后一个成员是<code>displayfield</code>。显示字段是未与表单一起提交的文本字段。这对于在不与用户交互数据的情况下传输数据很有用。在这种情况下，我们通知用户任何非空白密码都将允许提交表单。</p>
+</li>
+<li><p>buttons<br>我们在此处添加的最后一位是<code>buttons</code>数组。这是用于将按钮添加到面板<code>panel</code>中的footer toolbar的便捷配置。该特定按钮将包含文本“登录”，用户将单击该按钮来提交登录表单。</p>
+</li>
+<li><p>formBind<br>我们的Button包含一个名为formBind的配置，该配置设置为<code>true</code>。当Component的formBind设置为<code>true</code>时，将根据Form的有效性状态禁用/启用它。这意味着在两个输入字段包含值之前，按钮是不可单击的。</p>
+</li>
+<li><p>listeners<br>侦听器对象配置有事件以及将响应这些事件的触发的方法/函数。在这种情况下，我们正在等待有人单击按钮。单击后，我们将事件“转发”到名为onLoginClick的方法。稍后将在我们的登录控制器中定义onLoginClick方法。</p>
+</li>
+</ul>
+<h2 id="添加登录逻辑-Add-Login-Logic"><a href="#添加登录逻辑-Add-Login-Logic" class="headerlink" title="添加登录逻辑-Add Login Logic"></a>添加登录逻辑-Add Login Logic</h2><p>接下来，让我们创建Login Controller，这是一个类，其中包含用于处理用户与Login视图的交互的任何逻辑。为此，我们将打开空白的<code>&#123;appRoot&#125; /app/view/login/LoginController.js</code>文件，然后开始定义“登录”窗口的逻辑。</p>
+<p>文件内容如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.ViewController&#x27;</span>,</span><br><span class="line">    alias: <span class="string">&#x27;controller.login&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    onLoginClick: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This would be the ideal location to verify the user&#x27;s credentials via</span></span><br><span class="line">        <span class="comment">// a server-side lookup. We&#x27;ll just move forward for the sake of this example.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set the localStorage value to true</span></span><br><span class="line">        <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;TutorialLoggedIn&quot;</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove Login Window</span></span><br><span class="line">        <span class="built_in">this</span>.getView().destroy();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add the main view to the viewport</span></span><br><span class="line">        Ext.widget(<span class="string">&#x27;app-main&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码可能与上下文无关，但是当我们在下一节中讨论启动方法时，它将更有意义。此类包含onLoginClick方法，该方法通过单击登录按钮来调用。</p>
+<p>这些代码段具有注释，以描述每个语句的目的，但让我们逐一查看它们以作进一步说明。</p>
+<ul>
+<li><p>onLoginClick()<br>首先，我们正在创建一个名为onLoginClick的方法。这是我们将“登录”视图中的登录按钮的click事件定向到的方法。</p>
+<p>  如注释中所述，您将在这里调用服务器以验证用户的凭据是否有效。这通常以AJAX或REST请求的形式出现。但是，对于本教程，我们将接受任何非空白的输入。成功之后，您将继续执行其余的代码。失败时，您将允许用户重新输入其凭据。当然，在这种情况下没有失败的可能性，所以让我们前进吧！</p>
+</li>
+<li><p>localStorage<br>在本教程中，我们将使用localStorage来维护用户登录状态。成功进行凭据检查之后，我们可以确定用户具有对主应用程序视图的适当访问权限。然后，我们可以在localStorage中设置键/值对，以使应用程序知道用户有效。接下来，我们将检查我们的初始启动方法中的TutorialLoggedIn localStorage密钥是否设置为“ true”（在下面的“启动”部分中进行了详细介绍）。</p>
+</li>
+<li><p>getView()<br>ViewControllers引入了一个非常有用的方法，称为getView（）。 getView（）方法返回与从其调用ViewController关联的当前视图。在这种情况下，该视图是“登录”窗口。由于我们将登录点击视为成功登录，因此我们不再希望显示“登录”窗口。因此，我们使用this.getView（）。destroy（）获取对“登录”窗口的引用，然后销毁它。</p>
+</li>
+<li><p>Ext.widget(‘app-main’)<br>现在我们已经破坏了Login窗口，我们想要更改视图以显示Main视图。在这种情况下，我们使用<code>Ext.widget（&#39;app-main&#39;）</code>实例化<code>&#123;appRoot&#125; /app/view/main/Main.js</code>视图。</p>
+</li>
+</ul>
+<div class="note info">
+            <p><code>app-main</code>是指在我们的Sencha Cmd生成的<code>{appRoot} /app/view/main.Main.js</code>类中定义的xtype</p>
+          </div>
+
+<h2 id="添加启动程序逻辑-Add-Launch-Logic-to-Application-js"><a href="#添加启动程序逻辑-Add-Launch-Logic-to-Application-js" class="headerlink" title="添加启动程序逻辑-Add Launch Logic to Application.js"></a>添加启动程序逻辑-Add Launch Logic to Application.js</h2><p>接下来，让我们讨论<code>&#123;appRoot&#125; /app/Application.js</code>和<code>launch</code>功能。</p>
+<p><code>Application.js</code>是您应用程序的核心。您可以在与<code>view</code>，<code>store</code>和<code>model</code>文件夹相同级别的位置找到<code>Application.js</code>。<br>它提供了一个方便的方法，称为<code>launch</code>，在您的应用程序加载了所有必需的类时触发。这是本教程的<code>Application.js</code>文件的完整代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The main application class. An instance of this class is created by `app.js` when it calls</span></span><br><span class="line"><span class="comment"> * Ext.application(). This is the ideal place to handle application launch and initialization</span></span><br><span class="line"><span class="comment"> * details.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.Application&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.Application&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    name: <span class="string">&#x27;TutorialApp&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    stores: [</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> add global / shared stores here</span></span><br><span class="line">    ],</span><br><span class="line">    views: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.Main&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    launch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// It&#x27;s important to note that this type of application could use</span></span><br><span class="line">        <span class="comment">// any type of storage, i.e., Cookies, LocalStorage, etc.</span></span><br><span class="line">        <span class="keyword">var</span> loggedIn;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check to see the current value of the localStorage key</span></span><br><span class="line">        loggedIn = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;TutorialLoggedIn&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This ternary operator determines the value of the TutorialLoggedIn key.</span></span><br><span class="line">        <span class="comment">// If TutorialLoggedIn isn&#x27;t true, we display the login window,</span></span><br><span class="line">        <span class="comment">// otherwise, we display the main view</span></span><br><span class="line">        Ext.widget(loggedIn ? <span class="string">&#x27;app-main&#x27;</span> : <span class="string">&#x27;login&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>让我们检查一下这些部分在做什么。</p>
+<ul>
+<li><p>requires<br>我们已经描述了require要做的事情，但是让我们来谈谈这个特定的数组。出于<code>Application.js</code>的目的，我们需要准备应用程序以加载Login或Main视图，具体取决于即将进行的登录评估的结果。<br>为此，我们必须同时需要<code>TutorialApp.view.main.Main</code>和<code>TutorialApp.view.login.Login</code>，以便提供两种结果。</p>
+</li>
+<li><p>launch<br>如前所述，启动方法是一个功能，当您的应用程序加载了它需要运行的所有内容时，该方法就会执行。这是执行有关登录/注销应用程序用户状态逻辑的理想场所。</p>
+</li>
+<li><p>localStorage.getItem()</p>
+</li>
+</ul>
+<p>下一步是检查先前设置的称为TutorialLoggedIn的localStorage密钥。我们只是将loggingIn变量设置为该键值的结果。如果不存在，则loginIn将为null。如果确实存在，那么我们先前已在LoginController的逻辑中将TutorialLoggedIn设置为true。</p>
+<ul>
+<li>Widget Ternary<br>大多数编程语言都包含一种称为三元运算符的条件速记形式。三元运算符使您可以最小化传统if / else语句所需的代码量。在这种情况下，我们使用三元组来表示：“如果loggingIn存在（不为null），请加载Main视图，否则加载Login视图”。然后，我们使用Ext.widget方法实例化三元运算符的结果。</li>
+</ul>
+<h2 id="Add-Viewport-Plugin"><a href="#Add-Viewport-Plugin" class="headerlink" title="Add Viewport Plugin"></a>Add Viewport Plugin</h2><p>您可能还记得，我们在本教程的开头就从<code>&#123;appRoot&#125; /app.js</code>中删除了<code>mainView</code>配置。由于我们没有定义视口，因此您的主视图将不知道在哪里渲染。我们将通过混入视口插件来更改它，以便<code>&#123;appRoot&#125; /app/view/main/Main.js</code>将作为我们应用程序的视口运行。<br>这样，主视图将占据视图中所有可用的宽度和高度浏览器。只需在<code>&#123;appRoot&#125; /app/view/main/Main.js</code>中添加以下行即可：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plugins: <span class="string">&#x27;viewport&#x27;</span>,</span><br></pre></td></tr></table></figure>
+<p>生成的<code>&#123;appRoot&#125;/app/view/main/Main.js</code>文件如下所示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This class is the main view for the application. It is specified in `app.js` as the</span></span><br><span class="line"><span class="comment"> * &quot;mainView&quot; property. That setting automatically applies the &quot;viewport&quot;</span></span><br><span class="line"><span class="comment"> * plugin to promote that instance of this class to the body element.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * TODO - Replace this content of this view to suite the needs of your application.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.main.Main&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.container.Container&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.MainController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.MainModel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    xtype: <span class="string">&#x27;app-main&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;main&#x27;</span>,</span><br><span class="line">    plugins: <span class="string">&#x27;viewport&#x27;</span>,</span><br><span class="line">    viewModel: &#123;</span><br><span class="line">        type: <span class="string">&#x27;main&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    layout: &#123;</span><br><span class="line">        type: <span class="string">&#x27;border&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    items: [&#123;</span><br><span class="line">        xtype: <span class="string">&#x27;panel&#x27;</span>,</span><br><span class="line">        bind: &#123;</span><br><span class="line">            title: <span class="string">&#x27;&#123;name&#125;&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        region: <span class="string">&#x27;west&#x27;</span>,</span><br><span class="line">        html: <span class="string">&#x27;&lt;ul&gt;&lt;li&gt;This area is commonly used for navigation, for example, using a &quot;tree&quot; component.&lt;/li&gt;&lt;/ul&gt;&#x27;</span>,</span><br><span class="line">        width: <span class="number">250</span>,</span><br><span class="line">        split: <span class="literal">true</span>,</span><br><span class="line">        tbar: [&#123;</span><br><span class="line">            text: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">            handler: <span class="string">&#x27;onClickButton&#x27;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        region: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">        xtype: <span class="string">&#x27;tabpanel&#x27;</span>,</span><br><span class="line">        items:[&#123;</span><br><span class="line">            title: <span class="string">&#x27;Tab 1&#x27;</span>,</span><br><span class="line">            html: <span class="string">&#x27;&lt;h2&gt;Content appropriate for the current navigation.&lt;/h2&gt;&#x27;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>您不需要修改<code>&#123;appRoot&#125; /app/view/main/Main.js</code>的其他任何部分，因为我们将为点击处理程序使用默认生成的onClickButton方法。</p>
+<h2 id="Add-Main-Logic"><a href="#Add-Main-Logic" class="headerlink" title="Add Main Logic"></a>Add Main Logic</h2><p>我们快完成了！现在剩下的就是为用户提供某种注销应用程序的方法，这将破坏localStorage中的TutorialLoggedIn键。此逻辑应在<code>&#123;appRoot&#125; /app/view/main/MainController.js</code>文件中进行。<br>您可以根据需要删除其他生成的代码。这是本教程的<code>MainController.js</code>的最终定义：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.main.MainController&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.ViewController&#x27;</span>,</span><br><span class="line">    alias: <span class="string">&#x27;controller.main&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    onClickButton: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove the localStorage key/value</span></span><br><span class="line">        <span class="built_in">localStorage</span>.removeItem(<span class="string">&#x27;TutorialLoggedIn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove Main View</span></span><br><span class="line">        <span class="built_in">this</span>.getView().destroy();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add the Login Window</span></span><br><span class="line">        Ext.widget(<span class="string">&#x27;login&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们在这里不需要深入，因为它基本上是我们的<code>&#123;appRoot&#125; /app/view/login/LoginController.js</code>代码的反函数。</p>
+<p>总结此功能，onClickButton是按钮处理程序在我们生成的<code>&#123;appMain&#125; /app/view/main/Main.js</code>视图中调用的函数。检测到点击事件后，将执行以下步骤：</p>
+<ul>
+<li>删除维持用户登录状态的localStorage项。</li>
+<li>销毁当前视图，即TutorialApp.view.main.Main。</li>
+<li>重新创建登录视图。</li>
+</ul>
+<p>现在，您应该能够在浏览器中加载应用程序，并看到功能全面的登录/注销应用程序。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.sencha.com/extjs/7.3.1/guides/tutorials/login_app/login_app.html">Ext 官方文档</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    <div>
+    
+        <div class="end-slogan" style="text-align:center;font-size:16px;letter-spacing:10px;user-select:none;color:#bbb;"><br/>本文结束啦<i class="fa fa-star"></i>感谢您阅读<br/><br/></div>
+    
+</div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>xixi27
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xixi27.xyz/posts/931f5851/" title="使用 ExtJs 创建 一个 Login App">https://xixi27.xyz/posts/931f5851/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/ExtJs/" rel="tag"><i class="fa fa-tag"></i> ExtJs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/3c9de474/" rel="prev" title="Windows 快速搭建 ExtJs 项目">
+      <i class="fa fa-chevron-left"></i> Windows 快速搭建 ExtJs 项目
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/c16abca4/" rel="next" title="Refused to execute script error - its MIME type ('text/html') is not executeable">
+      Refused to execute script error - its MIME type ('text/html') is not executeable <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%99%BB%E5%BD%95%E8%A7%86%E5%9B%BE%E7%BB%84%E4%BB%B6-Create-the-Login-View-Components"><span class="nav-number">2.</span> <span class="nav-text">创建登录视图组件 - Create the Login View Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A6%81%E7%94%A8%E6%8E%89-mainView-Disable-mainView"><span class="nav-number">3.</span> <span class="nav-text">禁用掉 mainView - Disable mainView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%99%BB%E5%BD%95%E7%AA%97%E5%8F%A3-Create-the-Login-Window"><span class="nav-number">4.</span> <span class="nav-text">创建一个登录窗口 - Create the Login Window</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%99%BB%E5%BD%95%E9%80%BB%E8%BE%91-Add-Login-Logic"><span class="nav-number">5.</span> <span class="nav-text">添加登录逻辑-Add Login Logic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%90%AF%E5%8A%A8%E7%A8%8B%E5%BA%8F%E9%80%BB%E8%BE%91-Add-Launch-Logic-to-Application-js"><span class="nav-number">6.</span> <span class="nav-text">添加启动程序逻辑-Add Launch Logic to Application.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Viewport-Plugin"><span class="nav-number">7.</span> <span class="nav-text">Add Viewport Plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Main-Logic"><span class="nav-number">8.</span> <span class="nav-text">Add Main Logic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">9.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xixi27"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xixi27</p>
+  <div class="site-description" itemprop="description">记录生活的点滴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/d4e4c678/" title="posts&#x2F;d4e4c678&#x2F;">Font Awesome thumb-tack 置顶icon不能显示</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/62e278fe/" title="posts&#x2F;62e278fe&#x2F;">JSON 和 JSONP</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/780715e7/" title="posts&#x2F;780715e7&#x2F;">前端跨域问题</a>
+        </li>
+    </ul>
+  </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xixi27</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : '29fXvOnqlCKmQY8JllHKDGSO-gzGzoHsz',
+      appKey     : 'uNxF4xSxD8RYOGUqQ6y6W3t5',
+      placeholder: "Just go go",
+      avatar     : 'wavatar',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-CN' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/cursor/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script async type="text/javascript" src="/js/crash-cheat.js"></script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class='fa fa-chevron-down'></i>    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class='fa fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+</body>
+</html>
+

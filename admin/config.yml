@@ -1,0 +1,169 @@
+backend:
+  name: git-gateway
+  branch: hexo
+media_folder: source/images
+public_folder: /images
+publish_mode: editorial_workflow
+pages:
+  enabled: true
+  config:
+    label: Page
+    delete: false
+    editor:
+      preview: true
+over_format: true
+collections:
+  - name: posts
+    label: Post
+    folder: source/_posts
+    sort: 'date:desc'
+    create: true
+    editor:
+      preview: true
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+        format: 'YYYY-MM-DD HH:mm:ss'
+        dateFormat: YYYY-MM-DD
+        timeFormat: 'HH:mm:ss'
+        required: false
+      - label: Updeted Date
+        name: updated
+        widget: datetime
+        format: 'YYYY-MM-DD HH:mm:ss'
+        required: false
+        dateFormat: YYYY-MM-DD
+        timeFormat: 'HH:mm:ss'
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+      - label: Categories
+        name: categories
+        widget: list
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
+        required: false
+      - label: Permalink
+        name: permalink
+        widget: string
+        required: false
+      - label: Comments
+        name: comments
+        widget: boolean
+        default: true
+        required: false
+  - name: all_posts
+    fields: &ref_0
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+        dateFormat: YYYY-MM-DD
+        timeFormat: 'HH:mm:ss'
+        format: 'YYYY-MM-DD HH:mm:ss'
+        required: false
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+      - label: Categories
+        name: categories
+        widget: list
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
+        required: false
+      - label: Permalink
+        name: permalink
+        widget: string
+        required: false
+      - label: Comments
+        name: comments
+        widget: boolean
+        default: true
+        required: false
+    label: Post
+    folder: source/_posts
+    create: true
+    editor:
+      preview: true
+  - label: Page
+    name: pages
+    delete: false
+    files:
+      - name: 404-index.md
+        label: '404'
+        file: source\404\index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: archives-index.md
+        label: archives
+        file: source\archives\index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-crash-cheat.js
+        label: ''
+        file: source\js\crash-cheat.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: categories-index.md
+        label: categories
+        file: source\categories\index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: tags-index.md
+        label: tags
+        file: source\tags\index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-activate-power-mode.min.js
+        label: ''
+        file: source\js\cursor\activate-power-mode.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-explosion.min.js
+        label: ''
+        file: source\js\cursor\explosion.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-fireworks.js
+        label: ''
+        file: source\js\cursor\fireworks.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-love.min.js
+        label: ''
+        file: source\js\cursor\love.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-text.js
+        label: ''
+        file: source\js\cursor\text.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-Valine.min.js
+        label: ''
+        file: source\js\Valine.min.js
+        editor:
+          preview: true
+        fields: *ref_0

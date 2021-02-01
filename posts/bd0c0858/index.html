@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xixi27.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="这篇文章简单讲解了一下关于正则表达式的基础。 Java 类 java.lang.String java.util.regex.Pattern java.util.regex.Matcher">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式基础">
+<meta property="og:url" content="https://xixi27.xyz/posts/bd0c0858/index.html">
+<meta property="og:site_name" content="xixi27">
+<meta property="og:description" content="这篇文章简单讲解了一下关于正则表达式的基础。 Java 类 java.lang.String java.util.regex.Pattern java.util.regex.Matcher">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-04T12:01:35.000Z">
+<meta property="article:modified_time" content="2021-01-29T10:09:51.374Z">
+<meta property="article:author" content="xixi27">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Regx">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://xixi27.xyz/posts/bd0c0858/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>正则表达式基础 | xixi27</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xixi27</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">香菜、葱、辣椒都要</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-film fa-fw"></i>电影</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-book fa-fw"></i>阅读</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/bd0c0858/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="xixi27">
+      <meta itemprop="description" content="记录生活的点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xixi27">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          正则表达式基础
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-04 20:01:35" itemprop="dateCreated datePublished" datetime="2021-01-04T20:01:35+08:00">2021-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-29 18:09:51" itemprop="dateModified" datetime="2021-01-29T18:09:51+08:00">2021-01-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Regx/" itemprop="url" rel="index"><span itemprop="name">Regx</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/bd0c0858/" class="post-meta-item leancloud_visitors" data-flag-title="正则表达式基础" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/bd0c0858/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/bd0c0858/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>这篇文章简单讲解了一下关于正则表达式的基础。</p>
+<h2 id="Java-类"><a href="#Java-类" class="headerlink" title="Java 类"></a>Java 类</h2><ul>
+<li>java.lang.String</li>
+<li>java.util.regex.Pattern</li>
+<li>java.util.regex.Matcher</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="简单认识正则表达式"><a href="#简单认识正则表达式" class="headerlink" title="简单认识正则表达式"></a>简单认识正则表达式</h2><ul>
+<li><p>方式一：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;abc&quot;</span>.matches(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"><span class="comment">// 返回的结果为true, 一个点代表一个字符</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方式二：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把正则表达式编译放在模式里面，不用每次匹配的时候编译，大大的提高了效率。</span></span><br><span class="line">Pattern p = Pattern.compile(<span class="string">&quot;[a-z]&#123;3&#125;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把匹配出来的结果放在Matcher这个容器里面，匹配出来的结果可能不止一种。</span></span><br><span class="line">Matcher m = p.matcher(<span class="string">&quot;fgh&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把匹配的结果返回 Boolean</span></span><br><span class="line">m.matches();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<div class="note info">
+            <p>第一种虽然只用了一行code,但是第二种的效率会比第一种高的多。</p>
+          </div>
+
+<h3 id="初步认识正则表达式"><a href="#初步认识正则表达式" class="headerlink" title="初步认识正则表达式 . * + ?"></a>初步认识正则表达式 . * + ?</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 返回true, * 表示 0 或 多次</span></span><br><span class="line"><span class="string">&quot;&quot;</span>.matches(<span class="string">&quot;a*&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回true, ? 表示 0 次或一次</span></span><br><span class="line"><span class="string">&quot;&quot;</span>.matches(<span class="string">&quot;a?&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回true, + 表示 1 次或多次</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;a+&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h2><div class="note info">
+            <p>一个中括号表示一个字符串</p>
+          </div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 匹配abc中的任意一个字符串</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;[abc]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配abc中的任意一个不是abc的字符串</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;[^abc]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配大小写字母</span></span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-zA-Z]&quot;</span>);</span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-z]|[A-Z]&quot;</span>);</span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-z[A-Z]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配RFG</span></span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[A-Z&amp;&amp;[RFG]&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="认识-d-s-w"><a href="#认识-d-s-w" class="headerlink" title="认识 \d \s \w"></a>认识 \d \s \w</h2><ul>
+<li>\d : [0-9]</li>
+<li>\D : [^0-9]</li>
+<li>\s : 空格</li>
+<li>\S : 非空格</li>
+<li>\w : [a-zA-Z_0-9]</li>
+<li>\W : [^\w]</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 匹配一个&quot;\&quot;, 在正则表达式里面需要用两个&quot;\&quot;表示一个,所以是4个&quot;\&quot;</span></span><br><span class="line"><span class="string">&quot;\\&quot;</span>.matches(<span class="string">&quot;\\\\&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="边界处理"><a href="#边界处理" class="headerlink" title="边界处理"></a>边界处理</h2><ul>
+<li>^ 匹配输入字符串开始的位置</li>
+<li>$ 匹配输入字符串结尾的位置</li>
+<li>\b 匹配一个字边界，即字与空格间的位置。例如，”er\b”匹配”never”中的”er”，但不匹配”verb”中的”er”。</li>
+<li>\B 非字边界匹配。”er\B”匹配”verb”中的”er”，但不匹配”never”中的”er”。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 匹配第一个字符是空格 且不是\n 出现0或多次 以\n结尾</span></span><br><span class="line"><span class="string">&quot; \n&quot;</span>.matches(<span class="string">&quot;^[\\s&amp;&amp;[^\\n]]*\\n$&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<h2 id="分组-group"><a href="#分组-group" class="headerlink" title="分组-group"></a>分组-group</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Partten p = Partten.compile(<span class="string">&quot;\\d&#123;3,5&#125;[a-z]&#123;2&#125;&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;123aa-44564bb-3456df-00&quot;</span></span><br><span class="line">Macther m = p.matches(s)</span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;</span><br><span class="line">    m.group();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分别打印每组里面的数字和字母，这个时候可以用到分组</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d&#123;3,5&#125;)([a-z]&#123;2&#125;)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从左开始数左括号，第几个左括号就是第几组，下标从1开始。 打印第一组：</span></span><br><span class="line">m.group(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不想分组打印，直接：</span></span><br><span class="line">m.group();</span><br></pre></td></tr></table></figure>
+
+<h2 id="补充小知识"><a href="#补充小知识" class="headerlink" title="补充小知识"></a>补充小知识</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后面的值必须和第一个group匹配到的值一模一样</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d\\d)\\1&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;1212&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后面的值必须和第2个group匹配到的值一模一样</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d(\\d))\\2&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;122&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>\n 匹配前面出现的第n个分组的正则表达式一次，可用于不连续的重复匹配</p>
+          </div>
+
+<p class="red-bold-text">正则表达式[0-9]{2}和([0-9])\1所能匹配的结果完全不同，前者匹配所有的两个数字，而后者只能匹配两个重复的数字</p>
+
+
+<h2 id="贪婪模式与懒惰模式"><a href="#贪婪模式与懒惰模式" class="headerlink" title="贪婪模式与懒惰模式"></a>贪婪模式与懒惰模式</h2><ul>
+<li><p>贪婪模式 匹配尽可能多的字符<br>以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab</p>
+</li>
+<li><p>懒惰模式 匹配尽可能少的字符<br>a.*?b匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。<br>为什么第一个匹配是aab（第一到第三个字符）而不是ab（第二到第三个字符）？简单地说，因为正则表达式有另一条规则，比懒惰／贪婪规则的优先级更高：最先开始的匹配拥有最高的优先权——The match that begins earliest wins。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*?     <span class="comment">// 重复任意次，但尽可能少重复</span></span><br><span class="line">+?     <span class="comment">// 重复一次或更多次，但尽可能少重复</span></span><br><span class="line">??     <span class="comment">//重复0次或一次，但尽可能少重复</span></span><br><span class="line">&#123;n,m&#125;  <span class="comment">//重复n到m次，但尽可能少重复</span></span><br><span class="line">&#123;n,&#125;   <span class="comment">//重复n次以上，但尽可能少重复</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="正则表达式的前瞻后顾"><a href="#正则表达式的前瞻后顾" class="headerlink" title="正则表达式的前瞻后顾"></a>正则表达式的前瞻后顾</h2><p>正则表达式的匹配顺序是从左到右，所以这里定义的前就是还没有被匹配的字符在前。<br>“AB”也就是A”=&gt;B，A的前面是B，B的后面是A</p>
+<h3 id="前瞻"><a href="#前瞻" class="headerlink" title="前瞻"></a>前瞻</h3><p>前瞻分成前瞻和负前瞻。前瞻的意思就是匹配是向前看，这里举一个例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="string">&#x27;/AI(?=DU)/&#x27;</span>); <span class="comment">//匹配到BAIDU中的AI</span></span><br><span class="line"><span class="comment">// 匹配AI前面是DU的AI</span></span><br></pre></td></tr></table></figure>
+
+<p>负前瞻</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="string">&#x27;/AI(?!DU)/&#x27;</span>); <span class="comment">//匹配到字符串开头的AI</span></span><br><span class="line"><span class="comment">// 匹配AI前面不是DU的AI</span></span><br></pre></td></tr></table></figure>
+
+<p>?:和?=的区别：</p>
+<div class="note info">
+            <p>?= 是正向肯定断言，进行的匹配是不占查询长度的；而 ?: 是非获取匹配，进行的匹配是占据查询长度的。</p>
+          </div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="regexp">/AI(?=DU)/</span>); <span class="comment">//匹配出AI</span></span><br><span class="line">str.match(<span class="regexp">/AI(?:DU)/</span>); <span class="comment">//匹配出AIDU</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="后顾"><a href="#后顾" class="headerlink" title="后顾"></a>后顾</h3><p>后顾和负后顾与前瞻和负前瞻差不多的意思，只是方向不同。</p>
+<p>后顾和负后顾的表达式是：?&lt;=以及?&lt;!</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="regexp">/(?&lt;!AI)DU/</span>; <span class="comment">//匹配出null，因为不存在DU的后面不是AI</span></span><br><span class="line">str.match(<span class="regexp">/(?&lt;=AI)DU/</span>); <span class="comment">//匹配出DU</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/csu_passer/article/details/98951221">正则表达式的‘前瞻后顾’</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    <div>
+    
+        <div class="end-slogan" style="text-align:center;font-size:16px;letter-spacing:10px;user-select:none;color:#bbb;"><br/>本文结束啦<i class="fa fa-star"></i>感谢您阅读<br/><br/></div>
+    
+</div>
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>xixi27
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xixi27.xyz/posts/bd0c0858/" title="正则表达式基础">https://xixi27.xyz/posts/bd0c0858/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/Regx/" rel="tag"><i class="fa fa-tag"></i> Regx</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/a3a69e9b/" rel="prev" title="NexT 主题的配置">
+      <i class="fa fa-chevron-left"></i> NexT 主题的配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/3c9de474/" rel="next" title="Windows 快速搭建 ExtJs 项目">
+      Windows 快速搭建 ExtJs 项目 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">Java 类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E8%AE%A4%E8%AF%86%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">简单认识正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">初步认识正则表达式 . * + ?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4"><span class="nav-number">3.</span> <span class="nav-text">范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86-d-s-w"><span class="nav-number">4.</span> <span class="nav-text">认识 \d \s \w</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E5%A4%84%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">边界处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84-group"><span class="nav-number">6.</span> <span class="nav-text">分组-group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="nav-number">7.</span> <span class="nav-text">补充小知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AA%E5%A9%AA%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%87%92%E6%83%B0%E6%A8%A1%E5%BC%8F"><span class="nav-number">8.</span> <span class="nav-text">贪婪模式与懒惰模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E5%89%8D%E7%9E%BB%E5%90%8E%E9%A1%BE"><span class="nav-number">9.</span> <span class="nav-text">正则表达式的前瞻后顾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%9E%BB"><span class="nav-number">9.1.</span> <span class="nav-text">前瞻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E9%A1%BE"><span class="nav-number">9.2.</span> <span class="nav-text">后顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">9.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xixi27"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">xixi27</p>
+  <div class="site-description" itemprop="description">记录生活的点滴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/d4e4c678/" title="posts&#x2F;d4e4c678&#x2F;">Font Awesome thumb-tack 置顶icon不能显示</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/62e278fe/" title="posts&#x2F;62e278fe&#x2F;">JSON 和 JSONP</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/780715e7/" title="posts&#x2F;780715e7&#x2F;">前端跨域问题</a>
+        </li>
+    </ul>
+  </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xixi27</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : true,
+      notify     : false,
+      appId      : '29fXvOnqlCKmQY8JllHKDGSO-gzGzoHsz',
+      appKey     : 'uNxF4xSxD8RYOGUqQ6y6W3t5',
+      placeholder: "Just go go",
+      avatar     : 'wavatar',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-CN' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+
+
+
+  <script src="/js/cursor/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = true;
+    POWERMODE.shake = false;
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+
+
+
+
+  <script async type="text/javascript" src="/js/crash-cheat.js"></script>
+<div class="moon-menu">
+  <div class="moon-menu-items">
+    
+    <div class="moon-menu-item" onclick="back2bottom()">
+      <i class='fa fa-chevron-down'></i>    </div>
+    
+    <div class="moon-menu-item" onclick="back2top()">
+      <i class='fa fa-chevron-up'></i>    </div>
+    
+  </div>
+  <div class="moon-menu-button">
+    <svg class="moon-menu-bg">
+      <circle class="moon-menu-cricle" cx="50%" cy="50%" r="44%"></circle>
+      <circle class="moon-menu-border" cx="50%" cy="50%" r="48%"></circle>
+    </svg>
+    <div class="moon-menu-content">
+      <div class="moon-menu-icon"><i class='fas fa-ellipsis-v'></i></div>
+      <div class="moon-menu-text"></div>
+    </div>
+  </div>
+</div><script src="/js/injector.js"></script>
+</body>
+</html>
+
