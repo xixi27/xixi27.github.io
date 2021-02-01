@@ -113,33 +113,9 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: js-crash-cheat.js
-        label: ''
-        file: source\js\crash-cheat.js
-        editor:
-          preview: true
-        fields: *ref_0
       - name: categories-index.md
         label: categories
         file: source\categories\index.md
-        editor:
-          preview: true
-        fields: *ref_0
-      - name: js-cursor-fireworks.js
-        label: ''
-        file: source\js\cursor\fireworks.js
-        editor:
-          preview: true
-        fields: *ref_0
-      - name: js-cursor-explosion.min.js
-        label: ''
-        file: source\js\cursor\explosion.min.js
-        editor:
-          preview: true
-        fields: *ref_0
-      - name: js-cursor-activate-power-mode.min.js
-        label: ''
-        file: source\js\cursor\activate-power-mode.min.js
         editor:
           preview: true
         fields: *ref_0
@@ -149,15 +125,39 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: js-cursor-text.js
+      - name: js-crash-cheat.js
         label: ''
-        file: source\js\cursor\text.js
+        file: source\js\crash-cheat.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-activate-power-mode.min.js
+        label: ''
+        file: source\js\cursor\activate-power-mode.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-explosion.min.js
+        label: ''
+        file: source\js\cursor\explosion.min.js
         editor:
           preview: true
         fields: *ref_0
       - name: js-cursor-love.min.js
         label: ''
         file: source\js\cursor\love.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-fireworks.js
+        label: ''
+        file: source\js\cursor\fireworks.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-text.js
+        label: ''
+        file: source\js\cursor\text.js
         editor:
           preview: true
         fields: *ref_0

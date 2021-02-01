@@ -1,134 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo 添加 Valine 评论功能</title>
-    <url>/posts/d3fd59e8/</url>
-    <content><![CDATA[<p>这篇文章主要是记录一下自己添加Valine的过程</p>
-<h2 id="LeanCloud"><a href="#LeanCloud" class="headerlink" title="LeanCloud"></a>LeanCloud</h2><h3 id="1-注册一个LeanCloud账号"><a href="#1-注册一个LeanCloud账号" class="headerlink" title="1. 注册一个LeanCloud账号"></a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3><a id="more"></a>
-
-<h3 id="2-获取AppId和AppKey"><a href="#2-获取AppId和AppKey" class="headerlink" title="2. 获取AppId和AppKey"></a><span id="inline-toc">2. </span>获取<code>AppId</code>和<code>AppKey</code></h3><p>进入<code>设置</code> -&gt; <code>应用Key</code> 将 <code>AppId</code>和<code>AppKey</code> 复制， 然后去 <code>_next.yml</code> 配置 <code>Valine</code></p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">XXX</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">XXX</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">true</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">wavatar</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-创建-Comment-和-Counter-Class-无限制的Class"><a href="#3-创建-Comment-和-Counter-Class-无限制的Class" class="headerlink" title="3. 创建 Comment 和 Counter Class, 无限制的Class"></a><span id="inline-toc">3. </span>创建 <code>Comment</code> 和 <code>Counter</code> Class, <code>无限制的Class</code></h3><p><img src="%E5%88%9B%E5%BB%BAClass.png" alt="创建Class"></p>
-<h3 id="4-关闭除数据存储外的其他选项，添加域名"><a href="#4-关闭除数据存储外的其他选项，添加域名" class="headerlink" title="4. 关闭除数据存储外的其他选项，添加域名"></a><span id="inline-toc">4. </span>关闭除数据存储外的其他选项，添加域名</h3><p><img src="%E5%85%B3%E9%97%AD%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png" alt="关闭服务和添加域名"></p>
-<p>现在我们就可以开始用评论功能了！</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo 添加自定义域名</title>
-    <url>/posts/4cef3d8b/</url>
-    <content><![CDATA[<p>折腾了我两天的时间，终于把域名给弄好了。这篇文章就用来记录一下我踩过的坑和一些经验总结。</p>
-<h2 id="将Hexo部署到Coding"><a href="#将Hexo部署到Coding" class="headerlink" title="将Hexo部署到Coding"></a>将Hexo部署到Coding</h2><h3 id="创建Coding仓库"><a href="#创建Coding仓库" class="headerlink" title="创建Coding仓库"></a>创建Coding仓库</h3><h4 id="1-需要注册一个Coding账号"><a href="#1-需要注册一个Coding账号" class="headerlink" title="1. 需要注册一个Coding账号"></a><span id="inline-toc">1. </span>需要注册一个Coding账号</h4><div class="note info">
-            <p>因为Coding现在属于腾讯旗下的了，所以每一个coding账号都会绑定一个腾讯云账号。需要注意的是确认Coding绑定的腾讯云账号和你购买域名的腾讯云账号是同一个。我就是因为这两个账号不是同一个，导致域名解析出现问题。</p>
-          </div>
-
-<a id="more"></a>
-
-<h4 id="2-创建仓库"><a href="#2-创建仓库" class="headerlink" title="2. 创建仓库"></a><span id="inline-toc">2. </span>创建仓库</h4><p>现在创建Coding仓库很方便，可以直接把git仓库克隆过来<br><img src="%E5%88%9B%E5%BB%BACoding%E4%BB%93%E5%BA%93.png" alt="创建Coding仓库"></p>
-<h3 id="静态网站"><a href="#静态网站" class="headerlink" title="静态网站"></a>静态网站</h3><p>走到这一步，我们就可以开始搭建静态网站了。<br><img src="%E6%96%B0%E5%BB%BA%E7%BD%91%E7%AB%99.png" alt="新建网站"></p>
-<p>填写基本信息,网站类型选择<code>静态网站</code><br><img src="%E6%96%B0%E5%BB%BA%E7%BD%91%E7%AB%99%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF.png" alt="新建网站基本信息"></p>
-<p>现在可以直接部署了，部署成功之后，就可以通过他分配的地址访问我们的博客了。<br><img src="%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F.png" alt="网站部署成功"></p>
-<h3 id="部署Hexo到Coding"><a href="#部署Hexo到Coding" class="headerlink" title="部署Hexo到Coding"></a>部署Hexo到Coding</h3><div class="note info">
-            <p>我们可以直接在<code>_config.yml</code>添加CODING的仓库地址, deploy就行了</p><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repo:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/XX.github.io</span></span><br><span class="line">    <span class="attr">coding:</span> <span class="string">https://e.coding.net/XX.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
-          </div>
-
-<h2 id="添加自定义域名"><a href="#添加自定义域名" class="headerlink" title="添加自定义域名"></a>添加自定义域名</h2><h3 id="Coding-添加域名"><a href="#Coding-添加域名" class="headerlink" title="Coding 添加域名"></a>Coding 添加域名</h3><p><img src="%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="添加自定义域名"></p>
-<div class="note info">
-            <p>CNAME需要复制下来， 然后到域名购买商站点添加一条解析记录</p>
-          </div>
-
-<p>这里以腾讯为例：</p>
-<h4 id="1-申请SSL证书"><a href="#1-申请SSL证书" class="headerlink" title="1. 申请SSL证书"></a><span id="inline-toc">1. </span>申请SSL证书</h4><p>这个证书申请很快，十几秒就好了<br><img src="%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6.png" alt="申请SSL证书"></p>
-<h4 id="2-添加解析记录"><a href="#2-添加解析记录" class="headerlink" title="2. 添加解析记录"></a><span id="inline-toc">2. </span>添加解析记录</h4><p><img src="%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%951.png" alt="添加解析记录1"></p>
-<p>这里我们把Github的也顺便一起加了<br><img src="%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%952.png" alt="添加解析记录2"></p>
-<p>添加成功之后，再重新部署一下站点，就可以使用我们的域名访问了。</p>
-<h3 id="Github-Page-添加域名"><a href="#Github-Page-添加域名" class="headerlink" title="Github Page 添加域名"></a>Github Page 添加域名</h3><blockquote>
-<p>下面这四个都是指向Github的ip地址，选择其中两个添加到解析记录里面就好了</p>
-</blockquote>
-<ul>
-<li>185.199.108.153</li>
-<li>185.199.109.153</li>
-<li>185.199.110.153</li>
-<li>185.199.111.153</li>
-</ul>
-<p>再添加一条记录指向我们的<code>xxx.github.io</code>, 添加如下内容</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ A 185.199.108.153</span><br><span class="line">@ A 185.199.109.153</span><br><span class="line">www CNAME username.github.io</span><br></pre></td></tr></table></figure>
-
-<h4 id="添加-CNAME-文件"><a href="#添加-CNAME-文件" class="headerlink" title="添加 CNAME 文件"></a>添加 CNAME 文件</h4><p>在 Hexo 本地目录中的 source 文件夹里，添加一个命名为 CNAME 的无后缀文件，文件中的填写你的域名。</p>
-<p>如果你想让地址栏的域名显示 www 前缀就输入 <a href="http://www.xxxxx.com,否则输入/">www.xxxxx.com，否则输入</a> xxxxx.com 即可。</p>
-<p>例如：<code>xixi27.xyz</code> 然后执行 <code>hexo g &amp;&amp; hexo d</code></p>
-<h4 id="enforce-Https"><a href="#enforce-Https" class="headerlink" title="enforce Https"></a>enforce Https</h4><p><img src="Githubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="Githubpage自定义域名"></p>
-<p>现在可以通过自定义域名访问了！</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://tding.top/archives/b48e2719.html">GitHub Pages 绑定域名</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Font Awesome thumb-tack 置顶icon不能显示</title>
-    <url>/posts/d4e4c678/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>今天添加了置顶功能之后， 发现置顶图标显示不出来，控制台也没有任何错误， fontAwesome css也引入了<br>官网给的该图标的名称是<code>thumb-tack</code></p>
-<a id="more"></a>
-
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>最后发现在<code>next\source\lib\font-awesome\all.min.css</code>发现了问题</p>
-<p>打开该文件之后， 搜索了一下 <code>thumb</code>, 发现了 <code>thumbtack</code>, 中间没有<code>-</code>.</p>
-<p>改成<code>thumbtack</code>之后，图标显示出来了。</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JSON 和 JSONP</title>
-    <url>/posts/62e278fe/</url>
-    <content><![CDATA[<p>JSON是一种数据交换格式，而JSONP是信息传递双方约定的<b>方法</b></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html">【原创】说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>jQuery</category>
-      </categories>
-      <tags>
-        <tag>jQuery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端跨域问题</title>
-    <url>/posts/780715e7/</url>
-    <content><![CDATA[<p>当两个域具有相同的协议(如http), 相同的端口(如80)，相同的host（如<code>www.google.com</code>)，那么我们就可以认为它们是相同的域（协议，域名，端口都必须相同）。</p>
-<p>跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
-<li>使用JSONP, 但是只支持GET请求</li>
-<li>在服务器端的response里添加header，允许前端指定的主机访问<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: *&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>css 总结</title>
     <url>/posts/47d64ec4/</url>
     <content><![CDATA[<p>这篇文章主要用来记录CSS的一些经验总结</p>
@@ -167,55 +39,133 @@
       </tags>
   </entry>
   <entry>
-    <title>VS Code 智能提示</title>
-    <url>/posts/d200aa3/</url>
-    <content><![CDATA[<p>VS Code智能提示的设置</p>
-<h2 id="VS-Code-智能提示设置"><a href="#VS-Code-智能提示设置" class="headerlink" title="VS Code 智能提示设置"></a>VS Code 智能提示设置</h2><p><code>settings</code> -&gt; <code>Text Editor</code> -&gt; <code>suggestion</code>  禁用掉不想要的提示即可</p>
+    <title>同时执行多个wget命令时被当作一条命令执行了</title>
+    <url>/posts/d832317f/</url>
+    <content><![CDATA[<p>用java code 拼接了多条wget命令, 每一条命令末尾都加上了<code>\r\n</code>, 如下所示</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -c -o &#x2F;etc&#x2F;tool&#x2F;log.log -P &#x2F;etc&#x2F;4.9.3.0300.6033 http:&#x2F;&#x2F;&lt;host&gt;&#x2F;4.9.3.0300.6033&#x2F;test.png</span><br><span class="line">wget -c -o &#x2F;etc&#x2F;tool&#x2F;log.log -P &#x2F;etc&#x2F;4.9.3.0300.6033 http:&#x2F;&#x2F;&lt;host&gt;&#x2F;4.9.3.0300.6033&#x2F;test-1.png</span><br><span class="line">wget -c -o &#x2F;etc&#x2F;tool&#x2F;log.log -P &#x2F;etc&#x2F;4.9.3.0300.5885 http:&#x2F;&#x2F;&lt;host&gt;&#x2F;4.9.3.0300.5885&#x2F;test.png</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
-<h2 id="VS-Code-智能提示类型"><a href="#VS-Code-智能提示类型" class="headerlink" title="VS Code 智能提示类型"></a>VS Code 智能提示类型</h2><p><img src="type.png" alt="智能提示类型"></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://code.visualstudio.com/docs/editor/intellisense">VS Code intellisense 官方文档</a></li>
+<p>使用以下Java Runtime执行该命令， code如下所示:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">startDownloadJob</span><span class="params">(String name, String cmd)</span> </span>&#123;</span><br><span class="line">    Process process = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        process = Runtime.getRuntime().exec(cmd)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note danger">
+            <p>在log.log文件中发现三张图片全部都下载到了<code>/etc/4.9.3.0300.5885</code>这个路径下</p>
+          </div>
+
+<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>三张图片全部被下载到同一个路径下，那只能说明三个wget命令被当成一条命令执行了</p>
+<h3 id="解决方案-测试之后发现，还是存在该问题"><a href="#解决方案-测试之后发现，还是存在该问题" class="headerlink" title="解决方案 (!!!!测试之后发现，还是存在该问题)"></a>解决方案 (<span style="color: red">!!!!测试之后发现，还是存在该问题</span>)</h3><h4 id="通过-amp-amp-符号分隔命令"><a href="#通过-amp-amp-符号分隔命令" class="headerlink" title="通过 &amp;&amp; 符号分隔命令"></a>通过 <code>&amp;&amp;</code> 符号分隔命令</h4><ul>
+<li>&amp; 表示 前后两个命令同时执行</li>
+<li>&amp;&amp; 表示 前一个命令执行成功之后再执行后面的命令</li>
+<li>|| 表示 前一个命令执行失败的话，就执行后面的命令</li>
+<li>| 表示 把前一个命令的输出作为后一个命令的输入</li>
+<li>“&gt;” 表示用新的内容覆盖原文件</li>
+<li>“&gt;&gt;” 表示向原文件中追加内容</li>
 </ul>
+<h4 id="Java-Runtime-判断"><a href="#Java-Runtime-判断" class="headerlink" title="Java Runtime 判断"></a>Java Runtime 判断</h4><p>修改java代码，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">startDownloadJob</span><span class="params">(String name, String cmd)</span> </span>&#123;</span><br><span class="line">    Process process = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Runtime runtime = Runtime.getRuntime();</span><br><span class="line">        String[] commandArray = &#123;<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, cmd&#125;;</span><br><span class="line">        process = Constants.IS_WINDOWS ? runtime.exec(cmd) : runtime.exec(commandArray);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Linux 下执行没有问题， 但是在Windows环境下，依然存在问题， 问题继续研究中</p>
+<h3 id="解决方案-更新"><a href="#解决方案-更新" class="headerlink" title="解决方案 (!!!!更新)"></a>解决方案 (<span style="color: red">!!!!更新</span>)</h3><p>因为没有找到解决办法，但是找到了可以工作的办法， 将文件重命名，然后放到同一个目录下，命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -c -o /etc/tool/log.log -O /etc/4.9.3.0300.6033_test.png http://&lt;host&gt;/4.9.3.0300.6033/test.png</span><br><span class="line">wget -c -o /etc/tool/log.log -O /etc/4.9.3.0300.6033_test-1.png http://&lt;host&gt;/4.9.3.0300.6033/test-1.png</span><br><span class="line">wget -c -o /etc/tool/log.log -O /etc/4.9.3.0300.5885_test.png http://&lt;host&gt;/4.9.3.0300.5885/test.png</span><br></pre></td></tr></table></figure>
+
+<h4 id="wget-O-大写-和-o-小写-以及其他常用命令解释"><a href="#wget-O-大写-和-o-小写-以及其他常用命令解释" class="headerlink" title="wget -O (大写) 和 -o (小写) 以及其他常用命令解释"></a>wget -O (大写) 和 -o (小写) 以及其他常用命令解释</h4><ul>
+<li>-c 断点传续，即可以接着下载之前没有下载完的文件</li>
+<li>-P (大写) 指定下载的文件保存的路径</li>
+<li>-p (小写) 下载页面内的所有资料</li>
+<li>-o (小写) 将log信息输出到指定的路径</li>
+<li>-O (大写) 将文件重命名, 且可以指定重命名之后的路径</li>
+</ul>
+<div class="note info">
+            <p>使用了-O 之后，就可以不用-P了</p>
+          </div>
 ]]></content>
       <categories>
-        <category>VS Code</category>
+        <category>Java</category>
+        <category>Wget</category>
       </categories>
       <tags>
-        <tag>VS Code</tag>
+        <tag>Java</tag>
+        <tag>Wget</tag>
       </tags>
   </entry>
   <entry>
-    <title>VS Code 配置安装 Ext智能提示</title>
-    <url>/posts/2c2929b7/</url>
-    <content><![CDATA[<p>直接在VS Code中添加插件<code>Schena Ext JS</code>插件，会一直提示证书过期，所以这个插件一直都用不了，今天来总结一下怎么破解使用Ext智能提示。</p>
-<h2 id="下载senchaVScode-X-X-X-vsix文件"><a href="#下载senchaVScode-X-X-X-vsix文件" class="headerlink" title="下载senchaVScode-X.X.X.vsix文件"></a>下载senchaVScode-X.X.X.vsix文件</h2><ol>
-<li><a href="https://marketplace.visualstudio.com/search?target=VSCode&category=All%20categories&sortBy=Installs">VS Code 插件下载地址</a><a id="more"></a></li>
-<li>点击<code>Download Extension</code> 将插件下载到本地, 文件后缀为vsix<br> <img src="download-ext-extension.PNG" alt="下载sencha插件"></li>
-</ol>
-<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p><img src="install-ext-vsix.PNG" alt="安装vsix文件"></p>
-<h2 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h2><ol>
-<li><p>打开文件 <code>LicenseManager.js</code>:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\pearl.zhou\.vscode\extensions\sencha.vscode-extjs-1.0.3\out\src\LicenseManager.js</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>修改以下代码:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">loadLicense</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.manager.verify().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// const licenses = this.manager.getProductLicenses()</span></span><br><span class="line">        <span class="comment">//     .filter(license =&gt; license.signature)</span></span><br><span class="line">        <span class="comment">//     .map(license =&gt; this.createLicenseObject(license));</span></span><br><span class="line">        <span class="comment">// this.license = licenses.find(l =&gt; l.active &amp;&amp; l.full) || // try to find an active paid license </span></span><br><span class="line">        <span class="comment">//     licenses.find(l =&gt; l.active) || // try to find an active trial license</span></span><br><span class="line">        <span class="comment">//     licenses[0]; // default to the first license</span></span><br><span class="line">        <span class="comment">// if (!this.license || !this.license.active || !this.license.full) &#123;</span></span><br><span class="line">        <span class="comment">//     statusBarActivation.show();</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// licenseJson = this.license &amp;&amp; this.license.data;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 注释掉上面的代码</span></span><br><span class="line">        <span class="comment">// 添加下面的代码</span></span><br><span class="line">        <span class="built_in">this</span>.license = &#123;</span><br><span class="line">            active: <span class="literal">true</span>,</span><br><span class="line">            full: <span class="literal">true</span>,</span><br><span class="line">            data: &#123;&#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        licenseJson = <span class="built_in">this</span>.license &amp;&amp; <span class="built_in">this</span>.license.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>Font Awesome thumb-tack 置顶icon不能显示</title>
+    <url>/posts/d4e4c678/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>今天添加了置顶功能之后， 发现置顶图标显示不出来，控制台也没有任何错误， fontAwesome css也引入了<br>官网给的该图标的名称是<code>thumb-tack</code></p>
+<a id="more"></a>
 
-</li>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>最后发现在<code>next\source\lib\font-awesome\all.min.css</code>发现了问题</p>
+<p>打开该文件之后， 搜索了一下 <code>thumb</code>, 发现了 <code>thumbtack</code>, 中间没有<code>-</code>.</p>
+<p>改成<code>thumbtack</code>之后，图标显示出来了。</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Refused to execute script error - its MIME type (&#39;text/html&#39;) is not executeable</title>
+    <url>/posts/c16abca4/</url>
+    <content><![CDATA[<div class="note danger">
+            <p>Refused to execute script error - its MIME type (‘text/html’) is not executeable</p>
+          </div>
+
+<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>(server 端)Http response header 添加了 <code>X-Content-Type-Options: nosniff</code></p>
+<a id="more"></a>
+
+<p>Blocks a request if the request destination is of type:</p>
+<ul>
+<li>“style” and the MIME type is not text/css, or</li>
+<li>“script” and the MIME type is not a JavaScript MIME type</li>
+</ul>
+<p>Enables Cross-Origin Read Blocking (CORB) protection for the MIME-types:</p>
+<ul>
+<li>text/html</li>
+<li>text/plain</li>
+<li>text/json, application/json or any other type with a JSON extension: <code>*/*+json</code></li>
+<li>text/xml, application/xml or any other type with an XML extension: <code>*/*+xml (excluding image/svg+xml)</code></li>
+</ul>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
+<li>将Content-Type设置为正确的格式</li>
+<li>将<code>X-Content-Type-Options: nosniff</code>去掉</li>
 </ol>
-<h2 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h2><p>重新打开VS Code之后， 等待Ext插件创建完索引之后就可以使用智能提示了。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://blog.csdn.net/weixin_30715523/article/details/98082582">vscode开发ExtJs安装插件以及破解方法</a></li>
+<p>不建议第二种方式</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options">官方文档</a></li>
+<li><a href="https://crunchify.com/how-to-fix-refused-to-execute-script-error-its-mime-type-text-html-is-not-executable/">How to fix Refused to Execute Script Error – its MIME type (‘text/html’) is not Executable</a></li>
+<li><a href="https://blog.abelotech.com/posts/json-jsonp-correct-mime-type/">JSON and JSONP correct MIME types</a></li>
 </ul>
 ]]></content>
       <categories>
         <category>前端</category>
-        <category>ExtJs</category>
-        <category>VS Code</category>
+        <category>Http</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>ExtJs</tag>
-        <tag>VS Code</tag>
+        <tag>Http</tag>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows git bash wget command not found</title>
+    <url>/posts/fed48d52/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Windows环境下, 在Git Bash 命令行输入 <code>wget</code>, 会提示找不到该命令</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
+<li>将 <code>wget.exe</code> 文件放到 <code>C:\Program Files\Git\mingw64\bin\</code> 下<br>或者</li>
+<li>将 <code>wget.exe</code> 的路径添加到环境变量中</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://blog.csdn.net/eddy23513/article/details/106621754">windows git bash wget: command not found</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Wget</category>
+      </categories>
+      <tags>
+        <tag>Wget</tag>
       </tags>
   </entry>
   <entry>
@@ -316,286 +266,6 @@
       </tags>
   </entry>
   <entry>
-    <title>正则表达式总结</title>
-    <url>/posts/db505320/</url>
-    <content><![CDATA[<p>这里会将我所有用到过的正则表达式列出来， 以便以后再需要用就直接来看就行了</p>
-<h2 id="匹配版本号-Java-代码"><a href="#匹配版本号-Java-代码" class="headerlink" title="匹配版本号 (Java 代码)"></a>匹配版本号 (Java 代码)</h2><p>版本号格式： 1.0/ 1.0.0/ 1.0.1/ 只要是匹配 数字 加 点 就行</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String name = <span class="string">&quot;4.5.0.0300/&quot;</span>;</span><br><span class="line">String pattern = <span class="string">&quot;\\d+(\\.\\d+)*/$&quot;</span>;</span><br><span class="line">Pattern r = Pattern.compile(pattern);</span><br><span class="line">Matcher m = r.matcher(name);</span><br><span class="line"><span class="keyword">if</span> (m.matches()) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;match&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;not match&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-
-<p>正则解析</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String pattern = <span class="string">&quot;\\d+(\\.\\d+)*/$&quot;</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>\d 表示 一个数字</li>
-<li><ul>
-<li>表示至少出现一次</li>
-</ul>
-</li>
-<li>() 表示 分组</li>
-<li>. 表示小数点</li>
-<li>()* 表示括号里面的内容出现0次活多次</li>
-<li>$ 表示结尾 </li>
-</ul>
-]]></content>
-      <categories>
-        <category>Regx</category>
-      </categories>
-      <tags>
-        <tag>Regx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>windows git bash wget command not found</title>
-    <url>/posts/fed48d52/</url>
-    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在Windows环境下, 在Git Bash 命令行输入 <code>wget</code>, 会提示找不到该命令</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ul>
-<li>将 <code>wget.exe</code> 文件放到 <code>C:\Program Files\Git\mingw64\bin\</code> 下<br>或者</li>
-<li>将 <code>wget.exe</code> 的路径添加到环境变量中</li>
-</ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://blog.csdn.net/eddy23513/article/details/106621754">windows git bash wget: command not found</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Wget</category>
-      </categories>
-      <tags>
-        <tag>Wget</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>同时执行多个wget命令时被当作一条命令执行了</title>
-    <url>/posts/d832317f/</url>
-    <content><![CDATA[<p>用java code 拼接了多条wget命令, 每一条命令末尾都加上了<code>\r\n</code>, 如下所示</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget -c -o &#x2F;etc&#x2F;tool&#x2F;log.log -P &#x2F;etc&#x2F;4.9.3.0300.6033 http:&#x2F;&#x2F;&lt;host&gt;&#x2F;4.9.3.0300.6033&#x2F;test.png</span><br><span class="line">wget -c -o &#x2F;etc&#x2F;tool&#x2F;log.log -P &#x2F;etc&#x2F;4.9.3.0300.6033 http:&#x2F;&#x2F;&lt;host&gt;&#x2F;4.9.3.0300.6033&#x2F;test-1.png</span><br><span class="line">wget -c -o &#x2F;etc&#x2F;tool&#x2F;log.log -P &#x2F;etc&#x2F;4.9.3.0300.5885 http:&#x2F;&#x2F;&lt;host&gt;&#x2F;4.9.3.0300.5885&#x2F;test.png</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<p>使用以下Java Runtime执行该命令， code如下所示:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">startDownloadJob</span><span class="params">(String name, String cmd)</span> </span>&#123;</span><br><span class="line">    Process process = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        process = Runtime.getRuntime().exec(cmd)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<div class="note danger">
-            <p>在log.log文件中发现三张图片全部都下载到了<code>/etc/4.9.3.0300.5885</code>这个路径下</p>
-          </div>
-
-<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>三张图片全部被下载到同一个路径下，那只能说明三个wget命令被当成一条命令执行了</p>
-<h3 id="解决方案-测试之后发现，还是存在该问题"><a href="#解决方案-测试之后发现，还是存在该问题" class="headerlink" title="解决方案 (!!!!测试之后发现，还是存在该问题)"></a>解决方案 (<span style="color: red">!!!!测试之后发现，还是存在该问题</span>)</h3><h4 id="通过-amp-amp-符号分隔命令"><a href="#通过-amp-amp-符号分隔命令" class="headerlink" title="通过 &amp;&amp; 符号分隔命令"></a>通过 <code>&amp;&amp;</code> 符号分隔命令</h4><ul>
-<li>&amp; 表示 前后两个命令同时执行</li>
-<li>&amp;&amp; 表示 前一个命令执行成功之后再执行后面的命令</li>
-<li>|| 表示 前一个命令执行失败的话，就执行后面的命令</li>
-<li>| 表示 把前一个命令的输出作为后一个命令的输入</li>
-<li>“&gt;” 表示用新的内容覆盖原文件</li>
-<li>“&gt;&gt;” 表示向原文件中追加内容</li>
-</ul>
-<h4 id="Java-Runtime-判断"><a href="#Java-Runtime-判断" class="headerlink" title="Java Runtime 判断"></a>Java Runtime 判断</h4><p>修改java代码，如下所示：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">long</span> <span class="title">startDownloadJob</span><span class="params">(String name, String cmd)</span> </span>&#123;</span><br><span class="line">    Process process = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Runtime runtime = Runtime.getRuntime();</span><br><span class="line">        String[] commandArray = &#123;<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, cmd&#125;;</span><br><span class="line">        process = Constants.IS_WINDOWS ? runtime.exec(cmd) : runtime.exec(commandArray);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        System.out.println(e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Linux 下执行没有问题， 但是在Windows环境下，依然存在问题， 问题继续研究中</p>
-<h3 id="解决方案-更新"><a href="#解决方案-更新" class="headerlink" title="解决方案 (!!!!更新)"></a>解决方案 (<span style="color: red">!!!!更新</span>)</h3><p>因为没有找到解决办法，但是找到了可以工作的办法， 将文件重命名，然后放到同一个目录下，命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -c -o /etc/tool/log.log -O /etc/4.9.3.0300.6033_test.png http://&lt;host&gt;/4.9.3.0300.6033/test.png</span><br><span class="line">wget -c -o /etc/tool/log.log -O /etc/4.9.3.0300.6033_test-1.png http://&lt;host&gt;/4.9.3.0300.6033/test-1.png</span><br><span class="line">wget -c -o /etc/tool/log.log -O /etc/4.9.3.0300.5885_test.png http://&lt;host&gt;/4.9.3.0300.5885/test.png</span><br></pre></td></tr></table></figure>
-
-<h4 id="wget-O-大写-和-o-小写-以及其他常用命令解释"><a href="#wget-O-大写-和-o-小写-以及其他常用命令解释" class="headerlink" title="wget -O (大写) 和 -o (小写) 以及其他常用命令解释"></a>wget -O (大写) 和 -o (小写) 以及其他常用命令解释</h4><ul>
-<li>-c 断点传续，即可以接着下载之前没有下载完的文件</li>
-<li>-P (大写) 指定下载的文件保存的路径</li>
-<li>-p (小写) 下载页面内的所有资料</li>
-<li>-o (小写) 将log信息输出到指定的路径</li>
-<li>-O (大写) 将文件重命名, 且可以指定重命名之后的路径</li>
-</ul>
-<div class="note info">
-            <p>使用了-O 之后，就可以不用-P了</p>
-          </div>
-]]></content>
-      <categories>
-        <category>Wget</category>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Wget</tag>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Refused to execute script error - its MIME type (&#39;text/html&#39;) is not executeable</title>
-    <url>/posts/c16abca4/</url>
-    <content><![CDATA[<div class="note danger">
-            <p>Refused to execute script error - its MIME type (‘text/html’) is not executeable</p>
-          </div>
-
-<h3 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h3><p>(server 端)Http response header 添加了 <code>X-Content-Type-Options: nosniff</code></p>
-<a id="more"></a>
-
-<p>Blocks a request if the request destination is of type:</p>
-<ul>
-<li>“style” and the MIME type is not text/css, or</li>
-<li>“script” and the MIME type is not a JavaScript MIME type</li>
-</ul>
-<p>Enables Cross-Origin Read Blocking (CORB) protection for the MIME-types:</p>
-<ul>
-<li>text/html</li>
-<li>text/plain</li>
-<li>text/json, application/json or any other type with a JSON extension: <code>*/*+json</code></li>
-<li>text/xml, application/xml or any other type with an XML extension: <code>*/*+xml (excluding image/svg+xml)</code></li>
-</ul>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
-<li>将Content-Type设置为正确的格式</li>
-<li>将<code>X-Content-Type-Options: nosniff</code>去掉</li>
-</ol>
-<p>不建议第二种方式</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options">官方文档</a></li>
-<li><a href="https://crunchify.com/how-to-fix-refused-to-execute-script-error-its-mime-type-text-html-is-not-executable/">How to fix Refused to Execute Script Error – its MIME type (‘text/html’) is not Executable</a></li>
-<li><a href="https://blog.abelotech.com/posts/json-jsonp-correct-mime-type/">JSON and JSONP correct MIME types</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>Http</category>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>Http</tag>
-        <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 ExtJs 创建 一个 Login App</title>
-    <url>/posts/931f5851/</url>
-    <content><![CDATA[<p>最受欢迎的教程之一是如何制作登录系统。我们将通过构建它来开始本教程。请注意，这只是创建登录系统的一种方法。还有许多其他可行的选择。这只是为了向您展示一种创建具有登录/注销功能的应用程序的方法。</p>
-<p>本教程旨在向用户展示一种设计应用程序以包含“已登录”和“已注销”视图的方式。本教程不会尝试实现安全的数据连接，会话管理，真实身份验证等。它仅用于教育目的。</p>
-<a id="more"></a>
-
-<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>当我们的第一个demo项目创建好之后， 我们可以看到以下项目结构<br><img src="extjs-structure.PNG" alt="项目的目录结构"></p>
-<ul>
-<li><p>app.js:程式流程开始的主要档案，应该使用＆lt; script＆gt; 标签。 应用程序调用应用程序的控制器的其余功能。</p>
-</li>
-<li><p>Controller.js:它是ExtJs MVC架构的控制器文件。 这包含应用程序的所有控制，事件侦听器的最大功能的代码。 它具有为该应用程序中使用的所有其他文件定义的路径，例如store，view，model，require，mixins。</p>
-</li>
-<li><p>View.js:它包含应用程序的界面部分，显示给用户。 ExtJs使用各种UI丰富的视图，可以根据需要在这里扩展和自定义。</p>
-</li>
-<li><p>Store.js:它包含本地缓存的数据，它将在模型对象的帮助下在视图上呈现。 存储使用代理获取数据，代理具有为服务定义的路径以获取后端数据。</p>
-</li>
-<li><p>Model.js:它包含绑定要查看的商店数据的对象。 它有后端数据对象到视图dataIndex的映射。 在store的帮助下获取数据。</p>
-</li>
-<li><p>Utils.js:它不包括在MVC架构中，但是最好的做法是使代码清晰，不太复杂，更加可读。 我们可以在这个文件中编写方法，并在控制器或视图渲染器中调用它们。 这对代码可重用性目的也很有帮助。</p>
-</li>
-</ul>
-<h2 id="创建登录视图组件-Create-the-Login-View-Components"><a href="#创建登录视图组件-Create-the-Login-View-Components" class="headerlink" title="创建登录视图组件 - Create the Login View Components"></a>创建登录视图组件 - Create the Login View Components</h2><ul>
-<li>在 <code>app\view</code> 目录下创建一个 <code>login</code> 文件夹</li>
-<li>在 <code>app\view\login</code> 目录下创建两个文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- Login.js</span><br><span class="line">- LoginController.js</span><br></pre></td></tr></table></figure>
-目录结构如下：<br><img src="login-structure.PNG" alt="login 目录结构"></li>
-</ul>
-<h2 id="禁用掉-mainView-Disable-mainView"><a href="#禁用掉-mainView-Disable-mainView" class="headerlink" title="禁用掉 mainView - Disable mainView"></a>禁用掉 mainView - Disable mainView</h2><p>应用程序的mainView配置是使用Viewport插件自动加载和实例化<code>TutorialApp.view.main.Main</code>的一种非常方便的方法。<br>但是，在选择初始视图之前，我们需要对Ext.application的启动方法进行一些评估。例如，如果用户尚未登录，我们不想创建主视图</p>
-<p>在本练习中，让我们从<code>&#123;appRoot&#125; /app.js</code>中的应用程序配置中删除 <code>mainView</code> 配置。</p>
-<div class="note info">
-            <p>由于我们已经删除了mainView，因此刷新您的应用程序将导致空白页，因为没有实例化任何类。</p>
-          </div>
-
-<h2 id="创建一个登录窗口-Create-the-Login-Window"><a href="#创建一个登录窗口-Create-the-Login-Window" class="headerlink" title="创建一个登录窗口 - Create the Login Window"></a>创建一个登录窗口 - Create the Login Window</h2><p>接下来，让我们创建一个登录视图。为此，我们将打开空白的<code>&#123;appRoot&#125; /app/view/login/Login.js</code>文件，然后开始定义“登录窗口”。</p>
-<p>首先，让我们定义我们的Class并扩展基础Window类。看起来像这样：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>现在，我们已经将Login类定义为Ext.window.Window的扩展，可以使用<code>xtype: login</code>实例化该扩展。让我们开始为我们的class提供一些独特的属性。我们将从向窗口本身添加一些其他配置开始。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span></span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Ext.form.Panel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    bodyPadding: <span class="number">10</span>,</span><br><span class="line">    title: <span class="string">&#x27;Login Window&#x27;</span>,</span><br><span class="line">    closable: <span class="literal">false</span>,</span><br><span class="line">    autoShow: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>让我们看一下这些配置的含义。</p>
-<ul>
-<li><p>requires<br>require块可确保在实例化“登录”窗口之前，我们包括了可能依赖的所有类。我们需要包含LoginController.js，因为我们将在下一行将其指定为我们的控制器。我们还需要包括Ext.form.Panel，因为我们的视图包含一个Form面板。</p>
-</li>
-<li><p>controller<br>控制器配置指定一个<code>ViewController</code>，然后将其附加到“登录”窗口的实例。该控制器提供了一个包含与“登录”窗口或其子组件有关的所有逻辑的位置。在这里，我们指定要登录的控制器，这将是我们控制器的别名</p>
-</li>
-<li><p>bodyPadding<br>bodyPadding配置纯粹是美观的。此配置在窗口主体内容的外部周围应用<code>10px</code>的填充。</p>
-</li>
-<li><p>title<br>传递给标题配置的字符串会导致创建标头，并将字符串值添加为其标题。</p>
-</li>
-<li><p>closable<br>Closable确定是否可以关闭窗口。 Windows默认情况下具有可关闭的按钮。但是，由于这是一个登录窗口，因此我们不希望用户关闭它。如果他们关闭它，将留下空白页。</p>
-</li>
-<li><p>autoShow<br>Windows默认是隐藏的。将autoShow设置为true将在创建窗口后显示它。当我们希望窗口可见时，可以选择以编程方式调用窗口的show方法</p>
-</li>
-</ul>
-<p>现在我们已经讨论了Window的配置，让我们给它一些子组件。由于这将是一个登录表单，因此我们将创建一个Form面板作为Window的子代。然后，我们将添加两个文本字段，一个显示字段和一个提交按钮。</p>
-<p>该文件的最终代码应如下所示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Ext.form.Panel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    bodyPadding: <span class="number">10</span>,</span><br><span class="line">    title: <span class="string">&#x27;Login Window&#x27;</span>,</span><br><span class="line">    closable: <span class="literal">false</span>,</span><br><span class="line">    autoShow: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    items: &#123;</span><br><span class="line">        xtype: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        reference: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        items: [&#123;</span><br><span class="line">            xtype: <span class="string">&#x27;textfield&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;username&#x27;</span>,</span><br><span class="line">            fieldLabel: <span class="string">&#x27;Username&#x27;</span>,</span><br><span class="line">            allowBlank: <span class="literal">false</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            xtype: <span class="string">&#x27;textfield&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">            inputType: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">            fieldLabel: <span class="string">&#x27;Password&#x27;</span>,</span><br><span class="line">            allowBlank: <span class="literal">false</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            xtype: <span class="string">&#x27;displayfield&#x27;</span>,</span><br><span class="line">            hideEmptyLabel: <span class="literal">false</span>,</span><br><span class="line">            value: <span class="string">&#x27;Enter any non-blank password&#x27;</span></span><br><span class="line">        &#125;],</span><br><span class="line">        buttons: [&#123;</span><br><span class="line">            text: <span class="string">&#x27;Login&#x27;</span>,</span><br><span class="line">            formBind: <span class="literal">true</span>,</span><br><span class="line">            listeners: &#123;</span><br><span class="line">                click: <span class="string">&#x27;onLoginClick&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Window items<br>我们添加到“登录”窗口的第一个配置是<code>items</code>。在“表单”面板和“登录”窗口本身之类的容器中，<code>items</code>可能包含一个组件或一个组件配置对象。<br><code>items</code>配置还可以是组件或组件配置对象的数组。这些组件将使用容器的布局<code>layout</code>显示在容器的主体中。</p>
-</li>
-<li><p>xtype<br>每个Component类都有自己的xtype。您可以将xtype视为轻松创建Component实例的快捷方式。在这种情况下，我们为登录窗口配置了一个xtype为<code>form</code>的子项（<code>form</code>是<code>Ext.form.Panel</code>类的<code>xtype</code>）。<br>表单面板是特殊类型的面板，其中包括使用输入字段的便捷配置选项。</p>
-</li>
-<li><p>Form Items<br>接下来，您将看到另一个<code>items</code>数组的熟悉面孔。在这里，我们通过使用<code>items</code>数组更深一层地嵌套其他项目。我们将更多组件放置在父组件（即“表单”面板）中。在这种情况下，我们的嵌套组件是组成登录表单的表单字段。我们可以快速浏览这些组件数组，因为它们很容易说明。</p>
-<p>  第一项的xtype为[[ext：Ext.form.field.Text textfield]]，名称为“ username”，字段标签为“ username”，而allowBlank为“ false”。这可以归结为具有名称值和字段标签的文本字段。该字段不能留为空白并通过验证（请参见下面的“ formBind”）。 </p>
-<p>  除了设置为“密码”的类型外，下一个字段几乎相同。为了安全起见，这会将您的输入变成*。</p>
-<p>  此items数组的最后一个成员是<code>displayfield</code>。显示字段是未与表单一起提交的文本字段。这对于在不与用户交互数据的情况下传输数据很有用。在这种情况下，我们通知用户任何非空白密码都将允许提交表单。</p>
-</li>
-<li><p>buttons<br>我们在此处添加的最后一位是<code>buttons</code>数组。这是用于将按钮添加到面板<code>panel</code>中的footer toolbar的便捷配置。该特定按钮将包含文本“登录”，用户将单击该按钮来提交登录表单。</p>
-</li>
-<li><p>formBind<br>我们的Button包含一个名为formBind的配置，该配置设置为<code>true</code>。当Component的formBind设置为<code>true</code>时，将根据Form的有效性状态禁用/启用它。这意味着在两个输入字段包含值之前，按钮是不可单击的。</p>
-</li>
-<li><p>listeners<br>侦听器对象配置有事件以及将响应这些事件的触发的方法/函数。在这种情况下，我们正在等待有人单击按钮。单击后，我们将事件“转发”到名为onLoginClick的方法。稍后将在我们的登录控制器中定义onLoginClick方法。</p>
-</li>
-</ul>
-<h2 id="添加登录逻辑-Add-Login-Logic"><a href="#添加登录逻辑-Add-Login-Logic" class="headerlink" title="添加登录逻辑-Add Login Logic"></a>添加登录逻辑-Add Login Logic</h2><p>接下来，让我们创建Login Controller，这是一个类，其中包含用于处理用户与Login视图的交互的任何逻辑。为此，我们将打开空白的<code>&#123;appRoot&#125; /app/view/login/LoginController.js</code>文件，然后开始定义“登录”窗口的逻辑。</p>
-<p>文件内容如下:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.ViewController&#x27;</span>,</span><br><span class="line">    alias: <span class="string">&#x27;controller.login&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    onLoginClick: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This would be the ideal location to verify the user&#x27;s credentials via</span></span><br><span class="line">        <span class="comment">// a server-side lookup. We&#x27;ll just move forward for the sake of this example.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set the localStorage value to true</span></span><br><span class="line">        <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;TutorialLoggedIn&quot;</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove Login Window</span></span><br><span class="line">        <span class="built_in">this</span>.getView().destroy();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add the main view to the viewport</span></span><br><span class="line">        Ext.widget(<span class="string">&#x27;app-main&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>上面的代码可能与上下文无关，但是当我们在下一节中讨论启动方法时，它将更有意义。此类包含onLoginClick方法，该方法通过单击登录按钮来调用。</p>
-<p>这些代码段具有注释，以描述每个语句的目的，但让我们逐一查看它们以作进一步说明。</p>
-<ul>
-<li><p>onLoginClick()<br>首先，我们正在创建一个名为onLoginClick的方法。这是我们将“登录”视图中的登录按钮的click事件定向到的方法。</p>
-<p>  如注释中所述，您将在这里调用服务器以验证用户的凭据是否有效。这通常以AJAX或REST请求的形式出现。但是，对于本教程，我们将接受任何非空白的输入。成功之后，您将继续执行其余的代码。失败时，您将允许用户重新输入其凭据。当然，在这种情况下没有失败的可能性，所以让我们前进吧！</p>
-</li>
-<li><p>localStorage<br>在本教程中，我们将使用localStorage来维护用户登录状态。成功进行凭据检查之后，我们可以确定用户具有对主应用程序视图的适当访问权限。然后，我们可以在localStorage中设置键/值对，以使应用程序知道用户有效。接下来，我们将检查我们的初始启动方法中的TutorialLoggedIn localStorage密钥是否设置为“ true”（在下面的“启动”部分中进行了详细介绍）。</p>
-</li>
-<li><p>getView()<br>ViewControllers引入了一个非常有用的方法，称为getView（）。 getView（）方法返回与从其调用ViewController关联的当前视图。在这种情况下，该视图是“登录”窗口。由于我们将登录点击视为成功登录，因此我们不再希望显示“登录”窗口。因此，我们使用this.getView（）。destroy（）获取对“登录”窗口的引用，然后销毁它。</p>
-</li>
-<li><p>Ext.widget(‘app-main’)<br>现在我们已经破坏了Login窗口，我们想要更改视图以显示Main视图。在这种情况下，我们使用<code>Ext.widget（&#39;app-main&#39;）</code>实例化<code>&#123;appRoot&#125; /app/view/main/Main.js</code>视图。</p>
-</li>
-</ul>
-<div class="note info">
-            <p><code>app-main</code>是指在我们的Sencha Cmd生成的<code>{appRoot} /app/view/main.Main.js</code>类中定义的xtype</p>
-          </div>
-
-<h2 id="添加启动程序逻辑-Add-Launch-Logic-to-Application-js"><a href="#添加启动程序逻辑-Add-Launch-Logic-to-Application-js" class="headerlink" title="添加启动程序逻辑-Add Launch Logic to Application.js"></a>添加启动程序逻辑-Add Launch Logic to Application.js</h2><p>接下来，让我们讨论<code>&#123;appRoot&#125; /app/Application.js</code>和<code>launch</code>功能。</p>
-<p><code>Application.js</code>是您应用程序的核心。您可以在与<code>view</code>，<code>store</code>和<code>model</code>文件夹相同级别的位置找到<code>Application.js</code>。<br>它提供了一个方便的方法，称为<code>launch</code>，在您的应用程序加载了所有必需的类时触发。这是本教程的<code>Application.js</code>文件的完整代码。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The main application class. An instance of this class is created by `app.js` when it calls</span></span><br><span class="line"><span class="comment"> * Ext.application(). This is the ideal place to handle application launch and initialization</span></span><br><span class="line"><span class="comment"> * details.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.Application&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.Application&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    name: <span class="string">&#x27;TutorialApp&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    stores: [</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> add global / shared stores here</span></span><br><span class="line">    ],</span><br><span class="line">    views: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.Main&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    launch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// It&#x27;s important to note that this type of application could use</span></span><br><span class="line">        <span class="comment">// any type of storage, i.e., Cookies, LocalStorage, etc.</span></span><br><span class="line">        <span class="keyword">var</span> loggedIn;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check to see the current value of the localStorage key</span></span><br><span class="line">        loggedIn = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;TutorialLoggedIn&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This ternary operator determines the value of the TutorialLoggedIn key.</span></span><br><span class="line">        <span class="comment">// If TutorialLoggedIn isn&#x27;t true, we display the login window,</span></span><br><span class="line">        <span class="comment">// otherwise, we display the main view</span></span><br><span class="line">        Ext.widget(loggedIn ? <span class="string">&#x27;app-main&#x27;</span> : <span class="string">&#x27;login&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>让我们检查一下这些部分在做什么。</p>
-<ul>
-<li><p>requires<br>我们已经描述了require要做的事情，但是让我们来谈谈这个特定的数组。出于<code>Application.js</code>的目的，我们需要准备应用程序以加载Login或Main视图，具体取决于即将进行的登录评估的结果。<br>为此，我们必须同时需要<code>TutorialApp.view.main.Main</code>和<code>TutorialApp.view.login.Login</code>，以便提供两种结果。</p>
-</li>
-<li><p>launch<br>如前所述，启动方法是一个功能，当您的应用程序加载了它需要运行的所有内容时，该方法就会执行。这是执行有关登录/注销应用程序用户状态逻辑的理想场所。</p>
-</li>
-<li><p>localStorage.getItem()</p>
-</li>
-</ul>
-<p>下一步是检查先前设置的称为TutorialLoggedIn的localStorage密钥。我们只是将loggingIn变量设置为该键值的结果。如果不存在，则loginIn将为null。如果确实存在，那么我们先前已在LoginController的逻辑中将TutorialLoggedIn设置为true。</p>
-<ul>
-<li>Widget Ternary<br>大多数编程语言都包含一种称为三元运算符的条件速记形式。三元运算符使您可以最小化传统if / else语句所需的代码量。在这种情况下，我们使用三元组来表示：“如果loggingIn存在（不为null），请加载Main视图，否则加载Login视图”。然后，我们使用Ext.widget方法实例化三元运算符的结果。</li>
-</ul>
-<h2 id="Add-Viewport-Plugin"><a href="#Add-Viewport-Plugin" class="headerlink" title="Add Viewport Plugin"></a>Add Viewport Plugin</h2><p>您可能还记得，我们在本教程的开头就从<code>&#123;appRoot&#125; /app.js</code>中删除了<code>mainView</code>配置。由于我们没有定义视口，因此您的主视图将不知道在哪里渲染。我们将通过混入视口插件来更改它，以便<code>&#123;appRoot&#125; /app/view/main/Main.js</code>将作为我们应用程序的视口运行。<br>这样，主视图将占据视图中所有可用的宽度和高度浏览器。只需在<code>&#123;appRoot&#125; /app/view/main/Main.js</code>中添加以下行即可：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugins: <span class="string">&#x27;viewport&#x27;</span>,</span><br></pre></td></tr></table></figure>
-<p>生成的<code>&#123;appRoot&#125;/app/view/main/Main.js</code>文件如下所示：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This class is the main view for the application. It is specified in `app.js` as the</span></span><br><span class="line"><span class="comment"> * &quot;mainView&quot; property. That setting automatically applies the &quot;viewport&quot;</span></span><br><span class="line"><span class="comment"> * plugin to promote that instance of this class to the body element.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * TODO - Replace this content of this view to suite the needs of your application.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.main.Main&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.container.Container&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.MainController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.MainModel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    xtype: <span class="string">&#x27;app-main&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;main&#x27;</span>,</span><br><span class="line">    plugins: <span class="string">&#x27;viewport&#x27;</span>,</span><br><span class="line">    viewModel: &#123;</span><br><span class="line">        type: <span class="string">&#x27;main&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    layout: &#123;</span><br><span class="line">        type: <span class="string">&#x27;border&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    items: [&#123;</span><br><span class="line">        xtype: <span class="string">&#x27;panel&#x27;</span>,</span><br><span class="line">        bind: &#123;</span><br><span class="line">            title: <span class="string">&#x27;&#123;name&#125;&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        region: <span class="string">&#x27;west&#x27;</span>,</span><br><span class="line">        html: <span class="string">&#x27;&lt;ul&gt;&lt;li&gt;This area is commonly used for navigation, for example, using a &quot;tree&quot; component.&lt;/li&gt;&lt;/ul&gt;&#x27;</span>,</span><br><span class="line">        width: <span class="number">250</span>,</span><br><span class="line">        split: <span class="literal">true</span>,</span><br><span class="line">        tbar: [&#123;</span><br><span class="line">            text: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">            handler: <span class="string">&#x27;onClickButton&#x27;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        region: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">        xtype: <span class="string">&#x27;tabpanel&#x27;</span>,</span><br><span class="line">        items:[&#123;</span><br><span class="line">            title: <span class="string">&#x27;Tab 1&#x27;</span>,</span><br><span class="line">            html: <span class="string">&#x27;&lt;h2&gt;Content appropriate for the current navigation.&lt;/h2&gt;&#x27;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>您不需要修改<code>&#123;appRoot&#125; /app/view/main/Main.js</code>的其他任何部分，因为我们将为点击处理程序使用默认生成的onClickButton方法。</p>
-<h2 id="Add-Main-Logic"><a href="#Add-Main-Logic" class="headerlink" title="Add Main Logic"></a>Add Main Logic</h2><p>我们快完成了！现在剩下的就是为用户提供某种注销应用程序的方法，这将破坏localStorage中的TutorialLoggedIn键。此逻辑应在<code>&#123;appRoot&#125; /app/view/main/MainController.js</code>文件中进行。<br>您可以根据需要删除其他生成的代码。这是本教程的<code>MainController.js</code>的最终定义：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.main.MainController&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.ViewController&#x27;</span>,</span><br><span class="line">    alias: <span class="string">&#x27;controller.main&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    onClickButton: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove the localStorage key/value</span></span><br><span class="line">        <span class="built_in">localStorage</span>.removeItem(<span class="string">&#x27;TutorialLoggedIn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove Main View</span></span><br><span class="line">        <span class="built_in">this</span>.getView().destroy();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add the Login Window</span></span><br><span class="line">        Ext.widget(<span class="string">&#x27;login&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>我们在这里不需要深入，因为它基本上是我们的<code>&#123;appRoot&#125; /app/view/login/LoginController.js</code>代码的反函数。</p>
-<p>总结此功能，onClickButton是按钮处理程序在我们生成的<code>&#123;appMain&#125; /app/view/main/Main.js</code>视图中调用的函数。检测到点击事件后，将执行以下步骤：</p>
-<ul>
-<li>删除维持用户登录状态的localStorage项。</li>
-<li>销毁当前视图，即TutorialApp.view.main.Main。</li>
-<li>重新创建登录视图。</li>
-</ul>
-<p>现在，您应该能够在浏览器中加载应用程序，并看到功能全面的登录/注销应用程序。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><a href="https://docs.sencha.com/extjs/7.3.1/guides/tutorials/login_app/login_app.html">Ext 官方文档</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-        <category>ExtJs</category>
-      </categories>
-      <tags>
-        <tag>ExtJs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Windows 快速搭建 ExtJs 项目</title>
     <url>/posts/3c9de474/</url>
     <content><![CDATA[<h2 id="什么是ExtJs"><a href="#什么是ExtJs" class="headerlink" title="什么是ExtJs"></a>什么是ExtJs</h2><p>ExtJS是一个流行的JavaScript框架，它为使用跨浏览器功能构建Web应用程序提供了丰富的UI。 </p>
@@ -644,158 +314,189 @@
       </tags>
   </entry>
   <entry>
-    <title>正则表达式基础</title>
-    <url>/posts/bd0c0858/</url>
-    <content><![CDATA[<p>这篇文章简单讲解了一下关于正则表达式的基础。</p>
-<h2 id="Java-类"><a href="#Java-类" class="headerlink" title="Java 类"></a>Java 类</h2><ul>
-<li>java.lang.String</li>
-<li>java.util.regex.Pattern</li>
-<li>java.util.regex.Matcher</li>
-</ul>
-<a id="more"></a>
-
-<h2 id="简单认识正则表达式"><a href="#简单认识正则表达式" class="headerlink" title="简单认识正则表达式"></a>简单认识正则表达式</h2><ul>
-<li><p>方式一：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;abc&quot;</span>.matches(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"><span class="comment">// 返回的结果为true, 一个点代表一个字符</span></span><br></pre></td></tr></table></figure>
+    <title>VS Code 配置安装 Ext智能提示</title>
+    <url>/posts/2c2929b7/</url>
+    <content><![CDATA[<p>直接在VS Code中添加插件<code>Schena Ext JS</code>插件，会一直提示证书过期，所以这个插件一直都用不了，今天来总结一下怎么破解使用Ext智能提示。</p>
+<h2 id="下载senchaVScode-X-X-X-vsix文件"><a href="#下载senchaVScode-X-X-X-vsix文件" class="headerlink" title="下载senchaVScode-X.X.X.vsix文件"></a>下载senchaVScode-X.X.X.vsix文件</h2><ol>
+<li><a href="https://marketplace.visualstudio.com/search?target=VSCode&category=All%20categories&sortBy=Installs">VS Code 插件下载地址</a><a id="more"></a></li>
+<li>点击<code>Download Extension</code> 将插件下载到本地, 文件后缀为vsix<br> <img src="download-ext-extension.PNG" alt="下载sencha插件"></li>
+</ol>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p><img src="install-ext-vsix.PNG" alt="安装vsix文件"></p>
+<h2 id="破解"><a href="#破解" class="headerlink" title="破解"></a>破解</h2><ol>
+<li><p>打开文件 <code>LicenseManager.js</code>:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">C:\Users\pearl.zhou\.vscode\extensions\sencha.vscode-extjs-1.0.3\out\src\LicenseManager.js</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>方式二：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 把正则表达式编译放在模式里面，不用每次匹配的时候编译，大大的提高了效率。</span></span><br><span class="line">Pattern p = Pattern.compile(<span class="string">&quot;[a-z]&#123;3&#125;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把匹配出来的结果放在Matcher这个容器里面，匹配出来的结果可能不止一种。</span></span><br><span class="line">Matcher m = p.matcher(<span class="string">&quot;fgh&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把匹配的结果返回 Boolean</span></span><br><span class="line">m.matches();</span><br></pre></td></tr></table></figure>
+<li><p>修改以下代码:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="title">loadLicense</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.manager.verify().then(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// const licenses = this.manager.getProductLicenses()</span></span><br><span class="line">        <span class="comment">//     .filter(license =&gt; license.signature)</span></span><br><span class="line">        <span class="comment">//     .map(license =&gt; this.createLicenseObject(license));</span></span><br><span class="line">        <span class="comment">// this.license = licenses.find(l =&gt; l.active &amp;&amp; l.full) || // try to find an active paid license </span></span><br><span class="line">        <span class="comment">//     licenses.find(l =&gt; l.active) || // try to find an active trial license</span></span><br><span class="line">        <span class="comment">//     licenses[0]; // default to the first license</span></span><br><span class="line">        <span class="comment">// if (!this.license || !this.license.active || !this.license.full) &#123;</span></span><br><span class="line">        <span class="comment">//     statusBarActivation.show();</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// licenseJson = this.license &amp;&amp; this.license.data;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 注释掉上面的代码</span></span><br><span class="line">        <span class="comment">// 添加下面的代码</span></span><br><span class="line">        <span class="built_in">this</span>.license = &#123;</span><br><span class="line">            active: <span class="literal">true</span>,</span><br><span class="line">            full: <span class="literal">true</span>,</span><br><span class="line">            data: &#123;&#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        licenseJson = <span class="built_in">this</span>.license &amp;&amp; <span class="built_in">this</span>.license.data;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
-</ul>
-<div class="note info">
-            <p>第一种虽然只用了一行code,但是第二种的效率会比第一种高的多。</p>
-          </div>
-
-<h3 id="初步认识正则表达式"><a href="#初步认识正则表达式" class="headerlink" title="初步认识正则表达式 . * + ?"></a>初步认识正则表达式 . * + ?</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回true, * 表示 0 或 多次</span></span><br><span class="line"><span class="string">&quot;&quot;</span>.matches(<span class="string">&quot;a*&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回true, ? 表示 0 次或一次</span></span><br><span class="line"><span class="string">&quot;&quot;</span>.matches(<span class="string">&quot;a?&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回true, + 表示 1 次或多次</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;a+&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h2><div class="note info">
-            <p>一个中括号表示一个字符串</p>
-          </div>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 匹配abc中的任意一个字符串</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;[abc]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配abc中的任意一个不是abc的字符串</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;[^abc]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配大小写字母</span></span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-zA-Z]&quot;</span>);</span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-z]|[A-Z]&quot;</span>);</span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-z[A-Z]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配RFG</span></span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[A-Z&amp;&amp;[RFG]&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="认识-d-s-w"><a href="#认识-d-s-w" class="headerlink" title="认识 \d \s \w"></a>认识 \d \s \w</h2><ul>
-<li>\d : [0-9]</li>
-<li>\D : [^0-9]</li>
-<li>\s : 空格</li>
-<li>\S : 非空格</li>
-<li>\w : [a-zA-Z_0-9]</li>
-<li>\W : [^\w]</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 匹配一个&quot;\&quot;, 在正则表达式里面需要用两个&quot;\&quot;表示一个,所以是4个&quot;\&quot;</span></span><br><span class="line"><span class="string">&quot;\\&quot;</span>.matches(<span class="string">&quot;\\\\&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="边界处理"><a href="#边界处理" class="headerlink" title="边界处理"></a>边界处理</h2><ul>
-<li>^ 匹配输入字符串开始的位置</li>
-<li>$ 匹配输入字符串结尾的位置</li>
-<li>\b 匹配一个字边界，即字与空格间的位置。例如，”er\b”匹配”never”中的”er”，但不匹配”verb”中的”er”。</li>
-<li>\B 非字边界匹配。”er\B”匹配”verb”中的”er”，但不匹配”never”中的”er”。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 匹配第一个字符是空格 且不是\n 出现0或多次 以\n结尾</span></span><br><span class="line"><span class="string">&quot; \n&quot;</span>.matches(<span class="string">&quot;^[\\s&amp;&amp;[^\\n]]*\\n$&quot;</span>); </span><br></pre></td></tr></table></figure>
-
-<h2 id="分组-group"><a href="#分组-group" class="headerlink" title="分组-group"></a>分组-group</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Partten p = Partten.compile(<span class="string">&quot;\\d&#123;3,5&#125;[a-z]&#123;2&#125;&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;123aa-44564bb-3456df-00&quot;</span></span><br><span class="line">Macther m = p.matches(s)</span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;</span><br><span class="line">    m.group();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分别打印每组里面的数字和字母，这个时候可以用到分组</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d&#123;3,5&#125;)([a-z]&#123;2&#125;)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从左开始数左括号，第几个左括号就是第几组，下标从1开始。 打印第一组：</span></span><br><span class="line">m.group(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不想分组打印，直接：</span></span><br><span class="line">m.group();</span><br></pre></td></tr></table></figure>
-
-<h2 id="补充小知识"><a href="#补充小知识" class="headerlink" title="补充小知识"></a>补充小知识</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 后面的值必须和第一个group匹配到的值一模一样</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d\\d)\\1&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;1212&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后面的值必须和第2个group匹配到的值一模一样</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d(\\d))\\2&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;122&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<div class="note info">
-            <p>\n 匹配前面出现的第n个分组的正则表达式一次，可用于不连续的重复匹配</p>
-          </div>
-
-<p class="red-bold-text">正则表达式[0-9]{2}和([0-9])\1所能匹配的结果完全不同，前者匹配所有的两个数字，而后者只能匹配两个重复的数字</p>
-
-
-<h2 id="贪婪模式与懒惰模式"><a href="#贪婪模式与懒惰模式" class="headerlink" title="贪婪模式与懒惰模式"></a>贪婪模式与懒惰模式</h2><ul>
-<li><p>贪婪模式 匹配尽可能多的字符<br>以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab</p>
-</li>
-<li><p>懒惰模式 匹配尽可能少的字符<br>a.*?b匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。<br>为什么第一个匹配是aab（第一到第三个字符）而不是ab（第二到第三个字符）？简单地说，因为正则表达式有另一条规则，比懒惰／贪婪规则的优先级更高：最先开始的匹配拥有最高的优先权——The match that begins earliest wins。</p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">*?     <span class="comment">// 重复任意次，但尽可能少重复</span></span><br><span class="line">+?     <span class="comment">// 重复一次或更多次，但尽可能少重复</span></span><br><span class="line">??     <span class="comment">//重复0次或一次，但尽可能少重复</span></span><br><span class="line">&#123;n,m&#125;  <span class="comment">//重复n到m次，但尽可能少重复</span></span><br><span class="line">&#123;n,&#125;   <span class="comment">//重复n次以上，但尽可能少重复</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="正则表达式的前瞻后顾"><a href="#正则表达式的前瞻后顾" class="headerlink" title="正则表达式的前瞻后顾"></a>正则表达式的前瞻后顾</h2><p>正则表达式的匹配顺序是从左到右，所以这里定义的前就是还没有被匹配的字符在前。<br>“AB”也就是A”=&gt;B，A的前面是B，B的后面是A</p>
-<h3 id="前瞻"><a href="#前瞻" class="headerlink" title="前瞻"></a>前瞻</h3><p>前瞻分成前瞻和负前瞻。前瞻的意思就是匹配是向前看，这里举一个例子：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="string">&#x27;/AI(?=DU)/&#x27;</span>); <span class="comment">//匹配到BAIDU中的AI</span></span><br><span class="line"><span class="comment">// 匹配AI前面是DU的AI</span></span><br></pre></td></tr></table></figure>
-
-<p>负前瞻</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="string">&#x27;/AI(?!DU)/&#x27;</span>); <span class="comment">//匹配到字符串开头的AI</span></span><br><span class="line"><span class="comment">// 匹配AI前面不是DU的AI</span></span><br></pre></td></tr></table></figure>
-
-<p>?:和?=的区别：</p>
-<div class="note info">
-            <p>?= 是正向肯定断言，进行的匹配是不占查询长度的；而 ?: 是非获取匹配，进行的匹配是占据查询长度的。</p>
-          </div>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="regexp">/AI(?=DU)/</span>); <span class="comment">//匹配出AI</span></span><br><span class="line">str.match(<span class="regexp">/AI(?:DU)/</span>); <span class="comment">//匹配出AIDU</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="后顾"><a href="#后顾" class="headerlink" title="后顾"></a>后顾</h3><p>后顾和负后顾与前瞻和负前瞻差不多的意思，只是方向不同。</p>
-<p>后顾和负后顾的表达式是：?&lt;=以及?&lt;!</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="regexp">/(?&lt;!AI)DU/</span>; <span class="comment">//匹配出null，因为不存在DU的后面不是AI</span></span><br><span class="line">str.match(<span class="regexp">/(?&lt;=AI)DU/</span>); <span class="comment">//匹配出DU</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://blog.csdn.net/csu_passer/article/details/98951221">正则表达式的‘前瞻后顾’</a></li>
+</ol>
+<h2 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h2><p>重新打开VS Code之后， 等待Ext插件创建完索引之后就可以使用智能提示了。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://blog.csdn.net/weixin_30715523/article/details/98082582">vscode开发ExtJs安装插件以及破解方法</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>Java</category>
-        <category>Regx</category>
+        <category>前端</category>
+        <category>ExtJs</category>
+        <category>VS Code</category>
       </categories>
       <tags>
-        <tag>Java</tag>
-        <tag>Regx</tag>
+        <tag>ExtJs</tag>
+        <tag>VS Code</tag>
       </tags>
   </entry>
   <entry>
-    <title>NexT 主题的配置</title>
-    <url>/posts/a3a69e9b/</url>
-    <content><![CDATA[<p>经过一段时间的折腾，终于把NexT主题弄好了。这中间，零零散散的踩了不少的坑，今天就此总结一下。</p>
-<h2 id="NexT-主题-版本"><a href="#NexT-主题-版本" class="headerlink" title="NexT 主题 版本"></a>NexT 主题 版本</h2><p>看了这篇博客我才知道，原来NexT 主题有三个版本:<br><a href="https://guanqr.com/tech/website/hexo-theme-next-customization/#%E5%AE%89%E8%A3%85-next-%E4%B8%BB%E9%A2%98">Hexo-NexT 主题个性优化</a></p>
-<ul>
-<li>2014-2017：<a href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a></li>
-<li>2018-2019：<a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></li>
-<li>2020：<a href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></li>
+    <title>前端跨域问题</title>
+    <url>/posts/780715e7/</url>
+    <content><![CDATA[<p>当两个域具有相同的协议(如http), 相同的端口(如80)，相同的host（如<code>www.google.com</code>)，那么我们就可以认为它们是相同的域（协议，域名，端口都必须相同）。</p>
+<p>跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
+<li>使用JSONP, 但是只支持GET请求</li>
+<li>在服务器端的response里添加header，允许前端指定的主机访问<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: *&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSON 和 JSONP</title>
+    <url>/posts/62e278fe/</url>
+    <content><![CDATA[<p>JSON是一种数据交换格式，而JSONP是信息传递双方约定的<b>方法</b></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html">【原创】说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></li>
 </ul>
-<div class="note info">
-            <p>只有第三个版本是现在目前还在维护的</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>jQuery</category>
+      </categories>
+      <tags>
+        <tag>jQuery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 的配置及使用</title>
+    <url>/posts/d4bb8afb/</url>
+    <content><![CDATA[<h2 id="vscode-配置-git"><a href="#vscode-配置-git" class="headerlink" title="vscode 配置 git"></a>vscode 配置 git</h2><ul>
+<li><p>vscode 配置git终端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;terminal.integrated.shell.windows&quot;</span>: <span class="string">&quot;D:\\Program Files\\Git\\bin\\bash.exe&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>vscode 添加git插件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Gitlens</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="git-生成秘钥"><a href="#git-生成秘钥" class="headerlink" title="git 生成秘钥"></a>git 生成秘钥</h2><ul>
+<li><p>一个账号</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成秘钥</span></span><br><span class="line">ssh-keygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加秘钥到SSH Agent</span></span><br><span class="line">ssh-agent bash</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">ssh-add ~/.ssh/id_rsa_star_plan</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多个账号</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成秘钥</span></span><br><span class="line">ssh-keygen -t rsa  -f ~/.ssh/id_rsa_oschina</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在D:\Program Files\Git\etc\ssh\ssh_config 文件末尾添加以下内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置github.com</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName ssh.github.com</span><br><span class="line">IdentityFile C:\\Users\\[yourname]\\.ssh\\id_rsa_1</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">User [username]</span><br><span class="line">Port 443</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置gitLab </span></span><br><span class="line">Host [gitLab url]</span><br><span class="line">HostName [hostname]</span><br><span class="line">IdentityFile C:\\Users\\[yourname]\\.ssh\\id_rsa_2</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">User [username]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="连接git"><a href="#连接git" class="headerlink" title="连接git"></a>连接git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户名和邮箱的配置"><a href="#用户名和邮箱的配置" class="headerlink" title="用户名和邮箱的配置"></a>用户名和邮箱的配置</h2><p><code>因为一台电脑上配置了多个git账号，所以就不能再配置全局的用户名和邮箱了，而是在不同的仓库下，如果需要连接不同的git账号,配置相应的局部用户名和邮箱即可，如果之前配置过全局的用户名和邮箱,需要取消配置</code></p>
+<ul>
+<li><p>全局配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 取消全局配置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> user.name</span><br><span class="line">git config --global --<span class="built_in">unset</span> user.email</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置全局配置</span></span><br><span class="line">git config --global user.name <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;xxxx@xx.com&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>局部配置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 局部配置</span></span><br><span class="line">git config user.name <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;xxxx@xx.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="git-基本常用命令"><a href="#git-基本常用命令" class="headerlink" title="git 基本常用命令"></a>git 基本常用命令</h2><ul>
+<li><p>git add</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将改动的文件添加到缓存区, 以下两种都可以</span></span><br><span class="line">git add -A</span><br><span class="line">git add .</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git commit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git commit</span></span><br><span class="line">git commit -m <span class="string">&quot;comment&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将改动提交到最新的commit中</span></span><br><span class="line"><span class="comment"># 撤销--amend, 进入vi模式下, 将comment注释掉， 保存退出即可</span></span><br><span class="line">git commit --amend</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除某个commit, [commit-id]： 要删除的commit的前一个commit id, 进入编辑模式后， 将要删除的commit前面的pick改成drop</span></span><br><span class="line">git rebase -i [commit-id]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回到某个commit</span></span><br><span class="line">git reset [commit-id]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git push</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将代码提交到远程分支</span></span><br><span class="line">git push origin [branch-name]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git stash</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将代码stash到本地</span></span><br><span class="line">git stash save <span class="string">&quot;comment&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看stashlist</span></span><br><span class="line">git stash list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个指令将缓存堆栈中的第一个stash删除，并将对应修改应用到当前的工作目录下</span></span><br><span class="line">git stash pop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将缓存堆栈中的stash多次应用到工作目录中，但并不删除stash拷贝</span></span><br><span class="line">git stash apply [stash-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除stash</span></span><br><span class="line">git stash drop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有缓存的stash</span></span><br><span class="line">git stash clear</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git branch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前本地所有分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改branch 的名字</span></span><br><span class="line">git branch -m [old] [new]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换分支</span></span><br><span class="line">git checkout [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于远程的某个分支创建新的分支</span></span><br><span class="line">git checkout -b [branch-name] origin/[origin-brnach-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于某个commit创建分支</span></span><br><span class="line">git checkout -b [branch-name] [commit-id]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git tag</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基于某个commit创建tag</span></span><br><span class="line">git tag -a [tagname] [commit-id] -m [comments]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看tag</span></span><br><span class="line">git tag --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># push tag</span></span><br><span class="line">git push origin --tag [tagname] [commit-id]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除tag</span></span><br><span class="line">git tag -d [tagname]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git fetch</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 拉取远程代码， 更新本地仓库</span></span><br><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>git rebase</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 和你要合并的分支进行rebase 操作</span></span><br><span class="line">git rebase origin/[branch-name]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 添加自定义域名</title>
+    <url>/posts/4cef3d8b/</url>
+    <content><![CDATA[<p>折腾了我两天的时间，终于把域名给弄好了。这篇文章就用来记录一下我踩过的坑和一些经验总结。</p>
+<h2 id="将Hexo部署到Coding"><a href="#将Hexo部署到Coding" class="headerlink" title="将Hexo部署到Coding"></a>将Hexo部署到Coding</h2><h3 id="创建Coding仓库"><a href="#创建Coding仓库" class="headerlink" title="创建Coding仓库"></a>创建Coding仓库</h3><h4 id="1-需要注册一个Coding账号"><a href="#1-需要注册一个Coding账号" class="headerlink" title="1. 需要注册一个Coding账号"></a><span id="inline-toc">1. </span>需要注册一个Coding账号</h4><div class="note info">
+            <p>因为Coding现在属于腾讯旗下的了，所以每一个coding账号都会绑定一个腾讯云账号。需要注意的是确认Coding绑定的腾讯云账号和你购买域名的腾讯云账号是同一个。我就是因为这两个账号不是同一个，导致域名解析出现问题。</p>
           </div>
 
 <a id="more"></a>
 
-<h2 id="Hexo-配置-NexT-主题"><a href="#Hexo-配置-NexT-主题" class="headerlink" title="Hexo 配置 NexT 主题"></a>Hexo 配置 NexT 主题</h2><ol>
-<li>Clone Next 主题到本地<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></li>
-<li>修改<code>blog</code> 根目录下的 <code>_config.yml</code>, 设置 <code>theme</code> 为 <code>next</code><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-创建仓库"><a href="#2-创建仓库" class="headerlink" title="2. 创建仓库"></a><span id="inline-toc">2. </span>创建仓库</h4><p>现在创建Coding仓库很方便，可以直接把git仓库克隆过来<br><img src="%E5%88%9B%E5%BB%BACoding%E4%BB%93%E5%BA%93.png" alt="创建Coding仓库"></p>
+<h3 id="静态网站"><a href="#静态网站" class="headerlink" title="静态网站"></a>静态网站</h3><p>走到这一步，我们就可以开始搭建静态网站了。<br><img src="%E6%96%B0%E5%BB%BA%E7%BD%91%E7%AB%99.png" alt="新建网站"></p>
+<p>填写基本信息,网站类型选择<code>静态网站</code><br><img src="%E6%96%B0%E5%BB%BA%E7%BD%91%E7%AB%99%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF.png" alt="新建网站基本信息"></p>
+<p>现在可以直接部署了，部署成功之后，就可以通过他分配的地址访问我们的博客了。<br><img src="%E7%BD%91%E7%AB%99%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F.png" alt="网站部署成功"></p>
+<h3 id="部署Hexo到Coding"><a href="#部署Hexo到Coding" class="headerlink" title="部署Hexo到Coding"></a>部署Hexo到Coding</h3><div class="note info">
+            <p>我们可以直接在<code>_config.yml</code>添加CODING的仓库地址, deploy就行了</p><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  <span class="attr">repo:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">https://github.com/XX.github.io</span></span><br><span class="line">    <span class="attr">coding:</span> <span class="string">https://e.coding.net/XX.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+          </div>
 
-</li>
-</ol>
-<h2 id="NexT-主题配置文件"><a href="#NexT-主题配置文件" class="headerlink" title="NexT 主题配置文件"></a>NexT 主题配置文件</h2><p>为了方便NexT 主题能升级， 不会直接去修改 <code>next\_config.yml</code> 文件</p>
-<ol>
-<li>先把 <code>next\_config.yml</code> 文件复制到 <code>blog\source</code> 目录下， 并将文件重命名为 <code>next.yml</code></li>
-<li>将 <code>next.yml</code> 的 <code>override</code> 设置为 <code>true</code>, 以便能够重写 <code>next</code>目录下的 <code>_config.yml</code> 文件<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">override:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加自定义域名"><a href="#添加自定义域名" class="headerlink" title="添加自定义域名"></a>添加自定义域名</h2><h3 id="Coding-添加域名"><a href="#Coding-添加域名" class="headerlink" title="Coding 添加域名"></a>Coding 添加域名</h3><p><img src="%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="添加自定义域名"></p>
+<div class="note info">
+            <p>CNAME需要复制下来， 然后到域名购买商站点添加一条解析记录</p>
+          </div>
 
-</li>
-</ol>
-<h2 id="NexT-主题自定义文件"><a href="#NexT-主题自定义文件" class="headerlink" title="NexT 主题自定义文件"></a>NexT 主题自定义文件</h2><p>在 <code>next.yml</code> 文件中, 将 <code>custom_file_path</code> 下配置的文件路径注释都去掉， 然后在 <code>blog</code> 根目录下， 创建对应的文件目录</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="attr">head:</span> <span class="string">source/_data/head.swig</span></span><br><span class="line">  <span class="attr">header:</span> <span class="string">source/_data/header.swig</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="string">source/_data/sidebar.swig</span></span><br><span class="line">  <span class="attr">postMeta:</span> <span class="string">source/_data/post-meta.swig</span></span><br><span class="line">  <span class="attr">postBodyEnd:</span> <span class="string">source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="attr">footer:</span> <span class="string">source/_data/footer.swig</span></span><br><span class="line">  <span class="attr">bodyEnd:</span> <span class="string">source/_data/body-end.swig</span></span><br><span class="line">  <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">  <span class="attr">mixin:</span> <span class="string">source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="NexT-主题的设置"><a href="#NexT-主题的设置" class="headerlink" title="NexT 主题的设置"></a>NexT 主题的设置</h2><h3 id="添加近期文章"><a href="#添加近期文章" class="headerlink" title="添加近期文章"></a>添加近期文章</h3><ul>
-<li><p>新建 source/_data/sidebar.swig 文件，内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;# RecentPosts #&#125;</span><br><span class="line">&#123;%- if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;links-of-recent-posts motion-element&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;links-of-recent-posts-title&quot;&gt;</span><br><span class="line">      &#123;%- if theme.recent_posts.icon %&#125;</span><br><span class="line">      &lt;i class&#x3D;&quot;&#123;&#123; theme.recent_posts.icon &#125;&#125; fa-fw&quot;&gt;&lt;&#x2F;i&gt;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line">      &#123;&#123; theme.recent_posts.title &#125;&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;ul class&#x3D;&quot;links-of-recent-posts-list&quot;&gt;</span><br><span class="line">      &#123;%- set posts &#x3D; site.posts.sort(&#39;date&#39;, &#39;desc&#39;).toArray() %&#125;</span><br><span class="line">      &#123;%- for post in posts.slice(&#39;0&#39;, theme.recent_posts.max_count) %&#125;</span><br><span class="line">        &lt;li class&#x3D;&quot;links-of-recent-posts-item&quot;&gt;</span><br><span class="line">          &#123;&#123; next_url(post.path, post.title, &#123;title: post.path&#125;) &#125;&#125;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>next.yml</code> 中添加以下内容</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">recent_posts:</span></span><br><span class="line"><span class="comment"># 块标题</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">最近文章</span></span><br><span class="line"><span class="comment"># 图标</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-history</span></span><br><span class="line"><span class="comment"># 最多多少文章链接</span></span><br><span class="line">  <span class="attr">max_count:</span> <span class="number">18</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 <code>source/_data/styles.styl</code> 文件中添加以下内容:</p>
-<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 近期文章</span></span><br><span class="line">.links-of-recent-posts</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.8125em</span></span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">10px</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-title</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.03em</span></span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">600</span></span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-list</span><br><span class="line">  <span class="attribute">list-style</span>: none</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-</li>
+<p>这里以腾讯为例：</p>
+<h4 id="1-申请SSL证书"><a href="#1-申请SSL证书" class="headerlink" title="1. 申请SSL证书"></a><span id="inline-toc">1. </span>申请SSL证书</h4><p>这个证书申请很快，十几秒就好了<br><img src="%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6.png" alt="申请SSL证书"></p>
+<h4 id="2-添加解析记录"><a href="#2-添加解析记录" class="headerlink" title="2. 添加解析记录"></a><span id="inline-toc">2. </span>添加解析记录</h4><p><img src="%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%951.png" alt="添加解析记录1"></p>
+<p>这里我们把Github的也顺便一起加了<br><img src="%E6%B7%BB%E5%8A%A0%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%952.png" alt="添加解析记录2"></p>
+<p>添加成功之后，再重新部署一下站点，就可以使用我们的域名访问了。</p>
+<h3 id="Github-Page-添加域名"><a href="#Github-Page-添加域名" class="headerlink" title="Github Page 添加域名"></a>Github Page 添加域名</h3><blockquote>
+<p>下面这四个都是指向Github的ip地址，选择其中两个添加到解析记录里面就好了</p>
+</blockquote>
+<ul>
+<li>185.199.108.153</li>
+<li>185.199.109.153</li>
+<li>185.199.110.153</li>
+<li>185.199.111.153</li>
 </ul>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
-<li><a href="https://weilining.github.io/925-1.html">Hexo NexT 添加近期文章功能</a></li>
-</ul>
-<h2 id="推荐几篇写的很详细的配置博客"><a href="#推荐几篇写的很详细的配置博客" class="headerlink" title="推荐几篇写的很详细的配置博客"></a>推荐几篇写的很详细的配置博客</h2><ul>
-<li><a href="https://tding.top/archives/567debe0.html">https://tding.top/archives/567debe0.html</a></li>
-<li><a href="https://tding.top/archives/dfac1e9c.html">https://tding.top/archives/dfac1e9c.html</a></li>
-<li><a href="https://tding.top/archives/58cff12b.html">https://tding.top/archives/58cff12b.html</a></li>
-<li><a href="https://tding.top/archives/aad98408.html">https://tding.top/archives/aad98408.html</a></li>
-<li><a href="https://tding.top/archives/761b6f4d.html">https://tding.top/archives/761b6f4d.html</a></li>
+<p>再添加一条记录指向我们的<code>xxx.github.io</code>, 添加如下内容</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ A 185.199.108.153</span><br><span class="line">@ A 185.199.109.153</span><br><span class="line">www CNAME username.github.io</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加-CNAME-文件"><a href="#添加-CNAME-文件" class="headerlink" title="添加 CNAME 文件"></a>添加 CNAME 文件</h4><p>在 Hexo 本地目录中的 source 文件夹里，添加一个命名为 CNAME 的无后缀文件，文件中的填写你的域名。</p>
+<p>如果你想让地址栏的域名显示 www 前缀就输入 <a href="http://www.xxxxx.com,否则输入/">www.xxxxx.com，否则输入</a> xxxxx.com 即可。</p>
+<p>例如：<code>xixi27.xyz</code> 然后执行 <code>hexo g &amp;&amp; hexo d</code></p>
+<h4 id="enforce-Https"><a href="#enforce-Https" class="headerlink" title="enforce Https"></a>enforce Https</h4><p><img src="Githubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D.png" alt="Githubpage自定义域名"></p>
+<p>现在可以通过自定义域名访问了！</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://tding.top/archives/b48e2719.html">GitHub Pages 绑定域名</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -981,64 +682,85 @@
       </tags>
   </entry>
   <entry>
-    <title>VS Code 下搭建spring boot环境</title>
-    <url>/posts/27946bdc/</url>
-    <content><![CDATA[<p>因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的</p>
-<h2 id="安装扩展插件"><a href="#安装扩展插件" class="headerlink" title="安装扩展插件"></a>安装扩展插件</h2><ul>
-<li>Java Extension Pack</li>
-<li>Spring Boot Extension Pack</li>
+    <title>NexT 主题的配置</title>
+    <url>/posts/a3a69e9b/</url>
+    <content><![CDATA[<p>经过一段时间的折腾，终于把NexT主题弄好了。这中间，零零散散的踩了不少的坑，今天就此总结一下。</p>
+<h2 id="NexT-主题-版本"><a href="#NexT-主题-版本" class="headerlink" title="NexT 主题 版本"></a>NexT 主题 版本</h2><p>看了这篇博客我才知道，原来NexT 主题有三个版本:<br><a href="https://guanqr.com/tech/website/hexo-theme-next-customization/#%E5%AE%89%E8%A3%85-next-%E4%B8%BB%E9%A2%98">Hexo-NexT 主题个性优化</a></p>
+<ul>
+<li>2014-2017：<a href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a></li>
+<li>2018-2019：<a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></li>
+<li>2020：<a href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></li>
 </ul>
+<div class="note info">
+            <p>只有第三个版本是现在目前还在维护的</p>
+          </div>
+
 <a id="more"></a>
 
-<h2 id="在-setting-json-文件中配置maven和jdk"><a href="#在-setting-json-文件中配置maven和jdk" class="headerlink" title="在 setting.json 文件中配置maven和jdk"></a>在 <code>setting.json</code> 文件中配置maven和jdk</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;java.home&quot;:&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;,</span><br><span class="line">&quot;java.configuration.maven.userSettings&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\conf\\settings.xml&quot;,</span><br><span class="line">&quot;maven.executable.path&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\bin\\mvn.cmd&quot;,</span><br><span class="line">&quot;maven.terminal.useJavaHome&quot;: true,</span><br><span class="line">&quot;maven.terminal.customEnv&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;environmentVariable&quot;</span>: <span class="string">&quot;JAVA_HOME&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>配置完成之后，需要重启VS Code</p>
-          </div>
+<h2 id="Hexo-配置-NexT-主题"><a href="#Hexo-配置-NexT-主题" class="headerlink" title="Hexo 配置 NexT 主题"></a>Hexo 配置 NexT 主题</h2><ol>
+<li>Clone Next 主题到本地<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure></li>
+<li>修改<code>blog</code> 根目录下的 <code>_config.yml</code>, 设置 <code>theme</code> 为 <code>next</code><figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="创建-spring-boot-项目"><a href="#创建-spring-boot-项目" class="headerlink" title="创建 spring boot 项目"></a>创建 spring boot 项目</h2><h3 id="1-创建一个-spring-项目"><a href="#1-创建一个-spring-项目" class="headerlink" title="1.  创建一个 spring 项目"></a><span id="inline-toc">1. </span> 创建一个 spring 项目</h3><p><code>ctrl + shift + p</code>, 输入 <code>spring</code>, 选择 <code>Create a maven project...</code><br><img src="create-spring-boot-step1.PNG" alt="创建一个 spring 项目"></p>
-<h3 id="2-选择spring版本"><a href="#2-选择spring版本" class="headerlink" title="2.  选择spring版本"></a><span id="inline-toc">2. </span> 选择spring版本</h3><p><img src="select-spring-version-step2.PNG" alt="选择spring版本"></p>
-<h3 id="3-选择语言"><a href="#3-选择语言" class="headerlink" title="3.  选择语言"></a><span id="inline-toc">3. </span> 选择语言</h3><p><img src="select-language-step3.PNG" alt="选择语言"></p>
-<h3 id="4-输入group-id"><a href="#4-输入group-id" class="headerlink" title="4.  输入group id"></a><span id="inline-toc">4. </span> 输入group id</h3><p><img src="input-group-id-step4.PNG" alt="输入group id"></p>
-<h3 id="5-输入artifact-id"><a href="#5-输入artifact-id" class="headerlink" title="5.  输入artifact id"></a><span id="inline-toc">5. </span> 输入artifact id</h3><p><img src="artifact-id-step5.PNG" alt="输入artifact id"></p>
-<h3 id="6-选择package-type"><a href="#6-选择package-type" class="headerlink" title="6.  选择package type"></a><span id="inline-toc">6. </span> 选择package type</h3><p><img src="specify-packging-type-step6.PNG" alt="选择package type"></p>
-<h3 id="7-选择jdk版本"><a href="#7-选择jdk版本" class="headerlink" title="7.  选择jdk版本"></a><span id="inline-toc">7. </span> 选择jdk版本</h3><p><img src="specify-java-version-step7.PNG" alt="选择jdk版本"></p>
-<h3 id="8-选择dependencies"><a href="#8-选择dependencies" class="headerlink" title="8.  选择dependencies"></a><span id="inline-toc">8. </span> 选择dependencies</h3><ul>
-<li>DevTools(代码修改热更新，无需重启)</li>
-<li>Web(集成tomcat、SpringMVC</li>
-<li>Lombok(智能生成setter、getter、toString等接口，无需手动生成)</li>
+</li>
+</ol>
+<h2 id="NexT-主题配置文件"><a href="#NexT-主题配置文件" class="headerlink" title="NexT 主题配置文件"></a>NexT 主题配置文件</h2><p>为了方便NexT 主题能升级， 不会直接去修改 <code>next\_config.yml</code> 文件</p>
+<ol>
+<li>先把 <code>next\_config.yml</code> 文件复制到 <code>blog\source</code> 目录下， 并将文件重命名为 <code>next.yml</code></li>
+<li>将 <code>next.yml</code> 的 <code>override</code> 设置为 <code>true</code>, 以便能够重写 <code>next</code>目录下的 <code>_config.yml</code> 文件<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">override:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="NexT-主题自定义文件"><a href="#NexT-主题自定义文件" class="headerlink" title="NexT 主题自定义文件"></a>NexT 主题自定义文件</h2><p>在 <code>next.yml</code> 文件中, 将 <code>custom_file_path</code> 下配置的文件路径注释都去掉， 然后在 <code>blog</code> 根目录下， 创建对应的文件目录</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">custom_file_path:</span></span><br><span class="line">  <span class="attr">head:</span> <span class="string">source/_data/head.swig</span></span><br><span class="line">  <span class="attr">header:</span> <span class="string">source/_data/header.swig</span></span><br><span class="line">  <span class="attr">sidebar:</span> <span class="string">source/_data/sidebar.swig</span></span><br><span class="line">  <span class="attr">postMeta:</span> <span class="string">source/_data/post-meta.swig</span></span><br><span class="line">  <span class="attr">postBodyEnd:</span> <span class="string">source/_data/post-body-end.swig</span></span><br><span class="line">  <span class="attr">footer:</span> <span class="string">source/_data/footer.swig</span></span><br><span class="line">  <span class="attr">bodyEnd:</span> <span class="string">source/_data/body-end.swig</span></span><br><span class="line">  <span class="attr">variable:</span> <span class="string">source/_data/variables.styl</span></span><br><span class="line">  <span class="attr">mixin:</span> <span class="string">source/_data/mixins.styl</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">source/_data/styles.styl</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="NexT-主题的设置"><a href="#NexT-主题的设置" class="headerlink" title="NexT 主题的设置"></a>NexT 主题的设置</h2><h3 id="添加近期文章"><a href="#添加近期文章" class="headerlink" title="添加近期文章"></a>添加近期文章</h3><ul>
+<li><p>新建 source/_data/sidebar.swig 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;# RecentPosts #&#125;</span><br><span class="line">&#123;%- if theme.recent_posts %&#125;</span><br><span class="line">  &lt;div class&#x3D;&quot;links-of-recent-posts motion-element&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;links-of-recent-posts-title&quot;&gt;</span><br><span class="line">      &#123;%- if theme.recent_posts.icon %&#125;</span><br><span class="line">      &lt;i class&#x3D;&quot;&#123;&#123; theme.recent_posts.icon &#125;&#125; fa-fw&quot;&gt;&lt;&#x2F;i&gt;</span><br><span class="line">      &#123;%- endif %&#125;</span><br><span class="line">      &#123;&#123; theme.recent_posts.title &#125;&#125;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;ul class&#x3D;&quot;links-of-recent-posts-list&quot;&gt;</span><br><span class="line">      &#123;%- set posts &#x3D; site.posts.sort(&#39;date&#39;, &#39;desc&#39;).toArray() %&#125;</span><br><span class="line">      &#123;%- for post in posts.slice(&#39;0&#39;, theme.recent_posts.max_count) %&#125;</span><br><span class="line">        &lt;li class&#x3D;&quot;links-of-recent-posts-item&quot;&gt;</span><br><span class="line">          &#123;&#123; next_url(post.path, post.title, &#123;title: post.path&#125;) &#125;&#125;</span><br><span class="line">        &lt;&#x2F;li&gt;</span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">&#123;%- endif %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>next.yml</code> 中添加以下内容</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">recent_posts:</span></span><br><span class="line"><span class="comment"># 块标题</span></span><br><span class="line">  <span class="attr">title:</span> <span class="string">最近文章</span></span><br><span class="line"><span class="comment"># 图标</span></span><br><span class="line">  <span class="attr">icon:</span> <span class="string">fa</span> <span class="string">fa-history</span></span><br><span class="line"><span class="comment"># 最多多少文章链接</span></span><br><span class="line">  <span class="attr">max_count:</span> <span class="number">18</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>source/_data/styles.styl</code> 文件中添加以下内容:</p>
+<figure class="highlight styl"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 近期文章</span></span><br><span class="line">.links-of-recent-posts</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.8125em</span></span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">10px</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-title</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">1.03em</span></span><br><span class="line">  <span class="attribute">font-weight</span>: <span class="number">600</span></span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">.links-of-recent-posts-list</span><br><span class="line">  <span class="attribute">list-style</span>: none</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
-<p><img src="select-dependencies-step8.PNG" alt="选择依赖"></p>
-<h3 id="9-选择项目目录"><a href="#9-选择项目目录" class="headerlink" title="9.  选择项目目录"></a><span id="inline-toc">9. </span> 选择项目目录</h3><p>直接点击 <code>Generate into this folder</code> 按钮即可<br><img src="select-folder-step9.PNG" alt="选择项目目录"></p>
-<h2 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h2><h3 id="1-生成launch-json文件"><a href="#1-生成launch-json文件" class="headerlink" title="1.  生成launch.json文件"></a><span id="inline-toc">1. </span> 生成launch.json文件</h3><ul>
-<li><p>打开项目目录，打开 <code>DemoApplication.java</code>, 点击小虫子按钮, 生成 <code>launch.json</code> 文件<br><img src="start-create-launch-json-1.PNG" alt="生成launch.json文件"></p>
-</li>
-<li><p><code>launch.json</code> 文件如下图所示：<br><img src="launch-json-2.PNG" alt="launch.json文件内容"></p>
-</li>
-<li><p>点击三角形按钮，启动spring项目<br><img src="run-3.PNG" alt="启动spring项目"></p>
-</li>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://weilining.github.io/925-1.html">Hexo NexT 添加近期文章功能</a></li>
 </ul>
-<h3 id="2-启动-spring-项目"><a href="#2-启动-spring-项目" class="headerlink" title="2.  启动 spring 项目"></a><span id="inline-toc">2. </span> 启动 spring 项目</h3><p>浏览器输入 <code>localhost:8080</code> 访问<br><img src="browser-4.PNG" alt="访问失败"></p>
-<div class="note danger">
-            <p>错误原因:没有定义服务器访问这个根路径对应的应答接口</p>
-          </div>
-<span class="label success">解决方法：</span>
-<ul>
-<li><p>在demo包下面新建个controller包，然后新建个HomeController.java 文件，目录结构如下：<br><img src="folder-structure-4.PNG" alt="目录结构"></p>
-</li>
-<li><p>文件内容如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新刷新浏览器，即可看到访问成功<br><img src="run-successfully-5.PNG" alt="访问成功"></p>
-</li>
+<h2 id="推荐几篇写的很详细的配置博客"><a href="#推荐几篇写的很详细的配置博客" class="headerlink" title="推荐几篇写的很详细的配置博客"></a>推荐几篇写的很详细的配置博客</h2><ul>
+<li><a href="https://tding.top/archives/567debe0.html">https://tding.top/archives/567debe0.html</a></li>
+<li><a href="https://tding.top/archives/dfac1e9c.html">https://tding.top/archives/dfac1e9c.html</a></li>
+<li><a href="https://tding.top/archives/58cff12b.html">https://tding.top/archives/58cff12b.html</a></li>
+<li><a href="https://tding.top/archives/aad98408.html">https://tding.top/archives/aad98408.html</a></li>
+<li><a href="https://tding.top/archives/761b6f4d.html">https://tding.top/archives/761b6f4d.html</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>VS Code</category>
-        <category>Spring Boot</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>VS Code</tag>
-        <tag>Spring Boot</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo 添加 Valine 评论功能</title>
+    <url>/posts/d3fd59e8/</url>
+    <content><![CDATA[<p>这篇文章主要是记录一下自己添加Valine的过程</p>
+<h2 id="LeanCloud"><a href="#LeanCloud" class="headerlink" title="LeanCloud"></a>LeanCloud</h2><h3 id="1-注册一个LeanCloud账号"><a href="#1-注册一个LeanCloud账号" class="headerlink" title="1. 注册一个LeanCloud账号"></a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3><a id="more"></a>
+
+<h3 id="2-获取AppId和AppKey"><a href="#2-获取AppId和AppKey" class="headerlink" title="2. 获取AppId和AppKey"></a><span id="inline-toc">2. </span>获取<code>AppId</code>和<code>AppKey</code></h3><p>进入<code>设置</code> -&gt; <code>应用Key</code> 将 <code>AppId</code>和<code>AppKey</code> 复制， 然后去 <code>_next.yml</code> 配置 <code>Valine</code></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">XXX</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">XXX</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">true</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">wavatar</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-创建-Comment-和-Counter-Class-无限制的Class"><a href="#3-创建-Comment-和-Counter-Class-无限制的Class" class="headerlink" title="3. 创建 Comment 和 Counter Class, 无限制的Class"></a><span id="inline-toc">3. </span>创建 <code>Comment</code> 和 <code>Counter</code> Class, <code>无限制的Class</code></h3><p><img src="%E5%88%9B%E5%BB%BAClass.png" alt="创建Class"></p>
+<h3 id="4-关闭除数据存储外的其他选项，添加域名"><a href="#4-关闭除数据存储外的其他选项，添加域名" class="headerlink" title="4. 关闭除数据存储外的其他选项，添加域名"></a><span id="inline-toc">4. </span>关闭除数据存储外的其他选项，添加域名</h3><p><img src="%E5%85%B3%E9%97%AD%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png" alt="关闭服务和添加域名"></p>
+<p>现在我们就可以开始用评论功能了！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1119,72 +841,350 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 的配置及使用</title>
-    <url>/posts/d4bb8afb/</url>
-    <content><![CDATA[<h2 id="vscode-配置-git"><a href="#vscode-配置-git" class="headerlink" title="vscode 配置 git"></a>vscode 配置 git</h2><ul>
-<li><p>vscode 配置git终端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;terminal.integrated.shell.windows&quot;</span>: <span class="string">&quot;D:\\Program Files\\Git\\bin\\bash.exe&quot;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>vscode 添加git插件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Gitlens</span><br></pre></td></tr></table></figure>
-
-</li>
+    <title>正则表达式基础</title>
+    <url>/posts/bd0c0858/</url>
+    <content><![CDATA[<p>这篇文章简单讲解了一下关于正则表达式的基础。</p>
+<h2 id="Java-类"><a href="#Java-类" class="headerlink" title="Java 类"></a>Java 类</h2><ul>
+<li>java.lang.String</li>
+<li>java.util.regex.Pattern</li>
+<li>java.util.regex.Matcher</li>
 </ul>
 <a id="more"></a>
-<h2 id="git-生成秘钥"><a href="#git-生成秘钥" class="headerlink" title="git 生成秘钥"></a>git 生成秘钥</h2><ul>
-<li><p>一个账号</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成秘钥</span></span><br><span class="line">ssh-keygen</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加秘钥到SSH Agent</span></span><br><span class="line">ssh-agent bash</span><br><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">ssh-add ~/.ssh/id_rsa_star_plan</span><br></pre></td></tr></table></figure>
+
+<h2 id="简单认识正则表达式"><a href="#简单认识正则表达式" class="headerlink" title="简单认识正则表达式"></a>简单认识正则表达式</h2><ul>
+<li><p>方式一：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;abc&quot;</span>.matches(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"><span class="comment">// 返回的结果为true, 一个点代表一个字符</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>多个账号</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 生成秘钥</span></span><br><span class="line">ssh-keygen -t rsa  -f ~/.ssh/id_rsa_oschina</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在D:\Program Files\Git\etc\ssh\ssh_config 文件末尾添加以下内容</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置github.com</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName ssh.github.com</span><br><span class="line">IdentityFile C:\\Users\\[yourname]\\.ssh\\id_rsa_1</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">User [username]</span><br><span class="line">Port 443</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置gitLab </span></span><br><span class="line">Host [gitLab url]</span><br><span class="line">HostName [hostname]</span><br><span class="line">IdentityFile C:\\Users\\[yourname]\\.ssh\\id_rsa_2</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">User [username]</span><br></pre></td></tr></table></figure>
+<li><p>方式二：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 把正则表达式编译放在模式里面，不用每次匹配的时候编译，大大的提高了效率。</span></span><br><span class="line">Pattern p = Pattern.compile(<span class="string">&quot;[a-z]&#123;3&#125;&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把匹配出来的结果放在Matcher这个容器里面，匹配出来的结果可能不止一种。</span></span><br><span class="line">Matcher m = p.matcher(<span class="string">&quot;fgh&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把匹配的结果返回 Boolean</span></span><br><span class="line">m.matches();</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
-<h2 id="连接git"><a href="#连接git" class="headerlink" title="连接git"></a>连接git</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>第一种虽然只用了一行code,但是第二种的效率会比第一种高的多。</p>
+          </div>
 
-<h2 id="用户名和邮箱的配置"><a href="#用户名和邮箱的配置" class="headerlink" title="用户名和邮箱的配置"></a>用户名和邮箱的配置</h2><p><code>因为一台电脑上配置了多个git账号，所以就不能再配置全局的用户名和邮箱了，而是在不同的仓库下，如果需要连接不同的git账号,配置相应的局部用户名和邮箱即可，如果之前配置过全局的用户名和邮箱,需要取消配置</code></p>
+<h3 id="初步认识正则表达式"><a href="#初步认识正则表达式" class="headerlink" title="初步认识正则表达式 . * + ?"></a>初步认识正则表达式 . * + ?</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回true, * 表示 0 或 多次</span></span><br><span class="line"><span class="string">&quot;&quot;</span>.matches(<span class="string">&quot;a*&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回true, ? 表示 0 次或一次</span></span><br><span class="line"><span class="string">&quot;&quot;</span>.matches(<span class="string">&quot;a?&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回true, + 表示 1 次或多次</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;a+&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h2><div class="note info">
+            <p>一个中括号表示一个字符串</p>
+          </div>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 匹配abc中的任意一个字符串</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;[abc]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配abc中的任意一个不是abc的字符串</span></span><br><span class="line"><span class="string">&quot;a&quot;</span>.matches(<span class="string">&quot;[^abc]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配大小写字母</span></span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-zA-Z]&quot;</span>);</span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-z]|[A-Z]&quot;</span>);</span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[a-z[A-Z]&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 匹配RFG</span></span><br><span class="line"><span class="string">&quot;A&quot;</span>.matches(<span class="string">&quot;[A-Z&amp;&amp;[RFG]&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="认识-d-s-w"><a href="#认识-d-s-w" class="headerlink" title="认识 \d \s \w"></a>认识 \d \s \w</h2><ul>
+<li>\d : [0-9]</li>
+<li>\D : [^0-9]</li>
+<li>\s : 空格</li>
+<li>\S : 非空格</li>
+<li>\w : [a-zA-Z_0-9]</li>
+<li>\W : [^\w]</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 匹配一个&quot;\&quot;, 在正则表达式里面需要用两个&quot;\&quot;表示一个,所以是4个&quot;\&quot;</span></span><br><span class="line"><span class="string">&quot;\\&quot;</span>.matches(<span class="string">&quot;\\\\&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="边界处理"><a href="#边界处理" class="headerlink" title="边界处理"></a>边界处理</h2><ul>
+<li>^ 匹配输入字符串开始的位置</li>
+<li>$ 匹配输入字符串结尾的位置</li>
+<li>\b 匹配一个字边界，即字与空格间的位置。例如，”er\b”匹配”never”中的”er”，但不匹配”verb”中的”er”。</li>
+<li>\B 非字边界匹配。”er\B”匹配”verb”中的”er”，但不匹配”never”中的”er”。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 匹配第一个字符是空格 且不是\n 出现0或多次 以\n结尾</span></span><br><span class="line"><span class="string">&quot; \n&quot;</span>.matches(<span class="string">&quot;^[\\s&amp;&amp;[^\\n]]*\\n$&quot;</span>); </span><br></pre></td></tr></table></figure>
+
+<h2 id="分组-group"><a href="#分组-group" class="headerlink" title="分组-group"></a>分组-group</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Partten p = Partten.compile(<span class="string">&quot;\\d&#123;3,5&#125;[a-z]&#123;2&#125;&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;123aa-44564bb-3456df-00&quot;</span></span><br><span class="line">Macther m = p.matches(s)</span><br><span class="line"><span class="keyword">while</span>(m.find())&#123;</span><br><span class="line">    m.group();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分别打印每组里面的数字和字母，这个时候可以用到分组</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d&#123;3,5&#125;)([a-z]&#123;2&#125;)&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从左开始数左括号，第几个左括号就是第几组，下标从1开始。 打印第一组：</span></span><br><span class="line">m.group(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不想分组打印，直接：</span></span><br><span class="line">m.group();</span><br></pre></td></tr></table></figure>
+
+<h2 id="补充小知识"><a href="#补充小知识" class="headerlink" title="补充小知识"></a>补充小知识</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 后面的值必须和第一个group匹配到的值一模一样</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d\\d)\\1&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;1212&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 后面的值必须和第2个group匹配到的值一模一样</span></span><br><span class="line">Partten p = Partten.compile(<span class="string">&quot;(\\d(\\d))\\2&quot;</span>);</span><br><span class="line">String s = <span class="string">&quot;122&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>\n 匹配前面出现的第n个分组的正则表达式一次，可用于不连续的重复匹配</p>
+          </div>
+
+<p class="red-bold-text">正则表达式[0-9]{2}和([0-9])\1所能匹配的结果完全不同，前者匹配所有的两个数字，而后者只能匹配两个重复的数字</p>
+
+
+<h2 id="贪婪模式与懒惰模式"><a href="#贪婪模式与懒惰模式" class="headerlink" title="贪婪模式与懒惰模式"></a>贪婪模式与懒惰模式</h2><ul>
+<li><p>贪婪模式 匹配尽可能多的字符<br>以这个表达式为例：a.*b，它将会匹配最长的以a开始，以b结束的字符串。如果用它来搜索aabab的话，它会匹配整个字符串aabab</p>
+</li>
+<li><p>懒惰模式 匹配尽可能少的字符<br>a.*?b匹配最短的，以a开始，以b结束的字符串。如果把它应用于aabab的话，它会匹配aab（第一到第三个字符）和ab（第四到第五个字符）。<br>为什么第一个匹配是aab（第一到第三个字符）而不是ab（第二到第三个字符）？简单地说，因为正则表达式有另一条规则，比懒惰／贪婪规则的优先级更高：最先开始的匹配拥有最高的优先权——The match that begins earliest wins。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">*?     <span class="comment">// 重复任意次，但尽可能少重复</span></span><br><span class="line">+?     <span class="comment">// 重复一次或更多次，但尽可能少重复</span></span><br><span class="line">??     <span class="comment">//重复0次或一次，但尽可能少重复</span></span><br><span class="line">&#123;n,m&#125;  <span class="comment">//重复n到m次，但尽可能少重复</span></span><br><span class="line">&#123;n,&#125;   <span class="comment">//重复n次以上，但尽可能少重复</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="正则表达式的前瞻后顾"><a href="#正则表达式的前瞻后顾" class="headerlink" title="正则表达式的前瞻后顾"></a>正则表达式的前瞻后顾</h2><p>正则表达式的匹配顺序是从左到右，所以这里定义的前就是还没有被匹配的字符在前。<br>“AB”也就是A”=&gt;B，A的前面是B，B的后面是A</p>
+<h3 id="前瞻"><a href="#前瞻" class="headerlink" title="前瞻"></a>前瞻</h3><p>前瞻分成前瞻和负前瞻。前瞻的意思就是匹配是向前看，这里举一个例子：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="string">&#x27;/AI(?=DU)/&#x27;</span>); <span class="comment">//匹配到BAIDU中的AI</span></span><br><span class="line"><span class="comment">// 匹配AI前面是DU的AI</span></span><br></pre></td></tr></table></figure>
+
+<p>负前瞻</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="string">&#x27;/AI(?!DU)/&#x27;</span>); <span class="comment">//匹配到字符串开头的AI</span></span><br><span class="line"><span class="comment">// 匹配AI前面不是DU的AI</span></span><br></pre></td></tr></table></figure>
+
+<p>?:和?=的区别：</p>
+<div class="note info">
+            <p>?= 是正向肯定断言，进行的匹配是不占查询长度的；而 ?: 是非获取匹配，进行的匹配是占据查询长度的。</p>
+          </div>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="regexp">/AI(?=DU)/</span>); <span class="comment">//匹配出AI</span></span><br><span class="line">str.match(<span class="regexp">/AI(?:DU)/</span>); <span class="comment">//匹配出AIDU</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="后顾"><a href="#后顾" class="headerlink" title="后顾"></a>后顾</h3><p>后顾和负后顾与前瞻和负前瞻差不多的意思，只是方向不同。</p>
+<p>后顾和负后顾的表达式是：?&lt;=以及?&lt;!</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">&#x27;AI in BAIDU&#x27;</span>;</span><br><span class="line">str.match(<span class="regexp">/(?&lt;!AI)DU/</span>; <span class="comment">//匹配出null，因为不存在DU的后面不是AI</span></span><br><span class="line">str.match(<span class="regexp">/(?&lt;=AI)DU/</span>); <span class="comment">//匹配出DU</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="https://blog.csdn.net/csu_passer/article/details/98951221">正则表达式的‘前瞻后顾’</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Regx</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Regx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VS Code 下搭建spring boot环境</title>
+    <url>/posts/27946bdc/</url>
+    <content><![CDATA[<p>因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的</p>
+<h2 id="安装扩展插件"><a href="#安装扩展插件" class="headerlink" title="安装扩展插件"></a>安装扩展插件</h2><ul>
+<li>Java Extension Pack</li>
+<li>Spring Boot Extension Pack</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="在-setting-json-文件中配置maven和jdk"><a href="#在-setting-json-文件中配置maven和jdk" class="headerlink" title="在 setting.json 文件中配置maven和jdk"></a>在 <code>setting.json</code> 文件中配置maven和jdk</h2><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&quot;java.home&quot;:&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;,</span><br><span class="line">&quot;java.configuration.maven.userSettings&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\conf\\settings.xml&quot;,</span><br><span class="line">&quot;maven.executable.path&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\bin\\mvn.cmd&quot;,</span><br><span class="line">&quot;maven.terminal.useJavaHome&quot;: true,</span><br><span class="line">&quot;maven.terminal.customEnv&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;environmentVariable&quot;</span>: <span class="string">&quot;JAVA_HOME&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>配置完成之后，需要重启VS Code</p>
+          </div>
+
+<h2 id="创建-spring-boot-项目"><a href="#创建-spring-boot-项目" class="headerlink" title="创建 spring boot 项目"></a>创建 spring boot 项目</h2><h3 id="1-创建一个-spring-项目"><a href="#1-创建一个-spring-项目" class="headerlink" title="1.  创建一个 spring 项目"></a><span id="inline-toc">1. </span> 创建一个 spring 项目</h3><p><code>ctrl + shift + p</code>, 输入 <code>spring</code>, 选择 <code>Create a maven project...</code><br><img src="create-spring-boot-step1.PNG" alt="创建一个 spring 项目"></p>
+<h3 id="2-选择spring版本"><a href="#2-选择spring版本" class="headerlink" title="2.  选择spring版本"></a><span id="inline-toc">2. </span> 选择spring版本</h3><p><img src="select-spring-version-step2.PNG" alt="选择spring版本"></p>
+<h3 id="3-选择语言"><a href="#3-选择语言" class="headerlink" title="3.  选择语言"></a><span id="inline-toc">3. </span> 选择语言</h3><p><img src="select-language-step3.PNG" alt="选择语言"></p>
+<h3 id="4-输入group-id"><a href="#4-输入group-id" class="headerlink" title="4.  输入group id"></a><span id="inline-toc">4. </span> 输入group id</h3><p><img src="input-group-id-step4.PNG" alt="输入group id"></p>
+<h3 id="5-输入artifact-id"><a href="#5-输入artifact-id" class="headerlink" title="5.  输入artifact id"></a><span id="inline-toc">5. </span> 输入artifact id</h3><p><img src="artifact-id-step5.PNG" alt="输入artifact id"></p>
+<h3 id="6-选择package-type"><a href="#6-选择package-type" class="headerlink" title="6.  选择package type"></a><span id="inline-toc">6. </span> 选择package type</h3><p><img src="specify-packging-type-step6.PNG" alt="选择package type"></p>
+<h3 id="7-选择jdk版本"><a href="#7-选择jdk版本" class="headerlink" title="7.  选择jdk版本"></a><span id="inline-toc">7. </span> 选择jdk版本</h3><p><img src="specify-java-version-step7.PNG" alt="选择jdk版本"></p>
+<h3 id="8-选择dependencies"><a href="#8-选择dependencies" class="headerlink" title="8.  选择dependencies"></a><span id="inline-toc">8. </span> 选择dependencies</h3><ul>
+<li>DevTools(代码修改热更新，无需重启)</li>
+<li>Web(集成tomcat、SpringMVC</li>
+<li>Lombok(智能生成setter、getter、toString等接口，无需手动生成)</li>
+</ul>
+<p><img src="select-dependencies-step8.PNG" alt="选择依赖"></p>
+<h3 id="9-选择项目目录"><a href="#9-选择项目目录" class="headerlink" title="9.  选择项目目录"></a><span id="inline-toc">9. </span> 选择项目目录</h3><p>直接点击 <code>Generate into this folder</code> 按钮即可<br><img src="select-folder-step9.PNG" alt="选择项目目录"></p>
+<h2 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h2><h3 id="1-生成launch-json文件"><a href="#1-生成launch-json文件" class="headerlink" title="1.  生成launch.json文件"></a><span id="inline-toc">1. </span> 生成launch.json文件</h3><ul>
+<li><p>打开项目目录，打开 <code>DemoApplication.java</code>, 点击小虫子按钮, 生成 <code>launch.json</code> 文件<br><img src="start-create-launch-json-1.PNG" alt="生成launch.json文件"></p>
+</li>
+<li><p><code>launch.json</code> 文件如下图所示：<br><img src="launch-json-2.PNG" alt="launch.json文件内容"></p>
+</li>
+<li><p>点击三角形按钮，启动spring项目<br><img src="run-3.PNG" alt="启动spring项目"></p>
+</li>
+</ul>
+<h3 id="2-启动-spring-项目"><a href="#2-启动-spring-项目" class="headerlink" title="2.  启动 spring 项目"></a><span id="inline-toc">2. </span> 启动 spring 项目</h3><p>浏览器输入 <code>localhost:8080</code> 访问<br><img src="browser-4.PNG" alt="访问失败"></p>
+<div class="note danger">
+            <p>错误原因:没有定义服务器访问这个根路径对应的应答接口</p>
+          </div>
+<span class="label success">解决方法：</span>
 <ul>
-<li><p>全局配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 取消全局配置</span></span><br><span class="line">git config --global --<span class="built_in">unset</span> user.name</span><br><span class="line">git config --global --<span class="built_in">unset</span> user.email</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置全局配置</span></span><br><span class="line">git config --global user.name <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;xxxx@xx.com&quot;</span></span><br></pre></td></tr></table></figure>
+<li><p>在demo包下面新建个controller包，然后新建个HomeController.java 文件，目录结构如下：<br><img src="folder-structure-4.PNG" alt="目录结构"></p>
 </li>
-<li><p>局部配置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 局部配置</span></span><br><span class="line">git config user.name <span class="string">&quot;xxxx&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;xxxx@xx.com&quot;</span></span><br></pre></td></tr></table></figure>
-
+<li><p>文件内容如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<h2 id="git-基本常用命令"><a href="#git-基本常用命令" class="headerlink" title="git 基本常用命令"></a>git 基本常用命令</h2><ul>
-<li><p>git add</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将改动的文件添加到缓存区, 以下两种都可以</span></span><br><span class="line">git add -A</span><br><span class="line">git add .</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git commit</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># git commit</span></span><br><span class="line">git commit -m <span class="string">&quot;comment&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将改动提交到最新的commit中</span></span><br><span class="line"><span class="comment"># 撤销--amend, 进入vi模式下, 将comment注释掉， 保存退出即可</span></span><br><span class="line">git commit --amend</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除某个commit, [commit-id]： 要删除的commit的前一个commit id, 进入编辑模式后， 将要删除的commit前面的pick改成drop</span></span><br><span class="line">git rebase -i [commit-id]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回到某个commit</span></span><br><span class="line">git reset [commit-id]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git push</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将代码提交到远程分支</span></span><br><span class="line">git push origin [branch-name]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git stash</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将代码stash到本地</span></span><br><span class="line">git stash save <span class="string">&quot;comment&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看stashlist</span></span><br><span class="line">git stash list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这个指令将缓存堆栈中的第一个stash删除，并将对应修改应用到当前的工作目录下</span></span><br><span class="line">git stash pop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将缓存堆栈中的stash多次应用到工作目录中，但并不删除stash拷贝</span></span><br><span class="line">git stash apply [stash-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除stash</span></span><br><span class="line">git stash drop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有缓存的stash</span></span><br><span class="line">git stash clear</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git branch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前本地所有分支</span></span><br><span class="line">git branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改branch 的名字</span></span><br><span class="line">git branch -m [old] [new]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换分支</span></span><br><span class="line">git checkout [branch-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于远程的某个分支创建新的分支</span></span><br><span class="line">git checkout -b [branch-name] origin/[origin-brnach-name]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于某个commit创建分支</span></span><br><span class="line">git checkout -b [branch-name] [commit-id]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git tag</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 基于某个commit创建tag</span></span><br><span class="line">git tag -a [tagname] [commit-id] -m [comments]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看tag</span></span><br><span class="line">git tag --list</span><br><span class="line"></span><br><span class="line"><span class="comment"># push tag</span></span><br><span class="line">git push origin --tag [tagname] [commit-id]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除tag</span></span><br><span class="line">git tag -d [tagname]</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git fetch</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 拉取远程代码， 更新本地仓库</span></span><br><span class="line">git fetch --all</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>git rebase</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 和你要合并的分支进行rebase 操作</span></span><br><span class="line">git rebase origin/[branch-name]</span><br></pre></td></tr></table></figure>
-
+<li><p>重新刷新浏览器，即可看到访问成功<br><img src="run-successfully-5.PNG" alt="访问成功"></p>
 </li>
 </ul>
 ]]></content>
       <categories>
-        <category>Git</category>
+        <category>VS Code</category>
+        <category>Spring Boot</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>VS Code</tag>
+        <tag>Spring Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VS Code 智能提示</title>
+    <url>/posts/d200aa3/</url>
+    <content><![CDATA[<p>VS Code智能提示的设置</p>
+<h2 id="VS-Code-智能提示设置"><a href="#VS-Code-智能提示设置" class="headerlink" title="VS Code 智能提示设置"></a>VS Code 智能提示设置</h2><p><code>settings</code> -&gt; <code>Text Editor</code> -&gt; <code>suggestion</code>  禁用掉不想要的提示即可</p>
+<a id="more"></a>
+
+<h2 id="VS-Code-智能提示类型"><a href="#VS-Code-智能提示类型" class="headerlink" title="VS Code 智能提示类型"></a>VS Code 智能提示类型</h2><p><img src="type.png" alt="智能提示类型"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://code.visualstudio.com/docs/editor/intellisense">VS Code intellisense 官方文档</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>VS Code</category>
+      </categories>
+      <tags>
+        <tag>VS Code</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>正则表达式总结</title>
+    <url>/posts/db505320/</url>
+    <content><![CDATA[<p>这里会将我所有用到过的正则表达式列出来， 以便以后再需要用就直接来看就行了</p>
+<h2 id="匹配版本号-Java-代码"><a href="#匹配版本号-Java-代码" class="headerlink" title="匹配版本号 (Java 代码)"></a>匹配版本号 (Java 代码)</h2><p>版本号格式： 1.0/ 1.0.0/ 1.0.1/ 只要是匹配 数字 加 点 就行</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String name = <span class="string">&quot;4.5.0.0300/&quot;</span>;</span><br><span class="line">String pattern = <span class="string">&quot;\\d+(\\.\\d+)*/$&quot;</span>;</span><br><span class="line">Pattern r = Pattern.compile(pattern);</span><br><span class="line">Matcher m = r.matcher(name);</span><br><span class="line"><span class="keyword">if</span> (m.matches()) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;match&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;not match&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+
+<p>正则解析</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String pattern = <span class="string">&quot;\\d+(\\.\\d+)*/$&quot;</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>\d 表示 一个数字</li>
+<li><ul>
+<li>表示至少出现一次</li>
+</ul>
+</li>
+<li>() 表示 分组</li>
+<li>. 表示小数点</li>
+<li>()* 表示括号里面的内容出现0次活多次</li>
+<li>$ 表示结尾 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>Regx</category>
+      </categories>
+      <tags>
+        <tag>Regx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 ExtJs 创建 一个 Login App</title>
+    <url>/posts/931f5851/</url>
+    <content><![CDATA[<p>最受欢迎的教程之一是如何制作登录系统。我们将通过构建它来开始本教程。请注意，这只是创建登录系统的一种方法。还有许多其他可行的选择。这只是为了向您展示一种创建具有登录/注销功能的应用程序的方法。</p>
+<p>本教程旨在向用户展示一种设计应用程序以包含“已登录”和“已注销”视图的方式。本教程不会尝试实现安全的数据连接，会话管理，真实身份验证等。它仅用于教育目的。</p>
+<a id="more"></a>
+
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>当我们的第一个demo项目创建好之后， 我们可以看到以下项目结构<br><img src="extjs-structure.PNG" alt="项目的目录结构"></p>
+<ul>
+<li><p>app.js:程式流程开始的主要档案，应该使用＆lt; script＆gt; 标签。 应用程序调用应用程序的控制器的其余功能。</p>
+</li>
+<li><p>Controller.js:它是ExtJs MVC架构的控制器文件。 这包含应用程序的所有控制，事件侦听器的最大功能的代码。 它具有为该应用程序中使用的所有其他文件定义的路径，例如store，view，model，require，mixins。</p>
+</li>
+<li><p>View.js:它包含应用程序的界面部分，显示给用户。 ExtJs使用各种UI丰富的视图，可以根据需要在这里扩展和自定义。</p>
+</li>
+<li><p>Store.js:它包含本地缓存的数据，它将在模型对象的帮助下在视图上呈现。 存储使用代理获取数据，代理具有为服务定义的路径以获取后端数据。</p>
+</li>
+<li><p>Model.js:它包含绑定要查看的商店数据的对象。 它有后端数据对象到视图dataIndex的映射。 在store的帮助下获取数据。</p>
+</li>
+<li><p>Utils.js:它不包括在MVC架构中，但是最好的做法是使代码清晰，不太复杂，更加可读。 我们可以在这个文件中编写方法，并在控制器或视图渲染器中调用它们。 这对代码可重用性目的也很有帮助。</p>
+</li>
+</ul>
+<h2 id="创建登录视图组件-Create-the-Login-View-Components"><a href="#创建登录视图组件-Create-the-Login-View-Components" class="headerlink" title="创建登录视图组件 - Create the Login View Components"></a>创建登录视图组件 - Create the Login View Components</h2><ul>
+<li>在 <code>app\view</code> 目录下创建一个 <code>login</code> 文件夹</li>
+<li>在 <code>app\view\login</code> 目录下创建两个文件<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- Login.js</span><br><span class="line">- LoginController.js</span><br></pre></td></tr></table></figure>
+目录结构如下：<br><img src="login-structure.PNG" alt="login 目录结构"></li>
+</ul>
+<h2 id="禁用掉-mainView-Disable-mainView"><a href="#禁用掉-mainView-Disable-mainView" class="headerlink" title="禁用掉 mainView - Disable mainView"></a>禁用掉 mainView - Disable mainView</h2><p>应用程序的mainView配置是使用Viewport插件自动加载和实例化<code>TutorialApp.view.main.Main</code>的一种非常方便的方法。<br>但是，在选择初始视图之前，我们需要对Ext.application的启动方法进行一些评估。例如，如果用户尚未登录，我们不想创建主视图</p>
+<p>在本练习中，让我们从<code>&#123;appRoot&#125; /app.js</code>中的应用程序配置中删除 <code>mainView</code> 配置。</p>
+<div class="note info">
+            <p>由于我们已经删除了mainView，因此刷新您的应用程序将导致空白页，因为没有实例化任何类。</p>
+          </div>
+
+<h2 id="创建一个登录窗口-Create-the-Login-Window"><a href="#创建一个登录窗口-Create-the-Login-Window" class="headerlink" title="创建一个登录窗口 - Create the Login Window"></a>创建一个登录窗口 - Create the Login Window</h2><p>接下来，让我们创建一个登录视图。为此，我们将打开空白的<code>&#123;appRoot&#125; /app/view/login/Login.js</code>文件，然后开始定义“登录窗口”。</p>
+<p>首先，让我们定义我们的Class并扩展基础Window类。看起来像这样：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们已经将Login类定义为Ext.window.Window的扩展，可以使用<code>xtype: login</code>实例化该扩展。让我们开始为我们的class提供一些独特的属性。我们将从向窗口本身添加一些其他配置开始。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span></span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Ext.form.Panel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    bodyPadding: <span class="number">10</span>,</span><br><span class="line">    title: <span class="string">&#x27;Login Window&#x27;</span>,</span><br><span class="line">    closable: <span class="literal">false</span>,</span><br><span class="line">    autoShow: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>让我们看一下这些配置的含义。</p>
+<ul>
+<li><p>requires<br>require块可确保在实例化“登录”窗口之前，我们包括了可能依赖的所有类。我们需要包含LoginController.js，因为我们将在下一行将其指定为我们的控制器。我们还需要包括Ext.form.Panel，因为我们的视图包含一个Form面板。</p>
+</li>
+<li><p>controller<br>控制器配置指定一个<code>ViewController</code>，然后将其附加到“登录”窗口的实例。该控制器提供了一个包含与“登录”窗口或其子组件有关的所有逻辑的位置。在这里，我们指定要登录的控制器，这将是我们控制器的别名</p>
+</li>
+<li><p>bodyPadding<br>bodyPadding配置纯粹是美观的。此配置在窗口主体内容的外部周围应用<code>10px</code>的填充。</p>
+</li>
+<li><p>title<br>传递给标题配置的字符串会导致创建标头，并将字符串值添加为其标题。</p>
+</li>
+<li><p>closable<br>Closable确定是否可以关闭窗口。 Windows默认情况下具有可关闭的按钮。但是，由于这是一个登录窗口，因此我们不希望用户关闭它。如果他们关闭它，将留下空白页。</p>
+</li>
+<li><p>autoShow<br>Windows默认是隐藏的。将autoShow设置为true将在创建窗口后显示它。当我们希望窗口可见时，可以选择以编程方式调用窗口的show方法</p>
+</li>
+</ul>
+<p>现在我们已经讨论了Window的配置，让我们给它一些子组件。由于这将是一个登录表单，因此我们将创建一个Form面板作为Window的子代。然后，我们将添加两个文本字段，一个显示字段和一个提交按钮。</p>
+<p>该文件的最终代码应如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.window.Window&#x27;</span>,</span><br><span class="line">    xtype: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;Ext.form.Panel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;login&#x27;</span>,</span><br><span class="line">    bodyPadding: <span class="number">10</span>,</span><br><span class="line">    title: <span class="string">&#x27;Login Window&#x27;</span>,</span><br><span class="line">    closable: <span class="literal">false</span>,</span><br><span class="line">    autoShow: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    items: &#123;</span><br><span class="line">        xtype: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        reference: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        items: [&#123;</span><br><span class="line">            xtype: <span class="string">&#x27;textfield&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;username&#x27;</span>,</span><br><span class="line">            fieldLabel: <span class="string">&#x27;Username&#x27;</span>,</span><br><span class="line">            allowBlank: <span class="literal">false</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            xtype: <span class="string">&#x27;textfield&#x27;</span>,</span><br><span class="line">            name: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">            inputType: <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">            fieldLabel: <span class="string">&#x27;Password&#x27;</span>,</span><br><span class="line">            allowBlank: <span class="literal">false</span></span><br><span class="line">        &#125;, &#123;</span><br><span class="line">            xtype: <span class="string">&#x27;displayfield&#x27;</span>,</span><br><span class="line">            hideEmptyLabel: <span class="literal">false</span>,</span><br><span class="line">            value: <span class="string">&#x27;Enter any non-blank password&#x27;</span></span><br><span class="line">        &#125;],</span><br><span class="line">        buttons: [&#123;</span><br><span class="line">            text: <span class="string">&#x27;Login&#x27;</span>,</span><br><span class="line">            formBind: <span class="literal">true</span>,</span><br><span class="line">            listeners: &#123;</span><br><span class="line">                click: <span class="string">&#x27;onLoginClick&#x27;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Window items<br>我们添加到“登录”窗口的第一个配置是<code>items</code>。在“表单”面板和“登录”窗口本身之类的容器中，<code>items</code>可能包含一个组件或一个组件配置对象。<br><code>items</code>配置还可以是组件或组件配置对象的数组。这些组件将使用容器的布局<code>layout</code>显示在容器的主体中。</p>
+</li>
+<li><p>xtype<br>每个Component类都有自己的xtype。您可以将xtype视为轻松创建Component实例的快捷方式。在这种情况下，我们为登录窗口配置了一个xtype为<code>form</code>的子项（<code>form</code>是<code>Ext.form.Panel</code>类的<code>xtype</code>）。<br>表单面板是特殊类型的面板，其中包括使用输入字段的便捷配置选项。</p>
+</li>
+<li><p>Form Items<br>接下来，您将看到另一个<code>items</code>数组的熟悉面孔。在这里，我们通过使用<code>items</code>数组更深一层地嵌套其他项目。我们将更多组件放置在父组件（即“表单”面板）中。在这种情况下，我们的嵌套组件是组成登录表单的表单字段。我们可以快速浏览这些组件数组，因为它们很容易说明。</p>
+<p>  第一项的xtype为[[ext：Ext.form.field.Text textfield]]，名称为“ username”，字段标签为“ username”，而allowBlank为“ false”。这可以归结为具有名称值和字段标签的文本字段。该字段不能留为空白并通过验证（请参见下面的“ formBind”）。 </p>
+<p>  除了设置为“密码”的类型外，下一个字段几乎相同。为了安全起见，这会将您的输入变成*。</p>
+<p>  此items数组的最后一个成员是<code>displayfield</code>。显示字段是未与表单一起提交的文本字段。这对于在不与用户交互数据的情况下传输数据很有用。在这种情况下，我们通知用户任何非空白密码都将允许提交表单。</p>
+</li>
+<li><p>buttons<br>我们在此处添加的最后一位是<code>buttons</code>数组。这是用于将按钮添加到面板<code>panel</code>中的footer toolbar的便捷配置。该特定按钮将包含文本“登录”，用户将单击该按钮来提交登录表单。</p>
+</li>
+<li><p>formBind<br>我们的Button包含一个名为formBind的配置，该配置设置为<code>true</code>。当Component的formBind设置为<code>true</code>时，将根据Form的有效性状态禁用/启用它。这意味着在两个输入字段包含值之前，按钮是不可单击的。</p>
+</li>
+<li><p>listeners<br>侦听器对象配置有事件以及将响应这些事件的触发的方法/函数。在这种情况下，我们正在等待有人单击按钮。单击后，我们将事件“转发”到名为onLoginClick的方法。稍后将在我们的登录控制器中定义onLoginClick方法。</p>
+</li>
+</ul>
+<h2 id="添加登录逻辑-Add-Login-Logic"><a href="#添加登录逻辑-Add-Login-Logic" class="headerlink" title="添加登录逻辑-Add Login Logic"></a>添加登录逻辑-Add Login Logic</h2><p>接下来，让我们创建Login Controller，这是一个类，其中包含用于处理用户与Login视图的交互的任何逻辑。为此，我们将打开空白的<code>&#123;appRoot&#125; /app/view/login/LoginController.js</code>文件，然后开始定义“登录”窗口的逻辑。</p>
+<p>文件内容如下:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.login.LoginController&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.ViewController&#x27;</span>,</span><br><span class="line">    alias: <span class="string">&#x27;controller.login&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    onLoginClick: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This would be the ideal location to verify the user&#x27;s credentials via</span></span><br><span class="line">        <span class="comment">// a server-side lookup. We&#x27;ll just move forward for the sake of this example.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// Set the localStorage value to true</span></span><br><span class="line">        <span class="built_in">localStorage</span>.setItem(<span class="string">&quot;TutorialLoggedIn&quot;</span>, <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove Login Window</span></span><br><span class="line">        <span class="built_in">this</span>.getView().destroy();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add the main view to the viewport</span></span><br><span class="line">        Ext.widget(<span class="string">&#x27;app-main&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码可能与上下文无关，但是当我们在下一节中讨论启动方法时，它将更有意义。此类包含onLoginClick方法，该方法通过单击登录按钮来调用。</p>
+<p>这些代码段具有注释，以描述每个语句的目的，但让我们逐一查看它们以作进一步说明。</p>
+<ul>
+<li><p>onLoginClick()<br>首先，我们正在创建一个名为onLoginClick的方法。这是我们将“登录”视图中的登录按钮的click事件定向到的方法。</p>
+<p>  如注释中所述，您将在这里调用服务器以验证用户的凭据是否有效。这通常以AJAX或REST请求的形式出现。但是，对于本教程，我们将接受任何非空白的输入。成功之后，您将继续执行其余的代码。失败时，您将允许用户重新输入其凭据。当然，在这种情况下没有失败的可能性，所以让我们前进吧！</p>
+</li>
+<li><p>localStorage<br>在本教程中，我们将使用localStorage来维护用户登录状态。成功进行凭据检查之后，我们可以确定用户具有对主应用程序视图的适当访问权限。然后，我们可以在localStorage中设置键/值对，以使应用程序知道用户有效。接下来，我们将检查我们的初始启动方法中的TutorialLoggedIn localStorage密钥是否设置为“ true”（在下面的“启动”部分中进行了详细介绍）。</p>
+</li>
+<li><p>getView()<br>ViewControllers引入了一个非常有用的方法，称为getView（）。 getView（）方法返回与从其调用ViewController关联的当前视图。在这种情况下，该视图是“登录”窗口。由于我们将登录点击视为成功登录，因此我们不再希望显示“登录”窗口。因此，我们使用this.getView（）。destroy（）获取对“登录”窗口的引用，然后销毁它。</p>
+</li>
+<li><p>Ext.widget(‘app-main’)<br>现在我们已经破坏了Login窗口，我们想要更改视图以显示Main视图。在这种情况下，我们使用<code>Ext.widget（&#39;app-main&#39;）</code>实例化<code>&#123;appRoot&#125; /app/view/main/Main.js</code>视图。</p>
+</li>
+</ul>
+<div class="note info">
+            <p><code>app-main</code>是指在我们的Sencha Cmd生成的<code>{appRoot} /app/view/main.Main.js</code>类中定义的xtype</p>
+          </div>
+
+<h2 id="添加启动程序逻辑-Add-Launch-Logic-to-Application-js"><a href="#添加启动程序逻辑-Add-Launch-Logic-to-Application-js" class="headerlink" title="添加启动程序逻辑-Add Launch Logic to Application.js"></a>添加启动程序逻辑-Add Launch Logic to Application.js</h2><p>接下来，让我们讨论<code>&#123;appRoot&#125; /app/Application.js</code>和<code>launch</code>功能。</p>
+<p><code>Application.js</code>是您应用程序的核心。您可以在与<code>view</code>，<code>store</code>和<code>model</code>文件夹相同级别的位置找到<code>Application.js</code>。<br>它提供了一个方便的方法，称为<code>launch</code>，在您的应用程序加载了所有必需的类时触发。这是本教程的<code>Application.js</code>文件的完整代码。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The main application class. An instance of this class is created by `app.js` when it calls</span></span><br><span class="line"><span class="comment"> * Ext.application(). This is the ideal place to handle application launch and initialization</span></span><br><span class="line"><span class="comment"> * details.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.Application&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.Application&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    name: <span class="string">&#x27;TutorialApp&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    stores: [</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> add global / shared stores here</span></span><br><span class="line">    ],</span><br><span class="line">    views: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.login.Login&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.Main&#x27;</span></span><br><span class="line">    ],</span><br><span class="line">    launch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// It&#x27;s important to note that this type of application could use</span></span><br><span class="line">        <span class="comment">// any type of storage, i.e., Cookies, LocalStorage, etc.</span></span><br><span class="line">        <span class="keyword">var</span> loggedIn;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check to see the current value of the localStorage key</span></span><br><span class="line">        loggedIn = <span class="built_in">localStorage</span>.getItem(<span class="string">&quot;TutorialLoggedIn&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// This ternary operator determines the value of the TutorialLoggedIn key.</span></span><br><span class="line">        <span class="comment">// If TutorialLoggedIn isn&#x27;t true, we display the login window,</span></span><br><span class="line">        <span class="comment">// otherwise, we display the main view</span></span><br><span class="line">        Ext.widget(loggedIn ? <span class="string">&#x27;app-main&#x27;</span> : <span class="string">&#x27;login&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>让我们检查一下这些部分在做什么。</p>
+<ul>
+<li><p>requires<br>我们已经描述了require要做的事情，但是让我们来谈谈这个特定的数组。出于<code>Application.js</code>的目的，我们需要准备应用程序以加载Login或Main视图，具体取决于即将进行的登录评估的结果。<br>为此，我们必须同时需要<code>TutorialApp.view.main.Main</code>和<code>TutorialApp.view.login.Login</code>，以便提供两种结果。</p>
+</li>
+<li><p>launch<br>如前所述，启动方法是一个功能，当您的应用程序加载了它需要运行的所有内容时，该方法就会执行。这是执行有关登录/注销应用程序用户状态逻辑的理想场所。</p>
+</li>
+<li><p>localStorage.getItem()</p>
+</li>
+</ul>
+<p>下一步是检查先前设置的称为TutorialLoggedIn的localStorage密钥。我们只是将loggingIn变量设置为该键值的结果。如果不存在，则loginIn将为null。如果确实存在，那么我们先前已在LoginController的逻辑中将TutorialLoggedIn设置为true。</p>
+<ul>
+<li>Widget Ternary<br>大多数编程语言都包含一种称为三元运算符的条件速记形式。三元运算符使您可以最小化传统if / else语句所需的代码量。在这种情况下，我们使用三元组来表示：“如果loggingIn存在（不为null），请加载Main视图，否则加载Login视图”。然后，我们使用Ext.widget方法实例化三元运算符的结果。</li>
+</ul>
+<h2 id="Add-Viewport-Plugin"><a href="#Add-Viewport-Plugin" class="headerlink" title="Add Viewport Plugin"></a>Add Viewport Plugin</h2><p>您可能还记得，我们在本教程的开头就从<code>&#123;appRoot&#125; /app.js</code>中删除了<code>mainView</code>配置。由于我们没有定义视口，因此您的主视图将不知道在哪里渲染。我们将通过混入视口插件来更改它，以便<code>&#123;appRoot&#125; /app/view/main/Main.js</code>将作为我们应用程序的视口运行。<br>这样，主视图将占据视图中所有可用的宽度和高度浏览器。只需在<code>&#123;appRoot&#125; /app/view/main/Main.js</code>中添加以下行即可：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugins: <span class="string">&#x27;viewport&#x27;</span>,</span><br></pre></td></tr></table></figure>
+<p>生成的<code>&#123;appRoot&#125;/app/view/main/Main.js</code>文件如下所示：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This class is the main view for the application. It is specified in `app.js` as the</span></span><br><span class="line"><span class="comment"> * &quot;mainView&quot; property. That setting automatically applies the &quot;viewport&quot;</span></span><br><span class="line"><span class="comment"> * plugin to promote that instance of this class to the body element.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * TODO - Replace this content of this view to suite the needs of your application.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.main.Main&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.container.Container&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    requires: [</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.MainController&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;TutorialApp.view.main.MainModel&#x27;</span></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    xtype: <span class="string">&#x27;app-main&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    controller: <span class="string">&#x27;main&#x27;</span>,</span><br><span class="line">    plugins: <span class="string">&#x27;viewport&#x27;</span>,</span><br><span class="line">    viewModel: &#123;</span><br><span class="line">        type: <span class="string">&#x27;main&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    layout: &#123;</span><br><span class="line">        type: <span class="string">&#x27;border&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    items: [&#123;</span><br><span class="line">        xtype: <span class="string">&#x27;panel&#x27;</span>,</span><br><span class="line">        bind: &#123;</span><br><span class="line">            title: <span class="string">&#x27;&#123;name&#125;&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        region: <span class="string">&#x27;west&#x27;</span>,</span><br><span class="line">        html: <span class="string">&#x27;&lt;ul&gt;&lt;li&gt;This area is commonly used for navigation, for example, using a &quot;tree&quot; component.&lt;/li&gt;&lt;/ul&gt;&#x27;</span>,</span><br><span class="line">        width: <span class="number">250</span>,</span><br><span class="line">        split: <span class="literal">true</span>,</span><br><span class="line">        tbar: [&#123;</span><br><span class="line">            text: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">            handler: <span class="string">&#x27;onClickButton&#x27;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        region: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">        xtype: <span class="string">&#x27;tabpanel&#x27;</span>,</span><br><span class="line">        items:[&#123;</span><br><span class="line">            title: <span class="string">&#x27;Tab 1&#x27;</span>,</span><br><span class="line">            html: <span class="string">&#x27;&lt;h2&gt;Content appropriate for the current navigation.&lt;/h2&gt;&#x27;</span></span><br><span class="line">        &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>您不需要修改<code>&#123;appRoot&#125; /app/view/main/Main.js</code>的其他任何部分，因为我们将为点击处理程序使用默认生成的onClickButton方法。</p>
+<h2 id="Add-Main-Logic"><a href="#Add-Main-Logic" class="headerlink" title="Add Main Logic"></a>Add Main Logic</h2><p>我们快完成了！现在剩下的就是为用户提供某种注销应用程序的方法，这将破坏localStorage中的TutorialLoggedIn键。此逻辑应在<code>&#123;appRoot&#125; /app/view/main/MainController.js</code>文件中进行。<br>您可以根据需要删除其他生成的代码。这是本教程的<code>MainController.js</code>的最终定义：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">Ext.define(<span class="string">&#x27;TutorialApp.view.main.MainController&#x27;</span>, &#123;</span><br><span class="line">    extend: <span class="string">&#x27;Ext.app.ViewController&#x27;</span>,</span><br><span class="line">    alias: <span class="string">&#x27;controller.main&#x27;</span>,</span><br><span class="line"></span><br><span class="line">    onClickButton: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove the localStorage key/value</span></span><br><span class="line">        <span class="built_in">localStorage</span>.removeItem(<span class="string">&#x27;TutorialLoggedIn&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Remove Main View</span></span><br><span class="line">        <span class="built_in">this</span>.getView().destroy();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Add the Login Window</span></span><br><span class="line">        Ext.widget(<span class="string">&#x27;login&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>我们在这里不需要深入，因为它基本上是我们的<code>&#123;appRoot&#125; /app/view/login/LoginController.js</code>代码的反函数。</p>
+<p>总结此功能，onClickButton是按钮处理程序在我们生成的<code>&#123;appMain&#125; /app/view/main/Main.js</code>视图中调用的函数。检测到点击事件后，将执行以下步骤：</p>
+<ul>
+<li>删除维持用户登录状态的localStorage项。</li>
+<li>销毁当前视图，即TutorialApp.view.main.Main。</li>
+<li>重新创建登录视图。</li>
+</ul>
+<p>现在，您应该能够在浏览器中加载应用程序，并看到功能全面的登录/注销应用程序。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://docs.sencha.com/extjs/7.3.1/guides/tutorials/login_app/login_app.html">Ext 官方文档</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+        <category>ExtJs</category>
+      </categories>
+      <tags>
+        <tag>ExtJs</tag>
       </tags>
   </entry>
 </search>
