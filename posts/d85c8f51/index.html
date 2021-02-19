@@ -25,15 +25,15 @@
     var CONFIG = {"hostname":"xixi27.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="通过 id, itemId 及 reference 获取 Ext 对象 id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id 1Ext.getCmp(id);">
+  <meta name="description" content="¶通过 id, itemId 及 reference 获取 Ext 对象  id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id  1Ext.getCmp(id);">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ExtJs 获取 Ext 对象">
 <meta property="og:url" content="https://xixi27.xyz/posts/d85c8f51/index.html">
 <meta property="og:site_name" content="xixi27">
-<meta property="og:description" content="通过 id, itemId 及 reference 获取 Ext 对象 id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id 1Ext.getCmp(id);">
+<meta property="og:description" content="¶通过 id, itemId 及 reference 获取 Ext 对象  id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id  1Ext.getCmp(id);">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-13T05:14:35.000Z">
-<meta property="article:modified_time" content="2021-02-04T09:03:22.782Z">
+<meta property="article:modified_time" content="2021-02-10T02:47:42.559Z">
 <meta property="article:author" content="xixi27">
 <meta property="article:tag" content="ExtJs">
 <meta name="twitter:card" content="summary">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:03:22" itemprop="dateModified" datetime="2021-02-04T17:03:22+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:47:42" itemprop="dateModified" datetime="2021-02-10T10:47:42+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -295,51 +295,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="通过-id-itemId-及-reference-获取-Ext-对象"><a href="#通过-id-itemId-及-reference-获取-Ext-对象" class="headerlink" title="通过 id, itemId 及 reference 获取 Ext 对象"></a>通过 id, itemId 及 reference 获取 Ext 对象</h2><ul>
-<li><p>id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id</p>
+        <h2 id="通过-id-itemId-及-reference-获取-Ext-对象"><a class="header-anchor" href="#通过-id-itemId-及-reference-获取-Ext-对象">¶</a>通过 id, itemId 及 reference 获取 Ext 对象</h2>
+<ul>
+<li>id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ext.getCmp(id);</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-</li>
-<li><p>itemId 只是一个局部的元件标识名称，在全局上是不需要遵循唯一性的</p>
+<ul>
+<li>itemId 只是一个局部的元件标识名称，在全局上是不需要遵循唯一性的</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ext.getCmp(id).getComponent(itemId);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>reference</p>
+<ul>
+<li>reference</li>
+</ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lookupReference(<span class="string">&#x27;reference value&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-</li>
+<h2 id="ExtJs-获取父子、兄弟容器元素"><a class="header-anchor" href="#ExtJs-获取父子、兄弟容器元素">¶</a>ExtJs 获取父子、兄弟容器元素</h2>
+<ul>
+<li>当前对象的父对象(上级对象)</li>
 </ul>
-<h2 id="ExtJs-获取父子、兄弟容器元素"><a href="#ExtJs-获取父子、兄弟容器元素" class="headerlink" title="ExtJs 获取父子、兄弟容器元素"></a>ExtJs 获取父子、兄弟容器元素</h2><ul>
-<li><p>当前对象的父对象(上级对象)</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.ownerCt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当前对象的下一个相邻对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.nextSibling();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当前容器的第一个子对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一</span></span><br><span class="line"><span class="built_in">this</span>.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line"><span class="built_in">this</span>.items.first();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>当前容器的最后一个子对象</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.items.last()</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查找当前对象的所有上级匹配的容器</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一</span></span><br><span class="line"><span class="built_in">this</span>.findParentByType(<span class="built_in">String</span> xtype)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line"><span class="built_in">this</span>.findParent(<span class="string">&#x27;div.class&#x27;</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查找当前对象的所有下级匹配的容器</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.findByType(<span class="built_in">String</span> xtype)</span><br></pre></td></tr></table></figure>
-
-</li>
+<ul>
+<li>当前对象的下一个相邻对象</li>
 </ul>
-<h2 id="Ext-ComponentQuery-query"><a href="#Ext-ComponentQuery-query" class="headerlink" title="Ext.ComponentQuery.query"></a>Ext.ComponentQuery.query</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* selector: 选择器</span></span><br><span class="line"><span class="comment">* root: 可选, 从哪个根节点寻找</span></span><br><span class="line"><span class="comment">* return: component[]</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line">Ext.ComponentQuery.query(selector, [root])</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.nextSibling();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当前容器的第一个子对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一</span></span><br><span class="line"><span class="built_in">this</span>.get(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line"><span class="built_in">this</span>.items.first();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当前容器的最后一个子对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.items.last()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找当前对象的所有上级匹配的容器</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方式一</span></span><br><span class="line"><span class="built_in">this</span>.findParentByType(<span class="built_in">String</span> xtype)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二</span></span><br><span class="line"><span class="built_in">this</span>.findParent(<span class="string">&#x27;div.class&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找当前对象的所有下级匹配的容器</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.findByType(<span class="built_in">String</span> xtype)</span><br></pre></td></tr></table></figure>
+<h2 id="Ext-ComponentQuery-query"><a class="header-anchor" href="#Ext-ComponentQuery-query">¶</a>Ext.ComponentQuery.query</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* selector: 选择器</span></span><br><span class="line"><span class="comment">* root: 可选, 从哪个根节点寻找</span></span><br><span class="line"><span class="comment">* return: component[]</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line">Ext.ComponentQuery.query(selector, [root])</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// retrieve all Ext.Panels in the document by xtype</span></span><br><span class="line"><span class="keyword">var</span> panelsArray = Ext.ComponentQuery.query(<span class="string">&#x27;panel&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// retrieve all Ext.Panels within the container with an id myCt</span></span><br><span class="line"><span class="keyword">var</span> panelsWithinmyCt = Ext.ComponentQuery.query(<span class="string">&#x27;#myCt panel&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// retrieve all direct children which are Ext.Panels within myCt</span></span><br><span class="line"><span class="keyword">var</span> directChildPanel = Ext.ComponentQuery.query(<span class="string">&#x27;#myCt &gt; panel&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// retrieve all grids or trees</span></span><br><span class="line"><span class="keyword">var</span> gridsAndTrees = Ext.ComponentQuery.query(<span class="string">&#x27;gridpanel, treepanel&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Focus first Component</span></span><br><span class="line">myFormPanel.child(<span class="string">&#x27;:canfocus&#x27;</span>).focus();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Retrieve every odd text field in a form</span></span><br><span class="line">myFormPanel.query(<span class="string">&#x27;textfield:nth-child(odd)&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Retrieve every even field in a form, excluding hidden fields</span></span><br><span class="line">myFormPanel.query(<span class="string">&#x27;field:not(hiddenfield):nth-child(even)&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Retrieve every scrollable in a tabpanel</span></span><br><span class="line">tabpanel.query(<span class="string">&#x27;:scrollable&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ext-query"><a href="#Ext-query" class="headerlink" title="Ext.query"></a>Ext.query</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* selector: 选择器</span></span><br><span class="line"><span class="comment">* asDom: 可选, 默认值为true 。值为true时 返回 dom节点数组， 值为false时， 返回component数组</span></span><br><span class="line"><span class="comment">* return HTMLElement[] / Ext.dom.Element[]</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line">Ext.query(selector, [asDom])</span><br></pre></td></tr></table></figure>
-
-<h2 id="Ext-fly"><a href="#Ext-fly" class="headerlink" title="Ext.fly"></a>Ext.fly</h2><p>Ext.get和Ext.fly返回的都是一个Element对象，但是Ext.get返回的是一个独立的Element，拥有自己独立的操作接口 封装，可以将其返回值保存到变量中，以便以后调用操作等，这样为重用带来了方便。但是它的一个很大缺点就是内存消耗问题，假如调用 Ext.get(id)1000次，则会在内存中创建1000个独立Element，其内存占用可想而知。但是很多时候我们可能仅仅只是对该dom元素执 行一次很简单的操作，如隐藏(hide)，这样如果每次都创建一个独立Element放在内存中，实在是对内存的巨大浪费，因此当我们在只需要执行一次操 作或者一个很简单的操作时，采用Ext.get就显得很不合理。Ext.fly正是为了解决这个问题而出现，它通过使每次创建的Element共享内存中 的一套操作接口来达到节省内存的效果。</p>
+<h2 id="Ext-query"><a class="header-anchor" href="#Ext-query">¶</a>Ext.query</h2>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* selector: 选择器</span></span><br><span class="line"><span class="comment">* asDom: 可选, 默认值为true 。值为true时 返回 dom节点数组， 值为false时， 返回component数组</span></span><br><span class="line"><span class="comment">* return HTMLElement[] / Ext.dom.Element[]</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line">Ext.query(selector, [asDom])</span><br></pre></td></tr></table></figure>
+<h2 id="Ext-fly"><a class="header-anchor" href="#Ext-fly">¶</a>Ext.fly</h2>
+<p>Ext.get和Ext.fly返回的都是一个Element对象，但是Ext.get返回的是一个独立的Element，拥有自己独立的操作接口 封装，可以将其返回值保存到变量中，以便以后调用操作等，这样为重用带来了方便。但是它的一个很大缺点就是内存消耗问题，假如调用 Ext.get(id)1000次，则会在内存中创建1000个独立Element，其内存占用可想而知。但是很多时候我们可能仅仅只是对该dom元素执 行一次很简单的操作，如隐藏(hide)，这样如果每次都创建一个独立Element放在内存中，实在是对内存的巨大浪费，因此当我们在只需要执行一次操 作或者一个很简单的操作时，采用Ext.get就显得很不合理。Ext.fly正是为了解决这个问题而出现，它通过使每次创建的Element共享内存中 的一套操作接口来达到节省内存的效果。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* dom: don节点或者id</span></span><br><span class="line"><span class="comment">* named: 可选，指定一个名字，防止冲突</span></span><br><span class="line"><span class="comment">* return: Ext 对象 ,如果没有匹配到就返回null</span></span><br><span class="line"><span class="comment">**/</span></span><br><span class="line">Ext.fly(dom, [named])</span><br></pre></td></tr></table></figure>
-
 <p>仅在第一次调用Ext.fly时创建一个Flyweight对象（该对象包含了Element的所有操作接口）并将其缓存，之后的所有fly操作都只是修改该flyweight对象的dom属性，每次fly返回的结果都是共享的同一个flyweight对象。这样每次fly返回的Element相比Ext.get而言，减少了每次创建Element时对大量的操作接口的创建。所有fly的对象都共享一套Element操作接口，内存占用自然少了很多，而且执行速度也得到了提升。在大量的创建操作中效果会更加明显。</p>
 <p class="red-bold-text">由于fly的操作原理，我们不能将fly的返回结果保存在变量中以便重用，因为每次fly操作都将可能改变该变量的dom指向。如下面的代码就是不正确的：</p>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> my_id = Ext.fly(<span class="string">&#x27;my_id&#x27;</span>);</span><br><span class="line">Ext.fly(<span class="string">&#x27;another_id&#x27;</span>); <span class="comment">//此时my_id的dom引用已经变为another_id</span></span><br><span class="line">my_id.highlight(<span class="string">&#x27;FF0000&#x27;</span>,&#123; <span class="comment">//此处的操作将是对another_id元素的操作</span></span><br><span class="line">    endColor:<span class="string">&#x27;0000FF&#x27;</span>, <span class="attr">duration</span>: <span class="number">3</span></span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> my_id = Ext.fly(<span class="string">&#x27;my_id&#x27;</span>);</span><br><span class="line">Ext.fly(<span class="string">&#x27;another_id&#x27;</span>); <span class="comment">//此时my_id的dom引用已经变为another_id</span></span><br><span class="line"></span><br><span class="line">my_id.highlight(<span class="string">&#x27;FF0000&#x27;</span>,&#123; <span class="comment">//此处的操作将是对another_id元素的操作&lt;br/&gt; endColor:&#x27;0000FF&#x27;, duration: 3&lt;br/&gt; &#125;);</span></span><br></pre></td></tr></table></figure>
 <div class="note info">
             <p>应该针对在代码中只引用一次、之后不再引用的元素使用Ext.fly方法</p>
@@ -353,23 +357,6 @@
         <div class="end-slogan" style="text-align:center;font-size:16px;letter-spacing:10px;user-select:none;color:#bbb;"><br/>本文结束啦<i class="fa fa-star"></i>感谢您阅读<br/><br/></div>
     
 </div>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>xixi27
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://xixi27.xyz/posts/d85c8f51/" title="ExtJs 获取 Ext 对象">https://xixi27.xyz/posts/d85c8f51/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           
@@ -465,18 +452,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -491,19 +478,19 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/posts/9f50f366/" title="posts&#x2F;9f50f366&#x2F;">使用CSS修改默认checkbox UI</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/172b4/" title="posts&#x2F;172b4&#x2F;">electron 总结</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/5a8a6c8d/" title="posts&#x2F;5a8a6c8d&#x2F;">Hexo 添加百度推送</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/d4e4c678/" title="posts&#x2F;d4e4c678&#x2F;">Font Awesome thumb-tack 置顶icon不能显示</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/62e278fe/" title="posts&#x2F;62e278fe&#x2F;">JSON 和 JSONP</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/780715e7/" title="posts&#x2F;780715e7&#x2F;">前端跨域问题</a>
         </li>
     </ul>
   </div>
@@ -684,7 +671,10 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 
 
   <script async type="text/javascript" src="/js/crash-cheat.js"></script>
-<div class="moon-menu">
+
+
+
+<script type="text/javascript" src="/js/link-card.js" defer></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

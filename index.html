@@ -192,6 +192,363 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/9f50f366/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="xixi27">
+      <meta itemprop="description" content="记录生活的点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xixi27">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/9f50f366/" class="post-title-link" itemprop="url">使用CSS修改默认checkbox UI</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-10 10:17:15 / 修改时间：10:38:21" itemprop="dateCreated datePublished" datetime="2021-02-10T10:17:15+08:00">2021-02-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/9f50f366/" class="post-meta-item leancloud_visitors" data-flag-title="使用CSS修改默认checkbox UI" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/9f50f366/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/9f50f366/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>637</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这篇文章主要是讲讲怎么使用CSS修改默认的checkbox的样式。</p>
+<h3 id="HTML"><a class="header-anchor" href="#HTML">¶</a>HTML</h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这里的for写的是input的id, 当点击label的时候也能触发checkbox的事件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;remember&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;remember&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remember&quot;</span> <span class="attr">id</span>=<span class="string">&quot;remember&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里的span是一个用来代替checkbox框的空标签--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    记住密码</span><br><span class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="css"><a class="header-anchor" href="#css">¶</a>css</h3>
+<ul>
+<li>只设置选中后的UI</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 设置选中后的checkbox隐藏 */</span></span><br><span class="line"><span class="selector-class">.remember</span><span class="selector-attr">[type=checkbox]</span><span class="selector-pseudo">:checked</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 设置选中后的span标签的背景图片 */</span></span><br><span class="line"><span class="selector-class">.remember</span><span class="selector-attr">[type=checkbox]</span><span class="selector-pseudo">:checked+span</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(选中图片的图片路径) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <p>不管是设置选中前还是选中后的，第一步都是要把原来的checkbox隐藏掉，然后用span标签去替换</p>
+          </div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/172b4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="xixi27">
+      <meta itemprop="description" content="记录生活的点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xixi27">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/172b4/" class="post-title-link" itemprop="url">electron 总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-02-09 17:02:47 / 修改时间：17:11:05" itemprop="dateCreated datePublished" datetime="2021-02-09T17:02:47+08:00">2021-02-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Electron/" itemprop="url" rel="index"><span itemprop="name">Electron</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/172b4/" class="post-meta-item leancloud_visitors" data-flag-title="electron 总结" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/172b4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/172b4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>550</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="log"><a class="header-anchor" href="#log">¶</a>log</h3>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> log = <span class="built_in">require</span>(<span class="string">&#x27;electron-log&#x27;</span>);</span><br><span class="line">log.transports.file.level = <span class="string">&#x27;info&#x27;</span>;</span><br><span class="line">log.info(<span class="string">&#x27;get test: &#x27;</span> + test);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>window: <code>%USERPROFILE%\AppData\Roaming&#123;app name&#125;\logs&#123;process type&#125;.log</code></li>
+<li>mac: <code>~/Library/Logs/&#123;app name&#125;/&#123;process type&#125;.log</code></li>
+<li>linux: <code>~/.config/&#123;app name&#125;/logs/&#123;process type&#125;.log</code></li>
+</ul>
+<h4 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h4>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014705309/article/details/103763829">https://blog.csdn.net/u014705309/article/details/103763829</a></li>
+</ul>
+<h3 id="getpath"><a class="header-anchor" href="#getpath">¶</a>getpath</h3>
+<ul>
+<li>Windows	%APPDATA%</li>
+<li>Linux	$XDG_CONFIG_HOME 或者 ~/.config</li>
+<li>macOS	~/Library/Application Support</li>
+</ul>
+<h4 id="参考-v2"><a class="header-anchor" href="#参考-v2">¶</a>参考</h4>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://newsn.net/say/electron-getpath-all.html">https://newsn.net/say/electron-getpath-all.html</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/5a8a6c8d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="xixi27">
+      <meta itemprop="description" content="记录生活的点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xixi27">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/5a8a6c8d/" class="post-title-link" itemprop="url">Hexo 添加百度推送</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-02-05 14:57:45" itemprop="dateCreated datePublished" datetime="2021-02-05T14:57:45+08:00">2021-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/5a8a6c8d/" class="post-meta-item leancloud_visitors" data-flag-title="Hexo 添加百度推送" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/5a8a6c8d/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/5a8a6c8d/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装百度和-Google-的站点地图生成插件"><a class="header-anchor" href="#安装百度和-Google-的站点地图生成插件">¶</a>安装百度和 Google 的站点地图生成插件</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/5a8a6c8d/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/d3fd59e8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,7 +580,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 16:41:32" itemprop="dateModified" datetime="2021-02-04T16:41:32+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +619,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>829</span>
+              <span>834</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -282,7 +639,9 @@
 
       
           <p>这篇文章主要是记录一下自己添加Valine的过程</p>
-<h2 id="LeanCloud"><a href="#LeanCloud" class="headerlink" title="LeanCloud"></a>LeanCloud</h2><h3 id="1-注册一个LeanCloud账号"><a href="#1-注册一个LeanCloud账号" class="headerlink" title="1. 注册一个LeanCloud账号"></a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3>
+<h2 id="LeanCloud"><a class="header-anchor" href="#LeanCloud">¶</a>LeanCloud</h2>
+<h3 id="span-id-inline-toc-1-span-注册一个LeanCloud账号"><a class="header-anchor" href="#span-id-inline-toc-1-span-注册一个LeanCloud账号">¶</a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3>
+<hr><i class="fas fa-cut"></i></hr>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/d3fd59e8/#more" rel="contents">
@@ -340,7 +699,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 16:41:32" itemprop="dateModified" datetime="2021-02-04T16:41:32+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -399,7 +758,10 @@
 
       
           <p>折腾了我两天的时间，终于把域名给弄好了。这篇文章就用来记录一下我踩过的坑和一些经验总结。</p>
-<h2 id="将Hexo部署到Coding"><a href="#将Hexo部署到Coding" class="headerlink" title="将Hexo部署到Coding"></a>将Hexo部署到Coding</h2><h3 id="创建Coding仓库"><a href="#创建Coding仓库" class="headerlink" title="创建Coding仓库"></a>创建Coding仓库</h3><h4 id="1-需要注册一个Coding账号"><a href="#1-需要注册一个Coding账号" class="headerlink" title="1. 需要注册一个Coding账号"></a><span id="inline-toc">1. </span>需要注册一个Coding账号</h4><div class="note info">
+<h2 id="将Hexo部署到Coding"><a class="header-anchor" href="#将Hexo部署到Coding">¶</a>将Hexo部署到Coding</h2>
+<h3 id="创建Coding仓库"><a class="header-anchor" href="#创建Coding仓库">¶</a>创建Coding仓库</h3>
+<h4 id="span-id-inline-toc-1-span-需要注册一个Coding账号"><a class="header-anchor" href="#span-id-inline-toc-1-span-需要注册一个Coding账号">¶</a><span id="inline-toc">1. </span>需要注册一个Coding账号</h4>
+<div class="note info">
             <p>因为Coding现在属于腾讯旗下的了，所以每一个coding账号都会绑定一个腾讯云账号。需要注意的是确认Coding绑定的腾讯云账号和你购买域名的腾讯云账号是同一个。我就是因为这两个账号不是同一个，导致域名解析出现问题。</p>
           </div>
           <!--noindex-->
@@ -459,7 +821,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 16:49:49" itemprop="dateModified" datetime="2021-02-04T16:49:49+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -498,7 +860,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>188</span>
+              <span>190</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -517,7 +879,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>今天添加了置顶功能之后， 发现置顶图标显示不出来，控制台也没有任何错误， fontAwesome css也引入了<br>官网给的该图标的名称是<code>thumb-tack</code></p>
+          <h2 id="问题"><a class="header-anchor" href="#问题">¶</a>问题</h2>
+<p>今天添加了置顶功能之后， 发现置顶图标显示不出来，控制台也没有任何错误， fontAwesome css也引入了<br>
+官网给的该图标的名称是<code>thumb-tack</code></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/d4e4c678/#more" rel="contents">
@@ -575,7 +939,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:09:23" itemprop="dateModified" datetime="2021-02-04T17:09:23+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:46:56" itemprop="dateModified" datetime="2021-02-10T10:46:56+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -614,7 +978,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>69</span>
+              <span>70</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -634,7 +998,8 @@
 
       
           <p>JSON是一种数据交换格式，而JSONP是信息传递双方约定的<b>方法</b></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html">【原创】说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></li>
 </ul>
 
@@ -687,7 +1052,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:08:40" itemprop="dateModified" datetime="2021-02-04T17:08:40+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:46:56" itemprop="dateModified" datetime="2021-02-10T10:46:56+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -726,7 +1091,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>234</span>
+              <span>235</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -747,11 +1112,12 @@
       
           <p>当两个域具有相同的协议(如http), 相同的端口(如80)，相同的host（如<code>www.google.com</code>)，那么我们就可以认为它们是相同的域（协议，域名，端口都必须相同）。</p>
 <p>跨域就指着协议，域名，端口不一致，出于安全考虑，跨域的资源之间是无法交互的。</p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ol>
+<h2 id="解决"><a class="header-anchor" href="#解决">¶</a>解决</h2>
+<ol>
 <li>使用JSONP, 但是只支持GET请求</li>
-<li>在服务器端的response里添加header，允许前端指定的主机访问<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: *&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>在服务器端的response里添加header，允许前端指定的主机访问</li>
 </ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: *&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -802,7 +1168,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 16:49:21" itemprop="dateModified" datetime="2021-02-04T16:49:21+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:45:27" itemprop="dateModified" datetime="2021-02-10T10:45:27+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -845,7 +1211,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>657</span>
+              <span>661</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -865,7 +1231,8 @@
 
       
           <p>这篇文章主要用来记录CSS的一些经验总结</p>
-<h2 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-transform : none | capitalize | uppercase | lowercase</span><br></pre></td></tr></table></figure>
+<h2 id="大小写转换"><a class="header-anchor" href="#大小写转换">¶</a>大小写转换</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">text-transform : none | capitalize | uppercase | lowercase</span><br></pre></td></tr></table></figure>
 <ul>
 <li>none :　 默认值。无转换发生</li>
 <li>capitalize :　 将每个单词的第一个字母转换成大写，其余无转换发生</li>
@@ -929,7 +1296,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:18:07" itemprop="dateModified" datetime="2021-02-04T17:18:07+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:43:33" itemprop="dateModified" datetime="2021-02-10T10:43:33+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -972,7 +1339,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>110</span>
+              <span>113</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -992,384 +1359,11 @@
 
       
           <p>VS Code智能提示的设置</p>
-<h2 id="VS-Code-智能提示设置"><a href="#VS-Code-智能提示设置" class="headerlink" title="VS Code 智能提示设置"></a>VS Code 智能提示设置</h2><p><code>settings</code> -&gt; <code>Text Editor</code> -&gt; <code>suggestion</code>  禁用掉不想要的提示即可</p>
+<h2 id="VS-Code-智能提示设置"><a class="header-anchor" href="#VS-Code-智能提示设置">¶</a>VS Code 智能提示设置</h2>
+<p><code>settings</code> -&gt; <code>Text Editor</code> -&gt; <code>suggestion</code>  禁用掉不想要的提示即可</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/d200aa3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/2c2929b7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="xixi27">
-      <meta itemprop="description" content="记录生活的点滴">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xixi27">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/2c2929b7/" class="post-title-link" itemprop="url">VS Code 配置安装 Ext智能提示</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-28 15:42:31" itemprop="dateCreated datePublished" datetime="2021-01-28T15:42:31+08:00">2021-01-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:43:31" itemprop="dateModified" datetime="2021-02-04T17:43:31+08:00">2021-02-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/ExtJs/" itemprop="url" rel="index"><span itemprop="name">ExtJs</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/VS-Code/" itemprop="url" rel="index"><span itemprop="name">VS Code</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/2c2929b7/" class="post-meta-item leancloud_visitors" data-flag-title="VS Code 配置安装 Ext智能提示" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/2c2929b7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/2c2929b7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>直接在VS Code中添加插件<code>Schena Ext JS</code>插件，会一直提示证书过期，所以这个插件一直都用不了，今天来总结一下怎么破解使用Ext智能提示。</p>
-<h2 id="下载senchaVScode-X-X-X-vsix文件"><a href="#下载senchaVScode-X-X-X-vsix文件" class="headerlink" title="下载senchaVScode-X.X.X.vsix文件"></a>下载senchaVScode-X.X.X.vsix文件</h2><ol>
-<li><a href="https://marketplace.visualstudio.com/search?target=VSCode&category=All%20categories&sortBy=Installs">VS Code 插件下载地址</a>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/2c2929b7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/33e212b9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="xixi27">
-      <meta itemprop="description" content="记录生活的点滴">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xixi27">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/33e212b9/" class="post-title-link" itemprop="url">ExtJs 使用总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-26 17:21:29" itemprop="dateCreated datePublished" datetime="2021-01-26T17:21:29+08:00">2021-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:03:44" itemprop="dateModified" datetime="2021-02-04T17:03:44+08:00">2021-02-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/ExtJs/" itemprop="url" rel="index"><span itemprop="name">ExtJs</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/33e212b9/" class="post-meta-item leancloud_visitors" data-flag-title="ExtJs 使用总结" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/33e212b9/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/33e212b9/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="dirtychange"><a href="#dirtychange" class="headerlink" title="dirtychange"></a>dirtychange</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xtype: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">trackResetOnLoad: <span class="literal">true</span>,</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">listeners: &#123;</span><br><span class="line">    dirtychange: <span class="string">&#x27;onDirtyChange&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/33e212b9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/d85c8f51/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="xixi27">
-      <meta itemprop="description" content="记录生活的点滴">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xixi27">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/d85c8f51/" class="post-title-link" itemprop="url">ExtJs 获取 Ext 对象</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-13 13:14:35" itemprop="dateCreated datePublished" datetime="2021-01-13T13:14:35+08:00">2021-01-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:03:22" itemprop="dateModified" datetime="2021-02-04T17:03:22+08:00">2021-02-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/ExtJs/" itemprop="url" rel="index"><span itemprop="name">ExtJs</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/d85c8f51/" class="post-meta-item leancloud_visitors" data-flag-title="ExtJs 获取 Ext 对象" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/d85c8f51/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/d85c8f51/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="通过-id-itemId-及-reference-获取-Ext-对象"><a href="#通过-id-itemId-及-reference-获取-Ext-对象" class="headerlink" title="通过 id, itemId 及 reference 获取 Ext 对象"></a>通过 id, itemId 及 reference 获取 Ext 对象</h2><ul>
-<li><p>id 唯一标识符， 在没有设置Component的id的时候系统将自动为组件添加id</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ext.getCmp(id);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/d85c8f51/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1460,18 +1454,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1486,19 +1480,19 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/posts/9f50f366/" title="posts&#x2F;9f50f366&#x2F;">使用CSS修改默认checkbox UI</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/172b4/" title="posts&#x2F;172b4&#x2F;">electron 总结</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/5a8a6c8d/" title="posts&#x2F;5a8a6c8d&#x2F;">Hexo 添加百度推送</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/d4e4c678/" title="posts&#x2F;d4e4c678&#x2F;">Font Awesome thumb-tack 置顶icon不能显示</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/62e278fe/" title="posts&#x2F;62e278fe&#x2F;">JSON 和 JSONP</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/780715e7/" title="posts&#x2F;780715e7&#x2F;">前端跨域问题</a>
         </li>
     </ul>
   </div>
@@ -1679,7 +1673,10 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 
 
   <script async type="text/javascript" src="/js/crash-cheat.js"></script>
-<div class="moon-menu">
+
+
+
+<script type="text/javascript" src="/js/link-card.js" defer></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

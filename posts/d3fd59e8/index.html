@@ -25,17 +25,17 @@
     var CONFIG = {"hostname":"xixi27.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="这篇文章主要是记录一下自己添加Valine的过程 LeanCloud1. 注册一个LeanCloud账号">
+  <meta name="description" content="这篇文章主要是记录一下自己添加Valine的过程 ¶LeanCloud ¶1. 注册一个LeanCloud账号">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo 添加 Valine 评论功能">
 <meta property="og:url" content="https://xixi27.xyz/posts/d3fd59e8/index.html">
 <meta property="og:site_name" content="xixi27">
-<meta property="og:description" content="这篇文章主要是记录一下自己添加Valine的过程 LeanCloud1. 注册一个LeanCloud账号">
+<meta property="og:description" content="这篇文章主要是记录一下自己添加Valine的过程 ¶LeanCloud ¶1. 注册一个LeanCloud账号">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xixi27.xyz/posts/d3fd59e8/%E5%88%9B%E5%BB%BAClass.png">
 <meta property="og:image" content="https://xixi27.xyz/posts/d3fd59e8/%E5%85%B3%E9%97%AD%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png">
 <meta property="article:published_time" content="2021-01-31T15:03:43.000Z">
-<meta property="article:modified_time" content="2021-02-04T08:41:32.495Z">
+<meta property="article:modified_time" content="2021-02-10T02:41:53.853Z">
 <meta property="article:author" content="xixi27">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 16:41:32" itemprop="dateModified" datetime="2021-02-04T16:41:32+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,7 +275,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>829</span>
+              <span>834</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -295,13 +295,17 @@
 
       
         <p>这篇文章主要是记录一下自己添加Valine的过程</p>
-<h2 id="LeanCloud"><a href="#LeanCloud" class="headerlink" title="LeanCloud"></a>LeanCloud</h2><h3 id="1-注册一个LeanCloud账号"><a href="#1-注册一个LeanCloud账号" class="headerlink" title="1. 注册一个LeanCloud账号"></a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3><a id="more"></a>
-
-<h3 id="2-获取AppId和AppKey"><a href="#2-获取AppId和AppKey" class="headerlink" title="2. 获取AppId和AppKey"></a><span id="inline-toc">2. </span>获取<code>AppId</code>和<code>AppKey</code></h3><p>进入<code>设置</code> -&gt; <code>应用Key</code> 将 <code>AppId</code>和<code>AppKey</code> 复制， 然后去 <code>_next.yml</code> 配置 <code>Valine</code></p>
+<h2 id="LeanCloud"><a class="header-anchor" href="#LeanCloud">¶</a>LeanCloud</h2>
+<h3 id="span-id-inline-toc-1-span-注册一个LeanCloud账号"><a class="header-anchor" href="#span-id-inline-toc-1-span-注册一个LeanCloud账号">¶</a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3>
+<hr><i class="fas fa-cut"></i></hr>
+<a id="more"></a>
+<h3 id="span-id-inline-toc-2-span-获取AppId和AppKey"><a class="header-anchor" href="#span-id-inline-toc-2-span-获取AppId和AppKey">¶</a><span id="inline-toc">2. </span>获取<code>AppId</code>和<code>AppKey</code></h3>
+<p>进入<code>设置</code> -&gt; <code>应用Key</code> 将 <code>AppId</code>和<code>AppKey</code> 复制， 然后去 <code>_next.yml</code> 配置 <code>Valine</code></p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Valine</span></span><br><span class="line"><span class="comment"># For more information: https://valine.js.org, https://github.com/xCss/Valine</span></span><br><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">appid:</span> <span class="string">XXX</span></span><br><span class="line">  <span class="attr">appkey:</span> <span class="string">XXX</span></span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment"># Mail notifier</span></span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">true</span> <span class="comment"># Verification code</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment"># Comment box placeholder</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">wavatar</span> <span class="comment"># Gravatar style</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment"># Custom comment header</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># Pagination size</span></span><br><span class="line">  <span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span> <span class="comment"># Article reading statistic</span></span><br><span class="line">  <span class="attr">comment_count:</span> <span class="literal">true</span> <span class="comment"># If false, comment count will only be displayed in post page, not in home page</span></span><br><span class="line">  <span class="attr">recordIP:</span> <span class="literal">false</span> <span class="comment"># Whether to record the commenter IP</span></span><br><span class="line">  <span class="attr">serverURLs:</span> <span class="comment"># When the custom domain name is enabled, fill it in here (it will be detected automatically by default, no need to fill in)</span></span><br><span class="line">  <span class="comment">#post_meta_order: 0</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-创建-Comment-和-Counter-Class-无限制的Class"><a href="#3-创建-Comment-和-Counter-Class-无限制的Class" class="headerlink" title="3. 创建 Comment 和 Counter Class, 无限制的Class"></a><span id="inline-toc">3. </span>创建 <code>Comment</code> 和 <code>Counter</code> Class, <code>无限制的Class</code></h3><p><img src="%E5%88%9B%E5%BB%BAClass.png" alt="创建Class"></p>
-<h3 id="4-关闭除数据存储外的其他选项，添加域名"><a href="#4-关闭除数据存储外的其他选项，添加域名" class="headerlink" title="4. 关闭除数据存储外的其他选项，添加域名"></a><span id="inline-toc">4. </span>关闭除数据存储外的其他选项，添加域名</h3><p><img src="%E5%85%B3%E9%97%AD%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png" alt="关闭服务和添加域名"></p>
+<h3 id="span-id-inline-toc-3-span-创建-Comment-和-Counter-Class-无限制的Class"><a class="header-anchor" href="#span-id-inline-toc-3-span-创建-Comment-和-Counter-Class-无限制的Class">¶</a><span id="inline-toc">3. </span>创建 <code>Comment</code> 和 <code>Counter</code> Class, <code>无限制的Class</code></h3>
+<p><img src="%E5%88%9B%E5%BB%BAClass.png" alt="创建Class"></p>
+<h3 id="span-id-inline-toc-4-span-关闭除数据存储外的其他选项，添加域名"><a class="header-anchor" href="#span-id-inline-toc-4-span-关闭除数据存储外的其他选项，添加域名">¶</a><span id="inline-toc">4. </span>关闭除数据存储外的其他选项，添加域名</h3>
+<p><img src="%E5%85%B3%E9%97%AD%E6%9C%8D%E5%8A%A1%E5%92%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D.png" alt="关闭服务和添加域名"></p>
 <p>现在我们就可以开始用评论功能了！</p>
 
     </div>
@@ -313,23 +317,6 @@
         <div class="end-slogan" style="text-align:center;font-size:16px;letter-spacing:10px;user-select:none;color:#bbb;"><br/>本文结束啦<i class="fa fa-star"></i>感谢您阅读<br/><br/></div>
     
 </div>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>xixi27
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://xixi27.xyz/posts/d3fd59e8/" title="Hexo 添加 Valine 评论功能">https://xixi27.xyz/posts/d3fd59e8/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           
@@ -346,7 +333,10 @@
     <a href="/posts/4cef3d8b/" rel="prev" title="Hexo 添加自定义域名">
       <i class="fa fa-chevron-left"></i> Hexo 添加自定义域名
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/posts/5a8a6c8d/" rel="next" title="Hexo 添加百度推送">
+      Hexo 添加百度推送 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -406,7 +396,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeanCloud"><span class="nav-number">1.</span> <span class="nav-text">LeanCloud</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AALeanCloud%E8%B4%A6%E5%8F%B7"><span class="nav-number">1.1.</span> <span class="nav-text">1. 注册一个LeanCloud账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%8E%B7%E5%8F%96AppId%E5%92%8CAppKey"><span class="nav-number">1.2.</span> <span class="nav-text">2. 获取AppId和AppKey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BA-Comment-%E5%92%8C-Counter-Class-%E6%97%A0%E9%99%90%E5%88%B6%E7%9A%84Class"><span class="nav-number">1.3.</span> <span class="nav-text">3. 创建 Comment 和 Counter Class, 无限制的Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%85%B3%E9%97%AD%E9%99%A4%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%A4%96%E7%9A%84%E5%85%B6%E4%BB%96%E9%80%89%E9%A1%B9%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D"><span class="nav-number">1.4.</span> <span class="nav-text">4. 关闭除数据存储外的其他选项，添加域名</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeanCloud"><span class="nav-number">1.</span> <span class="nav-text">LeanCloud</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-1-span-%E6%B3%A8%E5%86%8C%E4%B8%80%E4%B8%AALeanCloud%E8%B4%A6%E5%8F%B7"><span class="nav-number">1.1.</span> <span class="nav-text">1. 注册一个LeanCloud账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-2-span-%E8%8E%B7%E5%8F%96AppId%E5%92%8CAppKey"><span class="nav-number">1.2.</span> <span class="nav-text">2. 获取AppId和AppKey</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-3-span-%E5%88%9B%E5%BB%BA-Comment-%E5%92%8C-Counter-Class-%E6%97%A0%E9%99%90%E5%88%B6%E7%9A%84Class"><span class="nav-number">1.3.</span> <span class="nav-text">3. 创建 Comment 和 Counter Class, 无限制的Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-4-span-%E5%85%B3%E9%97%AD%E9%99%A4%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%A4%96%E7%9A%84%E5%85%B6%E4%BB%96%E9%80%89%E9%A1%B9%EF%BC%8C%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D"><span class="nav-number">1.4.</span> <span class="nav-text">4. 关闭除数据存储外的其他选项，添加域名</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -422,18 +412,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -448,19 +438,19 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/posts/9f50f366/" title="posts&#x2F;9f50f366&#x2F;">使用CSS修改默认checkbox UI</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/172b4/" title="posts&#x2F;172b4&#x2F;">electron 总结</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/5a8a6c8d/" title="posts&#x2F;5a8a6c8d&#x2F;">Hexo 添加百度推送</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/d4e4c678/" title="posts&#x2F;d4e4c678&#x2F;">Font Awesome thumb-tack 置顶icon不能显示</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/62e278fe/" title="posts&#x2F;62e278fe&#x2F;">JSON 和 JSONP</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/780715e7/" title="posts&#x2F;780715e7&#x2F;">前端跨域问题</a>
         </li>
     </ul>
   </div>
@@ -641,7 +631,10 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 
 
   <script async type="text/javascript" src="/js/crash-cheat.js"></script>
-<div class="moon-menu">
+
+
+
+<script type="text/javascript" src="/js/link-card.js" defer></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">

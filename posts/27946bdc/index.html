@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"xixi27.xyz","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的 安装扩展插件 Java Extension Pack Spring Boot Extension Pack">
+  <meta name="description" content="因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的 ¶安装扩展插件  Java Extension Pack Spring Boot Extension Pack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VS Code 下搭建spring boot环境">
 <meta property="og:url" content="https://xixi27.xyz/posts/27946bdc/index.html">
 <meta property="og:site_name" content="xixi27">
-<meta property="og:description" content="因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的 安装扩展插件 Java Extension Pack Spring Boot Extension Pack">
+<meta property="og:description" content="因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的 ¶安装扩展插件  Java Extension Pack Spring Boot Extension Pack">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://xixi27.xyz/posts/27946bdc/create-spring-boot-step1.PNG">
 <meta property="og:image" content="https://xixi27.xyz/posts/27946bdc/select-spring-version-step2.PNG">
@@ -48,7 +48,7 @@
 <meta property="og:image" content="https://xixi27.xyz/posts/27946bdc/folder-structure-4.PNG">
 <meta property="og:image" content="https://xixi27.xyz/posts/27946bdc/run-successfully-5.PNG">
 <meta property="article:published_time" content="2020-12-29T01:52:20.000Z">
-<meta property="article:modified_time" content="2021-02-04T09:18:40.734Z">
+<meta property="article:modified_time" content="2021-02-10T02:43:33.222Z">
 <meta property="article:author" content="xixi27">
 <meta property="article:tag" content="VS Code">
 <meta name="twitter:card" content="summary">
@@ -242,7 +242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-04 17:18:40" itemprop="dateModified" datetime="2021-02-04T17:18:40+08:00">2021-02-04</time>
+                <time title="修改时间：2021-02-10 10:43:33" itemprop="dateModified" datetime="2021-02-10T10:43:33+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -312,52 +312,79 @@
 
       
         <p>因为一直都是使用VS Code进行开发， 所以就想尝试看看能不能使用VS Code进行简单的开发，没有用到复杂的功能，简单的spring项目应该是没有问题的</p>
-<h2 id="安装扩展插件"><a href="#安装扩展插件" class="headerlink" title="安装扩展插件"></a>安装扩展插件</h2><ul>
+<h2 id="安装扩展插件"><a class="header-anchor" href="#安装扩展插件">¶</a>安装扩展插件</h2>
+<ul>
 <li>Java Extension Pack</li>
 <li>Spring Boot Extension Pack</li>
 </ul>
 <a id="more"></a>
-
-<h2 id="在-setting-json-文件中配置maven和jdk"><a href="#在-setting-json-文件中配置maven和jdk" class="headerlink" title="在 setting.json 文件中配置maven和jdk"></a>在 <code>setting.json</code> 文件中配置maven和jdk</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;java.home&quot;:&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;,</span><br><span class="line">&quot;java.configuration.maven.userSettings&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\conf\\settings.xml&quot;,</span><br><span class="line">&quot;maven.executable.path&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\bin\\mvn.cmd&quot;,</span><br><span class="line">&quot;maven.terminal.useJavaHome&quot;: true,</span><br><span class="line">&quot;maven.terminal.customEnv&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;environmentVariable&quot;</span>: <span class="string">&quot;JAVA_HOME&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<h2 id="在-setting-json-文件中配置maven和jdk"><a class="header-anchor" href="#在-setting-json-文件中配置maven和jdk">¶</a>在 <code>setting.json</code> 文件中配置maven和jdk</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&quot;java.home&quot;:&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;,</span><br><span class="line">&quot;java.configuration.maven.userSettings&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\conf\\settings.xml&quot;,</span><br><span class="line">&quot;maven.executable.path&quot;: &quot;C:\\Program Files\\apache-maven-3.6.3\\bin\\mvn.cmd&quot;,</span><br><span class="line">&quot;maven.terminal.useJavaHome&quot;: true,</span><br><span class="line">&quot;maven.terminal.customEnv&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;environmentVariable&quot;</span>: <span class="string">&quot;JAVA_HOME&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;value&quot;</span>: <span class="string">&quot;C:\\Program Files (x86)\\Java\\jdk1.8.0_102&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
 <div class="note info">
             <p>配置完成之后，需要重启VS Code</p>
           </div>
-
-<h2 id="创建-spring-boot-项目"><a href="#创建-spring-boot-项目" class="headerlink" title="创建 spring boot 项目"></a>创建 spring boot 项目</h2><h3 id="1-创建一个-spring-项目"><a href="#1-创建一个-spring-项目" class="headerlink" title="1.  创建一个 spring 项目"></a><span id="inline-toc">1. </span> 创建一个 spring 项目</h3><p><code>ctrl + shift + p</code>, 输入 <code>spring</code>, 选择 <code>Create a maven project...</code><br><img src="create-spring-boot-step1.PNG" alt="创建一个 spring 项目"></p>
-<h3 id="2-选择spring版本"><a href="#2-选择spring版本" class="headerlink" title="2.  选择spring版本"></a><span id="inline-toc">2. </span> 选择spring版本</h3><p><img src="select-spring-version-step2.PNG" alt="选择spring版本"></p>
-<h3 id="3-选择语言"><a href="#3-选择语言" class="headerlink" title="3.  选择语言"></a><span id="inline-toc">3. </span> 选择语言</h3><p><img src="select-language-step3.PNG" alt="选择语言"></p>
-<h3 id="4-输入group-id"><a href="#4-输入group-id" class="headerlink" title="4.  输入group id"></a><span id="inline-toc">4. </span> 输入group id</h3><p><img src="input-group-id-step4.PNG" alt="输入group id"></p>
-<h3 id="5-输入artifact-id"><a href="#5-输入artifact-id" class="headerlink" title="5.  输入artifact id"></a><span id="inline-toc">5. </span> 输入artifact id</h3><p><img src="artifact-id-step5.PNG" alt="输入artifact id"></p>
-<h3 id="6-选择package-type"><a href="#6-选择package-type" class="headerlink" title="6.  选择package type"></a><span id="inline-toc">6. </span> 选择package type</h3><p><img src="specify-packging-type-step6.PNG" alt="选择package type"></p>
-<h3 id="7-选择jdk版本"><a href="#7-选择jdk版本" class="headerlink" title="7.  选择jdk版本"></a><span id="inline-toc">7. </span> 选择jdk版本</h3><p><img src="specify-java-version-step7.PNG" alt="选择jdk版本"></p>
-<h3 id="8-选择dependencies"><a href="#8-选择dependencies" class="headerlink" title="8.  选择dependencies"></a><span id="inline-toc">8. </span> 选择dependencies</h3><ul>
+<h2 id="创建-spring-boot-项目"><a class="header-anchor" href="#创建-spring-boot-项目">¶</a>创建 spring boot 项目</h2>
+<h3 id="span-id-inline-toc-1-span-创建一个-spring-项目"><a class="header-anchor" href="#span-id-inline-toc-1-span-创建一个-spring-项目">¶</a><span id="inline-toc">1. </span> 创建一个 spring 项目</h3>
+<p><code>ctrl + shift + p</code>, 输入 <code>spring</code>, 选择 <code>Create a maven project...</code><br>
+<img src="create-spring-boot-step1.PNG" alt="创建一个 spring 项目"></p>
+<h3 id="span-id-inline-toc-2-span-选择spring版本"><a class="header-anchor" href="#span-id-inline-toc-2-span-选择spring版本">¶</a><span id="inline-toc">2. </span> 选择spring版本</h3>
+<p><img src="select-spring-version-step2.PNG" alt="选择spring版本"></p>
+<h3 id="span-id-inline-toc-3-span-选择语言"><a class="header-anchor" href="#span-id-inline-toc-3-span-选择语言">¶</a><span id="inline-toc">3. </span> 选择语言</h3>
+<p><img src="select-language-step3.PNG" alt="选择语言"></p>
+<h3 id="span-id-inline-toc-4-span-输入group-id"><a class="header-anchor" href="#span-id-inline-toc-4-span-输入group-id">¶</a><span id="inline-toc">4. </span> 输入group id</h3>
+<p><img src="input-group-id-step4.PNG" alt="输入group id"></p>
+<h3 id="span-id-inline-toc-5-span-输入artifact-id"><a class="header-anchor" href="#span-id-inline-toc-5-span-输入artifact-id">¶</a><span id="inline-toc">5. </span> 输入artifact id</h3>
+<p><img src="artifact-id-step5.PNG" alt="输入artifact id"></p>
+<h3 id="span-id-inline-toc-6-span-选择package-type"><a class="header-anchor" href="#span-id-inline-toc-6-span-选择package-type">¶</a><span id="inline-toc">6. </span> 选择package type</h3>
+<p><img src="specify-packging-type-step6.PNG" alt="选择package type"></p>
+<h3 id="span-id-inline-toc-7-span-选择jdk版本"><a class="header-anchor" href="#span-id-inline-toc-7-span-选择jdk版本">¶</a><span id="inline-toc">7. </span> 选择jdk版本</h3>
+<p><img src="specify-java-version-step7.PNG" alt="选择jdk版本"></p>
+<h3 id="span-id-inline-toc-8-span-选择dependencies"><a class="header-anchor" href="#span-id-inline-toc-8-span-选择dependencies">¶</a><span id="inline-toc">8. </span> 选择dependencies</h3>
+<ul>
 <li>DevTools(代码修改热更新，无需重启)</li>
 <li>Web(集成tomcat、SpringMVC</li>
 <li>Lombok(智能生成setter、getter、toString等接口，无需手动生成)</li>
 </ul>
 <p><img src="select-dependencies-step8.PNG" alt="选择依赖"></p>
-<h3 id="9-选择项目目录"><a href="#9-选择项目目录" class="headerlink" title="9.  选择项目目录"></a><span id="inline-toc">9. </span> 选择项目目录</h3><p>直接点击 <code>Generate into this folder</code> 按钮即可<br><img src="select-folder-step9.PNG" alt="选择项目目录"></p>
-<h2 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h2><h3 id="1-生成launch-json文件"><a href="#1-生成launch-json文件" class="headerlink" title="1.  生成launch.json文件"></a><span id="inline-toc">1. </span> 生成launch.json文件</h3><ul>
-<li><p>打开项目目录，打开 <code>DemoApplication.java</code>, 点击小虫子按钮, 生成 <code>launch.json</code> 文件<br><img src="start-create-launch-json-1.PNG" alt="生成launch.json文件"></p>
+<h3 id="span-id-inline-toc-9-span-选择项目目录"><a class="header-anchor" href="#span-id-inline-toc-9-span-选择项目目录">¶</a><span id="inline-toc">9. </span> 选择项目目录</h3>
+<p>直接点击 <code>Generate into this folder</code> 按钮即可<br>
+<img src="select-folder-step9.PNG" alt="选择项目目录"></p>
+<h2 id="启动项目"><a class="header-anchor" href="#启动项目">¶</a>启动项目</h2>
+<h3 id="span-id-inline-toc-1-span-生成launch-json文件"><a class="header-anchor" href="#span-id-inline-toc-1-span-生成launch-json文件">¶</a><span id="inline-toc">1. </span> 生成launch.json文件</h3>
+<ul>
+<li>
+<p>打开项目目录，打开 <code>DemoApplication.java</code>, 点击小虫子按钮, 生成 <code>launch.json</code> 文件<br>
+<img src="start-create-launch-json-1.PNG" alt="生成launch.json文件"></p>
 </li>
-<li><p><code>launch.json</code> 文件如下图所示：<br><img src="launch-json-2.PNG" alt="launch.json文件内容"></p>
+<li>
+<p><code>launch.json</code> 文件如下图所示：<br>
+<img src="launch-json-2.PNG" alt="launch.json文件内容"></p>
 </li>
-<li><p>点击三角形按钮，启动spring项目<br><img src="run-3.PNG" alt="启动spring项目"></p>
+<li>
+<p>点击三角形按钮，启动spring项目<br>
+<img src="run-3.PNG" alt="启动spring项目"></p>
 </li>
 </ul>
-<h3 id="2-启动-spring-项目"><a href="#2-启动-spring-项目" class="headerlink" title="2.  启动 spring 项目"></a><span id="inline-toc">2. </span> 启动 spring 项目</h3><p>浏览器输入 <code>localhost:8080</code> 访问<br><img src="browser-4.PNG" alt="访问失败"></p>
+<h3 id="span-id-inline-toc-2-span-启动-spring-项目"><a class="header-anchor" href="#span-id-inline-toc-2-span-启动-spring-项目">¶</a><span id="inline-toc">2. </span> 启动 spring 项目</h3>
+<p>浏览器输入 <code>localhost:8080</code> 访问<br>
+<img src="browser-4.PNG" alt="访问失败"></p>
 <div class="note danger">
             <p>错误原因:没有定义服务器访问这个根路径对应的应答接口</p>
           </div>
 <span class="label success">解决方法：</span>
 <ul>
-<li><p>在demo包下面新建个controller包，然后新建个HomeController.java 文件，目录结构如下：<br><img src="folder-structure-4.PNG" alt="目录结构"></p>
+<li>
+<p>在demo包下面新建个controller包，然后新建个HomeController.java 文件，目录结构如下：<br>
+<img src="folder-structure-4.PNG" alt="目录结构"></p>
 </li>
-<li><p>文件内容如下：</p>
+<li>
+<p>文件内容如下：</p>
+</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">home</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新刷新浏览器，即可看到访问成功<br><img src="run-successfully-5.PNG" alt="访问成功"></p>
-</li>
+<ul>
+<li>重新刷新浏览器，即可看到访问成功<br>
+<img src="run-successfully-5.PNG" alt="访问成功"></li>
 </ul>
 
     </div>
@@ -369,23 +396,6 @@
         <div class="end-slogan" style="text-align:center;font-size:16px;letter-spacing:10px;user-select:none;color:#bbb;"><br/>本文结束啦<i class="fa fa-star"></i>感谢您阅读<br/><br/></div>
     
 </div>
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>xixi27
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="https://xixi27.xyz/posts/27946bdc/" title="VS Code 下搭建spring boot环境">https://xixi27.xyz/posts/27946bdc/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
 
       <footer class="post-footer">
           
@@ -465,7 +475,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装扩展插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-setting-json-%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AEmaven%E5%92%8Cjdk"><span class="nav-number">2.</span> <span class="nav-text">在 setting.json 文件中配置maven和jdk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-spring-boot-%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">创建 spring boot 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-spring-%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.1.</span> <span class="nav-text">1.  创建一个 spring 项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E9%80%89%E6%8B%A9spring%E7%89%88%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text">2.  选择spring版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80"><span class="nav-number">3.3.</span> <span class="nav-text">3.  选择语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%BE%93%E5%85%A5group-id"><span class="nav-number">3.4.</span> <span class="nav-text">4.  输入group id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E8%BE%93%E5%85%A5artifact-id"><span class="nav-number">3.5.</span> <span class="nav-text">5.  输入artifact id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E9%80%89%E6%8B%A9package-type"><span class="nav-number">3.6.</span> <span class="nav-text">6.  选择package type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E9%80%89%E6%8B%A9jdk%E7%89%88%E6%9C%AC"><span class="nav-number">3.7.</span> <span class="nav-text">7.  选择jdk版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E9%80%89%E6%8B%A9dependencies"><span class="nav-number">3.8.</span> <span class="nav-text">8.  选择dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-%E9%80%89%E6%8B%A9%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="nav-number">3.9.</span> <span class="nav-text">9.  选择项目目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">启动项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%9F%E6%88%90launch-json%E6%96%87%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">1.  生成launch.json文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8-spring-%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.2.</span> <span class="nav-text">2.  启动 spring 项目</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95%E6%8F%92%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">安装扩展插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8-setting-json-%E6%96%87%E4%BB%B6%E4%B8%AD%E9%85%8D%E7%BD%AEmaven%E5%92%8Cjdk"><span class="nav-number">2.</span> <span class="nav-text">在 setting.json 文件中配置maven和jdk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-spring-boot-%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">创建 spring boot 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-1-span-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-spring-%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.1.</span> <span class="nav-text">1.  创建一个 spring 项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-2-span-%E9%80%89%E6%8B%A9spring%E7%89%88%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text">2.  选择spring版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-3-span-%E9%80%89%E6%8B%A9%E8%AF%AD%E8%A8%80"><span class="nav-number">3.3.</span> <span class="nav-text">3.  选择语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-4-span-%E8%BE%93%E5%85%A5group-id"><span class="nav-number">3.4.</span> <span class="nav-text">4.  输入group id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-5-span-%E8%BE%93%E5%85%A5artifact-id"><span class="nav-number">3.5.</span> <span class="nav-text">5.  输入artifact id</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-6-span-%E9%80%89%E6%8B%A9package-type"><span class="nav-number">3.6.</span> <span class="nav-text">6.  选择package type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-7-span-%E9%80%89%E6%8B%A9jdk%E7%89%88%E6%9C%AC"><span class="nav-number">3.7.</span> <span class="nav-text">7.  选择jdk版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-8-span-%E9%80%89%E6%8B%A9dependencies"><span class="nav-number">3.8.</span> <span class="nav-text">8.  选择dependencies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-9-span-%E9%80%89%E6%8B%A9%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="nav-number">3.9.</span> <span class="nav-text">9.  选择项目目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">启动项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-1-span-%E7%94%9F%E6%88%90launch-json%E6%96%87%E4%BB%B6"><span class="nav-number">4.1.</span> <span class="nav-text">1.  生成launch.json文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#span-id-inline-toc-2-span-%E5%90%AF%E5%8A%A8-spring-%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.2.</span> <span class="nav-text">2.  启动 spring 项目</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -481,18 +491,18 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -507,19 +517,19 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/posts/9f50f366/" title="posts&#x2F;9f50f366&#x2F;">使用CSS修改默认checkbox UI</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/172b4/" title="posts&#x2F;172b4&#x2F;">electron 总结</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/posts/5a8a6c8d/" title="posts&#x2F;5a8a6c8d&#x2F;">Hexo 添加百度推送</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/d4e4c678/" title="posts&#x2F;d4e4c678&#x2F;">Font Awesome thumb-tack 置顶icon不能显示</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/62e278fe/" title="posts&#x2F;62e278fe&#x2F;">JSON 和 JSONP</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/780715e7/" title="posts&#x2F;780715e7&#x2F;">前端跨域问题</a>
         </li>
     </ul>
   </div>
@@ -700,7 +710,10 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 
 
   <script async type="text/javascript" src="/js/crash-cheat.js"></script>
-<div class="moon-menu">
+
+
+
+<script type="text/javascript" src="/js/link-card.js" defer></script><div class="moon-menu">
   <div class="moon-menu-items">
     
     <div class="moon-menu-item" onclick="back2bottom()">
