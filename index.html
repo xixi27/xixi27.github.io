@@ -192,6 +192,126 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/4592b2fd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="xixi27">
+      <meta itemprop="description" content="记录生活的点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xixi27">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/posts/4592b2fd/" class="post-title-link" itemprop="url">shell脚本的编写</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-30 09:51:41 / 修改时间：10:27:32" itemprop="dateCreated datePublished" datetime="2022-01-30T09:51:41+08:00">2022-01-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/posts/4592b2fd/" class="post-meta-item leancloud_visitors" data-flag-title="shell脚本的编写" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/posts/4592b2fd/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/4592b2fd/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>661</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="开头"><a class="header-anchor" href="#开头">¶</a>开头</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="权限"><a class="header-anchor" href="#权限">¶</a>权限</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 需要给脚本文件添加可执行的权限</span></span><br><span class="line">chmod +x test.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行脚本文件</span></span><br><span class="line">./test.sh</span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a class="header-anchor" href="#变量">¶</a>变量</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 等式两边不能有空格</span></span><br><span class="line"><span class="comment"># 定义过的变量可以花括号</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;this is a test <span class="variable">$&#123;index&#125;</span> text&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符串"><a class="header-anchor" href="#字符串">¶</a>字符串</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 单引号里面的变量无效，单引号里面的内容会原样输出</span></span><br><span class="line"><span class="comment"># 双引号里面可以添加变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取字符串长度</span></span><br><span class="line">string=<span class="string">&quot;abcd&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;#string&#125;</span> <span class="comment"># 输出4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 提取字符串</span></span><br><span class="line">string=<span class="string">&quot;runoob is a great site&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;string:1:4&#125;</span> <span class="comment"># 输出 unoo</span></span><br></pre></td></tr></table></figure>
+<h2 id="基本运算符"><a class="header-anchor" href="#基本运算符">¶</a>基本运算符</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 算术运算符</span></span><br><span class="line"><span class="comment"># 条件表达式要放在方括号之间，并且要有空格，例如：[$a==$b]是错误的，必须写成[ $a == $b ]</span></span><br></pre></td></tr></table></figure>
+<h2 id="echo"><a class="header-anchor" href="#echo">¶</a>echo</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清空文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span> &gt; text.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出到指定文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;test text&quot;</span> &gt; text.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 追加内容到指定文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;test text&quot;</span> &gt;&gt; text.txt</span><br></pre></td></tr></table></figure>
+<h2 id="各种括号的区别"><a class="header-anchor" href="#各种括号的区别">¶</a>各种括号的区别</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># $()和 ` ` </span></span><br><span class="line">1. `  ` 基本上可用在全部的 unix shell 中使用，若写成 shell script ，其移植性比较高，但反单引号容易打错或看错。</span><br><span class="line">2. $()并不是所有shell都支持。</span><br><span class="line"></span><br><span class="line"><span class="comment"># $[] 和 $(()) </span></span><br><span class="line">1. 都是进行数学运算的</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/9f50f366/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -217,7 +337,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-02-10 10:17:15 / 修改时间：10:38:21" itemprop="dateCreated datePublished" datetime="2021-02-10T10:17:15+08:00">2021-02-10</time>
+              <time title="创建时间：2021-02-10 10:17:15 / 修改时间：11:20:32" itemprop="dateCreated datePublished" datetime="2021-02-10T10:17:15+08:00">2021-02-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -282,15 +402,14 @@
           <p>这篇文章主要是讲讲怎么使用CSS修改默认的checkbox的样式。</p>
 <h3 id="HTML"><a class="header-anchor" href="#HTML">¶</a>HTML</h3>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这里的for写的是input的id, 当点击label的时候也能触发checkbox的事件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;remember&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;remember&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remember&quot;</span> <span class="attr">id</span>=<span class="string">&quot;remember&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 这里的span是一个用来代替checkbox框的空标签--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    记住密码</span><br><span class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="css"><a class="header-anchor" href="#css">¶</a>css</h3>
-<ul>
-<li>只设置选中后的UI</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 设置选中后的checkbox隐藏 */</span></span><br><span class="line"><span class="selector-class">.remember</span><span class="selector-attr">[type=checkbox]</span><span class="selector-pseudo">:checked</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 设置选中后的span标签的背景图片 */</span></span><br><span class="line"><span class="selector-class">.remember</span><span class="selector-attr">[type=checkbox]</span><span class="selector-pseudo">:checked+span</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(选中图片的图片路径) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>不管是设置选中前还是选中后的，第一步都是要把原来的checkbox隐藏掉，然后用span标签去替换</p>
-          </div>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/9f50f366/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -332,10 +451,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-02-09 17:02:47 / 修改时间：17:11:05" itemprop="dateCreated datePublished" datetime="2021-02-09T17:02:47+08:00">2021-02-09</time>
+              <time title="创建时间：2021-02-09 17:02:47" itemprop="dateCreated datePublished" datetime="2021-02-09T17:02:47+08:00">2021-02-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-02-10 10:54:24" itemprop="dateModified" datetime="2021-02-10T10:54:24+08:00">2021-02-10</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -394,26 +519,14 @@
       
           <h3 id="log"><a class="header-anchor" href="#log">¶</a>log</h3>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> log = <span class="built_in">require</span>(<span class="string">&#x27;electron-log&#x27;</span>);</span><br><span class="line">log.transports.file.level = <span class="string">&#x27;info&#x27;</span>;</span><br><span class="line">log.info(<span class="string">&#x27;get test: &#x27;</span> + test);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>window: <code>%USERPROFILE%\AppData\Roaming&#123;app name&#125;\logs&#123;process type&#125;.log</code></li>
-<li>mac: <code>~/Library/Logs/&#123;app name&#125;/&#123;process type&#125;.log</code></li>
-<li>linux: <code>~/.config/&#123;app name&#125;/logs/&#123;process type&#125;.log</code></li>
-</ul>
-<h4 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h4>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u014705309/article/details/103763829">https://blog.csdn.net/u014705309/article/details/103763829</a></li>
-</ul>
-<h3 id="getpath"><a class="header-anchor" href="#getpath">¶</a>getpath</h3>
-<ul>
-<li>Windows	%APPDATA%</li>
-<li>Linux	$XDG_CONFIG_HOME 或者 ~/.config</li>
-<li>macOS	~/Library/Application Support</li>
-</ul>
-<h4 id="参考-v2"><a class="header-anchor" href="#参考-v2">¶</a>参考</h4>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://newsn.net/say/electron-getpath-all.html">https://newsn.net/say/electron-getpath-all.html</a></li>
-</ul>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/172b4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -580,7 +693,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
+                <time title="修改时间：2021-02-10 11:14:16" itemprop="dateModified" datetime="2021-02-10T11:14:16+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -641,7 +754,6 @@
           <p>这篇文章主要是记录一下自己添加Valine的过程</p>
 <h2 id="LeanCloud"><a class="header-anchor" href="#LeanCloud">¶</a>LeanCloud</h2>
 <h3 id="span-id-inline-toc-1-span-注册一个LeanCloud账号"><a class="header-anchor" href="#span-id-inline-toc-1-span-注册一个LeanCloud账号">¶</a><span id="inline-toc">1. </span>注册一个LeanCloud账号</h3>
-<hr><i class="fas fa-cut"></i></hr>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/d3fd59e8/#more" rel="contents">
@@ -699,7 +811,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
+                <time title="修改时间：2021-02-10 11:12:53" itemprop="dateModified" datetime="2021-02-10T11:12:53+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -821,7 +933,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:41:53" itemprop="dateModified" datetime="2021-02-10T10:41:53+08:00">2021-02-10</time>
+                <time title="修改时间：2021-02-10 10:58:18" itemprop="dateModified" datetime="2021-02-10T10:58:18+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -860,7 +972,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>190</span>
+              <span>224</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -939,7 +1051,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:46:56" itemprop="dateModified" datetime="2021-02-10T10:46:56+08:00">2021-02-10</time>
+                <time title="修改时间：2021-02-10 11:11:41" itemprop="dateModified" datetime="2021-02-10T11:11:41+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -978,7 +1090,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>70</span>
+              <span>66</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -997,11 +1109,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>JSON是一种数据交换格式，而JSONP是信息传递双方约定的<b>方法</b></p>
-<h2 id="参考"><a class="header-anchor" href="#参考">¶</a>参考</h2>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html">【原创】说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></li>
-</ul>
+          <p>这篇文章将json和jsonp解释的非常清楚，我就不做总结了。<br>
+<a href="https://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" class="LinkCard" target="_blank">【原创】说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></p>
 
       
     </div>
@@ -1052,7 +1161,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:46:56" itemprop="dateModified" datetime="2021-02-10T10:46:56+08:00">2021-02-10</time>
+                <time title="修改时间：2021-02-10 11:05:49" itemprop="dateModified" datetime="2021-02-10T11:05:49+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1168,7 +1277,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:45:27" itemprop="dateModified" datetime="2021-02-10T10:45:27+08:00">2021-02-10</time>
+                <time title="修改时间：2021-02-10 10:54:57" itemprop="dateModified" datetime="2021-02-10T10:54:57+08:00">2021-02-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1261,128 +1370,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://xixi27.xyz/posts/d200aa3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-      <meta itemprop="name" content="xixi27">
-      <meta itemprop="description" content="记录生活的点滴">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xixi27">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/posts/d200aa3/" class="post-title-link" itemprop="url">VS Code 智能提示</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-28 16:47:40" itemprop="dateCreated datePublished" datetime="2021-01-28T16:47:40+08:00">2021-01-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-02-10 10:43:33" itemprop="dateModified" datetime="2021-02-10T10:43:33+08:00">2021-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/VS-Code/" itemprop="url" rel="index"><span itemprop="name">VS Code</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/posts/d200aa3/" class="post-meta-item leancloud_visitors" data-flag-title="VS Code 智能提示" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/posts/d200aa3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/posts/d200aa3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>113</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>VS Code智能提示的设置</p>
-<h2 id="VS-Code-智能提示设置"><a class="header-anchor" href="#VS-Code-智能提示设置">¶</a>VS Code 智能提示设置</h2>
-<p><code>settings</code> -&gt; <code>Text Editor</code> -&gt; <code>suggestion</code>  禁用掉不想要的提示即可</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/d200aa3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1454,7 +1441,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1480,6 +1467,9 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/posts/4592b2fd/" title="posts&#x2F;4592b2fd&#x2F;">shell脚本的编写</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/posts/9f50f366/" title="posts&#x2F;9f50f366&#x2F;">使用CSS修改默认checkbox UI</a>
         </li>
         <li class="links-of-recent-posts-item">
@@ -1490,9 +1480,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/posts/d3fd59e8/" title="posts&#x2F;d3fd59e8&#x2F;">Hexo 添加 Valine 评论功能</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/posts/4cef3d8b/" title="posts&#x2F;4cef3d8b&#x2F;">Hexo 添加自定义域名</a>
         </li>
     </ul>
   </div>
@@ -1515,7 +1502,7 @@
 <div class="copyright">
   
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

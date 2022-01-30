@@ -137,15 +137,15 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: js-cursor-explosion.min.js
-        label: ''
-        file: source\js\cursor\explosion.min.js
-        editor:
-          preview: true
-        fields: *ref_0
       - name: js-cursor-activate-power-mode.min.js
         label: ''
         file: source\js\cursor\activate-power-mode.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-explosion.min.js
+        label: ''
+        file: source\js\cursor\explosion.min.js
         editor:
           preview: true
         fields: *ref_0
