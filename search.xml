@@ -1351,7 +1351,7 @@ a.*?b匹配最短的，以a开始，以b结束的字符串。如果把它应用�
 <ul>
 <li>部署Hexo</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <h2 id="Hexo-常见问题"><a class="header-anchor" href="#Hexo-常见问题">¶</a>Hexo 常见问题</h2>
 <h3 id="问题：-bash-hexo-command-not-found"><a class="header-anchor" href="#问题：-bash-hexo-command-not-found">¶</a>问题： bash: hexo: command not found</h3>
 <div class="note danger">

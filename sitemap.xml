@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xixi27.xyz/posts/922ca1c7/</loc>
+    
+    <lastmod>2022-01-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://xixi27.xyz/posts/4592b2fd/</loc>
     
     <lastmod>2022-01-30</lastmod>
@@ -52,13 +59,6 @@
   
   <url>
     <loc>https://xixi27.xyz/posts/bd0c0858/</loc>
-    
-    <lastmod>2021-02-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xixi27.xyz/posts/922ca1c7/</loc>
     
     <lastmod>2021-02-10</lastmod>
     
@@ -256,13 +256,6 @@
   </url>
   
   <url>
-    <loc>https://xixi27.xyz/tags/Wget/</loc>
-    <lastmod>2022-01-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xixi27.xyz/tags/Hexo/</loc>
     <lastmod>2022-01-30</lastmod>
     <changefreq>daily</changefreq>
@@ -271,6 +264,13 @@
   
   <url>
     <loc>https://xixi27.xyz/tags/JavaScript/</loc>
+    <lastmod>2022-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xixi27.xyz/tags/Wget/</loc>
     <lastmod>2022-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -328,13 +328,6 @@
   </url>
   
   <url>
-    <loc>https://xixi27.xyz/categories/Tool/</loc>
-    <lastmod>2022-01-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xixi27.xyz/categories/Hexo/</loc>
     <lastmod>2022-01-30</lastmod>
     <changefreq>daily</changefreq>
@@ -343,6 +336,13 @@
   
   <url>
     <loc>https://xixi27.xyz/categories/CSS/</loc>
+    <lastmod>2022-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xixi27.xyz/categories/Tool/</loc>
     <lastmod>2022-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -370,20 +370,6 @@
   </url>
   
   <url>
-    <loc>https://xixi27.xyz/categories/Tool/VS-Code/</loc>
-    <lastmod>2022-01-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xixi27.xyz/categories/Tool/Git/</loc>
-    <lastmod>2022-01-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xixi27.xyz/categories/Tool/Linux/</loc>
     <lastmod>2022-01-30</lastmod>
     <changefreq>daily</changefreq>
@@ -392,6 +378,20 @@
   
   <url>
     <loc>https://xixi27.xyz/categories/Tool/Regx/</loc>
+    <lastmod>2022-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xixi27.xyz/categories/Tool/VS-Code/</loc>
+    <lastmod>2022-01-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xixi27.xyz/categories/Tool/Git/</loc>
     <lastmod>2022-01-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
