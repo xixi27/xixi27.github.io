@@ -113,15 +113,15 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: categories-index.md
-        label: categories
-        file: source\categories\index.md
+      - name: tags-index.md
+        label: tags
+        file: source\tags\index.md
         editor:
           preview: true
         fields: *ref_0
-      - name: js-crash-cheat.js
-        label: ''
-        file: source\js\crash-cheat.js
+      - name: categories-index.md
+        label: categories
+        file: source\categories\index.md
         editor:
           preview: true
         fields: *ref_0
@@ -131,9 +131,9 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: tags-index.md
-        label: tags
-        file: source\tags\index.md
+      - name: js-crash-cheat.js
+        label: ''
+        file: source\js\crash-cheat.js
         editor:
           preview: true
         fields: *ref_0
@@ -149,15 +149,15 @@ collections:
         editor:
           preview: true
         fields: *ref_0
-      - name: js-cursor-fireworks.js
-        label: ''
-        file: source\js\cursor\fireworks.js
-        editor:
-          preview: true
-        fields: *ref_0
       - name: js-cursor-love.min.js
         label: ''
         file: source\js\cursor\love.min.js
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: js-cursor-fireworks.js
+        label: ''
+        file: source\js\cursor\fireworks.js
         editor:
           preview: true
         fields: *ref_0

@@ -7,6 +7,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br></pre></td></tr></table></figure>
 <h2 id="权限"><a class="header-anchor" href="#权限">¶</a>权限</h2>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要给脚本文件添加可执行的权限</span></span><br><span class="line">chmod +x test.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行脚本文件</span></span><br><span class="line">./test.sh</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="变量"><a class="header-anchor" href="#变量">¶</a>变量</h2>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 等式两边不能有空格</span></span><br><span class="line"><span class="comment"># 定义过的变量可以花括号</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;this is a test <span class="variable">$&#123;index&#125;</span> text&quot;</span></span><br></pre></td></tr></table></figure>
 <h2 id="字符串"><a class="header-anchor" href="#字符串">¶</a>字符串</h2>
